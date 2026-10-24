@@ -47,6 +47,7 @@ function render() {
   document.getElementById("pairsTitle").textContent = t(L.pairs);
   document.getElementById("langBtn").textContent = lang === "ko" ? "EN" : "한국어";
   document.getElementById("tableBtn").textContent = showTable ? t(L.chart) : t(L.table);
+  document.getElementById("adminBtn").textContent = lang === "ko" ? "관리자" : "Admin";
   document.getElementById("notice").textContent = demo ? t(L.demo) : statsEnabled ? "" : t(L.noStats);
 
   document.getElementById("total").textContent = total;

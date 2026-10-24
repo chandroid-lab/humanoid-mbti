@@ -4,9 +4,9 @@
     ".write": false,
     "votes": {
       ".read": true,
-      ".write": "auth != null && auth.token.email === 'admin@humanoid-mbti.firebaseapp.com'",
+      ".write": "auth != null && auth.token.email === 'chandroid@humanoid-mbti.firebaseapp.com'",
       "$id": {
-        ".write": "$id.length <= 40 && (newData.exists() || (auth != null && auth.token.email === 'admin@humanoid-mbti.firebaseapp.com'))",
+        ".write": "$id.length <= 40 && (newData.exists() || (auth != null && auth.token.email === 'chandroid@humanoid-mbti.firebaseapp.com'))",
         ".validate": "newData.isString() && newData.val().matches(/^[EI][SN][TF][JP]$/)"
       }
     }

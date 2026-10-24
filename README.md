@@ -17,7 +17,7 @@
 ## 1-1. 관리자 계정 (집계 초기화용)
 
 1. Firebase 콘솔 **빌드 → Authentication → 시작하기 → 로그인 방법**에서 **이메일/비밀번호**를 사용 설정합니다.
-2. **Users 탭 → 사용자 추가**를 누릅니다. 이메일은 `admin@humanoid-mbti.firebaseapp.com`, 비밀번호는 원하는 값으로 정합니다.
+2. **Users 탭 → 사용자 추가**를 누릅니다. 이메일은 `chandroid@humanoid-mbti.firebaseapp.com`, 비밀번호는 원하는 값으로 정합니다.
 3. Realtime Database **규칙** 탭에 최신 `database.rules.json`을 다시 붙여 넣고 **게시**합니다. 이 규칙은 관리자 계정만 응답을 지울 수 있게 합니다.
 4. (선택) Authentication **설정 → 사용자 작업**에서 "생성(가입) 사용 설정"을 끄면, 다른 사람이 계정을 새로 만들 수 없게 됩니다.
 

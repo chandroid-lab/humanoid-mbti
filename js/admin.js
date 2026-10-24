@@ -2,7 +2,7 @@
 // The real protection is database.rules.json: only this account may delete votes.
 import { firebaseConfig } from "./firebase-config.js";
 
-export const ADMIN_EMAIL = "admin@humanoid-mbti.firebaseapp.com";
+export const ADMIN_EMAIL = "chandroid@humanoid-mbti.firebaseapp.com";
 const SDK = "https://www.gstatic.com/firebasejs/10.12.2";
 
 const $ = (id) => document.getElementById(id);
