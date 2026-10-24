@@ -1,6 +1,6 @@
 import { STAGES, AXES, TYPES, PAIRS, QUIZ, UI, EVIDENCE, opposite, pairKey } from "./data.js";
 import { PAPERS } from "./papers.js";
-import { vote } from "./stats.js";
+import { vote, subscribe, statsEnabled } from "./stats.js";
 import { drawCard } from "./card.js";
 
 const app = document.getElementById("app");
@@ -8,6 +8,8 @@ let lang = localStorage.getItem("hm_lang") || (navigator.language?.startsWith("k
 const picks = {};
 let quiz = null;
 let paperTab = "foundational";
+let roomCounts = null; // live counts from Firebase, filled once a result page is shown
+let roomSub = null;
 
 const t = (o) => (o && typeof o === "object" ? o[lang] ?? o.ko : o ?? "");
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -142,6 +144,7 @@ function resultHTML(type) {
       <div class="section-label" style="color:var(--gold-bright)">${esc(t(UI.oppTitle))}</div>
       <p class="small muted">${esc(t(UI.oppClaim))}</p>
       <div class="vs"><span class="me">${type}</span><span class="arrow">⇄</span><span class="type-mid">${opp}</span></div>
+      ${statsEnabled ? `<div class="room" id="roomOpp" data-opp="${opp}">${roomText(opp)}</div>` : ""}
       <div class="nick">${esc(t(o.nick))}</div>
       <div class="field-name" style="font-size:19px">${esc(t(o.field))}</div>
       <p style="margin-top:8px">${esc(t(o.easy))}</p>
@@ -166,6 +169,22 @@ function resultHTML(type) {
   </section>`;
 }
 
+/* ---------- people in the room ---------- */
+function roomText(opp) {
+  if (!roomCounts) return "";
+  const n = roomCounts[opp] || 0;
+  if (lang === "ko") return n ? `지금 이 방에 <b>${opp}</b>가 <b>${n}명</b> 있어요. 발표 끝나고 찾아가 보세요!` : `아직 이 방에 ${opp}는 없어요. 곧 들어올지도 몰라요.`;
+  return n ? `<b>${n}</b> ${opp}${n > 1 ? "s are" : " is"} in this room right now. Go find them after the talk!` : `No ${opp} in the room yet. One may join soon.`;
+}
+function updateRoom() {
+  const el = document.getElementById("roomOpp");
+  if (el) el.innerHTML = roomText(el.dataset.opp);
+}
+function ensureRoomSub() {
+  if (roomSub || !statsEnabled) return;
+  roomSub = subscribe(({ counts }) => { roomCounts = counts; updateRoom(); });
+}
+
 /* ---------- router ---------- */
 function render(scroll = true) {
   const h = location.hash.replace(/^#\/?/, "");
@@ -174,6 +193,7 @@ function render(scroll = true) {
     app.innerHTML = quizHTML();
   } else if (h.startsWith("r/") && isType(h.slice(2).toUpperCase())) {
     app.innerHTML = resultHTML(h.slice(2).toUpperCase());
+    ensureRoomSub();
   } else {
     quiz = null;
     app.innerHTML = homeHTML();

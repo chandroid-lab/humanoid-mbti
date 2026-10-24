@@ -58,6 +58,38 @@
     .notice { font-size: 13px; color: var(--text-muted); }
     .tools { display: flex; gap: 8px; }
     .tools button, .tools a { background: none; border: 1px solid var(--line); color: var(--text-secondary); border-radius: 10px; padding: 6px 12px; font-size: 13px; cursor: pointer; text-decoration: none; }
+    .cell { cursor: pointer; }
+    .cell:hover, .cell:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: -2px; }
+    .loopview { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+    .lcol { background: rgba(var(--seq), 0.08); padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 8px; }
+    .lcol.weak { box-shadow: inset 0 0 0 2px var(--gold-bright); }
+    .lname { font-weight: 800; font-size: clamp(20px, 2vw, 28px); }
+    .lname small { display: block; font-size: 13px; font-weight: 500; color: var(--text-secondary); }
+    .lbarwrap { height: 120px; display: flex; align-items: flex-end; }
+    .lbar { width: 100%; background: var(--series-a); border-radius: 4px 4px 0 0; min-height: 4px; transition: height .5s; }
+    .lcol.weak .lbar { background: var(--series-b); }
+    .lnum { font-size: clamp(32px, 3.2vw, 48px); font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+    .lnum small { font-size: 15px; font-weight: 500; color: var(--text-secondary); margin-left: 4px; }
+    .ltypes { display: flex; flex-wrap: wrap; gap: 4px; }
+    .ltypes span { font-size: 12px; color: var(--text-secondary); border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; font-variant-numeric: tabular-nums; }
+    .loopmsg { margin: 12px 2px 0; font-size: 17px; color: var(--text-primary); }
+    .loopmsg b { color: var(--gold-bright); }
+    .overlay { position: fixed; inset: 0; background: rgba(3, 8, 15, 0.86); display: flex; align-items: center; justify-content: center; padding: 4vh 4vw; z-index: 20; }
+    .ovbox { background: var(--surface-1); border: 1px solid var(--line); border-radius: 20px; width: min(1200px, 100%); max-height: 92vh; overflow: auto; padding: 36px 44px; position: relative; }
+    .ovclose { position: absolute; top: 18px; right: 20px; background: none; border: 1px solid var(--line); color: var(--text-secondary); border-radius: 10px; padding: 6px 12px; font: inherit; font-size: 14px; cursor: pointer; }
+    .ovtop { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; }
+    .ovtype { font-size: clamp(64px, 8vw, 120px); font-weight: 800; line-height: 1; color: var(--cb); letter-spacing: 0.03em; }
+    .ovnick { color: var(--gold-bright); font-size: clamp(18px, 1.8vw, 26px); font-weight: 600; margin-top: 6px; }
+    .ovcount { text-align: right; color: var(--text-secondary); font-size: 16px; }
+    .ovcount span { display: block; font-size: clamp(48px, 5vw, 80px); font-weight: 800; color: var(--text-primary); line-height: 1; font-variant-numeric: tabular-nums; }
+    .ovfield { font-size: clamp(26px, 2.8vw, 42px); font-weight: 800; margin: 18px 0 14px; line-height: 1.3; }
+    .ovstages { display: flex; gap: 8px; margin-bottom: 26px; }
+    .ovstages span { padding: 6px 16px; border-radius: 999px; background: rgba(var(--seq), 0.12); color: var(--text-secondary); font-weight: 700; font-size: 16px; }
+    .ovstages span.on { background: var(--gold); color: #14110a; }
+    .ovgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+    .ovgrid h3 { font-size: 15px; color: var(--cb-strong); letter-spacing: 0.04em; margin: 0 0 8px; }
+    .ovgrid p { font-size: clamp(17px, 1.6vw, 22px); line-height: 1.6; margin: 0; }
+    .ovopp { color: var(--gold-bright); }
     @media (max-width: 900px) { .live { grid-template-columns: 1fr; } .two { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -75,6 +107,7 @@
       <div class="notice" id="notice"></div>
       <div class="tools">
         <button type="button" id="langBtn">EN</button>
+        <button type="button" id="viewBtn"></button>
         <button type="button" id="tableBtn"></button>
         <a href="admin.html" target="_blank" rel="noopener" id="adminBtn">관리자</a>
       </div>
