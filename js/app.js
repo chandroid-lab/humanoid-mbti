@@ -1,4 +1,4 @@
-import { STAGES, AXES, TYPES, PAIRS, QUIZ, UI, EVIDENCE, opposite, pairKey } from "./data.js";
+import { STAGES, AXES, TYPES, PARTS, PAIRS, QUIZ, UI, EVIDENCE, opposite, pairKey } from "./data.js";
 import { PAPERS } from "./papers.js";
 import { vote, subscribe, statsEnabled } from "./stats.js";
 import { drawCard } from "./card.js";
@@ -26,26 +26,31 @@ function setLang(l) {
 document.querySelectorAll(".lang button").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
 
 /* ---------- shared pieces ---------- */
-function loopHTML(active) {
+const L2 = (ko, en) => (lang === "ko" ? ko : en);
+
+function railHTML(active) {
   const steps = Object.entries(STAGES)
-    .map(([k, v]) => `<div class="step ${k === active ? "on" : ""}">${esc(v.en)}<small>${lang === "ko" ? esc(v.ko) : "&nbsp;"}</small></div>`)
+    .map(([k, v], i) => `<div class="${k === active ? "on" : ""}">0${i + 1} ${esc(v.en.toUpperCase())}${lang === "ko" ? `<small>${esc(v.ko)}</small>` : ""}</div>`)
     .join("");
-  return `<div class="loop" aria-label="See, Think, Act, Fix loop">${steps}</div>
-    <div class="loop-back">↺ ${lang === "ko" ? "고친 뒤 다시 보기" : "fix, then look again"}</div>`;
+  return `<div class="rail" aria-label="See, Think, Act, Fix loop">${steps}</div>
+    <div class="rail-note">↺ ${L2("고친 뒤 다시 보기", "fix, then look again")}</div>`;
 }
 
-function paperHTML(p) {
+const blk = (head, right, body, cls = "") =>
+  `<section class="blk ${cls}"><div class="blk-h"><span>${head}</span><span>${right}</span></div><div class="blk-b">${body}</div></section>`;
+
+function paperHTML(p, i) {
   const venueHasYear = /\d{4}/.test(p.venue || "");
   const meta = [p.authors, venueHasYear ? p.venue : [p.venue, p.year].filter(Boolean).join(" ")].filter(Boolean).join(" · ");
-  return `<div class="paper">
+  return `<div class="paper"><span class="n">[${i + 1}]</span><div>
     <div class="t">${esc(p.title)}</div>
     <div class="meta">${esc(meta)}</div>
     <div class="why">${esc(lang === "ko" ? p.why_ko : p.why_en)}</div>
     <div class="links">
-      ${p.arxiv ? `<a href="${esc(p.arxiv)}" target="_blank" rel="noopener">arXiv</a>` : ""}
-      ${p.project ? `<a href="${esc(p.project)}" target="_blank" rel="noopener">${esc(t(UI.project))}</a>` : ""}
+      ${p.arxiv ? `<a href="${esc(p.arxiv)}" target="_blank" rel="noopener">arXiv ↗</a>` : ""}
+      ${p.project ? `<a href="${esc(p.project)}" target="_blank" rel="noopener">${esc(t(UI.project))} ↗</a>` : ""}
     </div>
-  </div>`;
+  </div></div>`;
 }
 
 function papersBlock(type) {
@@ -64,109 +69,101 @@ function homeHTML() {
   const ready = AXES.every((a) => picks[a.key]);
   const axes = AXES.map((ax) => {
     const btn = (side) => `<button type="button" class="pick" data-act="pick" data-axis="${ax.key}" data-letter="${side.letter}" aria-pressed="${picks[ax.key] === side.letter}">
-        <b>${side.letter}</b><span class="lbl">${esc(t(side.label))}</span>
+        <b>${side.letter}</b><span class="pl">${esc(t(side.label))}</span>
         <span class="desc">${esc(t(side.desc))}</span>
       </button>`;
     return `<div class="axis">${btn(ax.a)}${btn(ax.b)}</div>`;
   }).join("");
-  return `<section class="fade-in">
+  const picked = AXES.map((a) => picks[a.key] || "_").join("");
+  return `<div class="fade-in">
     <div class="eyebrow">${esc(t(UI.eyebrow))}</div>
     <h1>${esc(t(UI.title))}</h1>
-    ${loopHTML(null)}
-    <p class="muted small" style="margin-top:10px">${esc(t(UI.loopIntro))}</p>
-    <div class="card">
-      <h2>${esc(t(UI.pickTitle))}</h2>
-      ${axes}
-      <button class="btn btn-primary" data-act="go" ${ready ? "" : "disabled"} style="margin-top:8px">${esc(t(UI.seeResult))}</button>
-      <button class="btn btn-ghost" data-act="quiz">${esc(t(UI.dontKnow))}</button>
-    </div>
+    ${railHTML(null)}
+    <p class="muted small" style="margin-top:12px">${esc(t(UI.loopIntro))}</p>
+    ${blk(`01 / ${esc(t(UI.pickTitle))}`, `<span class="mono">${picked}</span>`, `${axes}
+      <button class="btn btn-primary" data-act="go" ${ready ? "" : "disabled"}>${esc(t(UI.seeResult))} →</button>
+      <button class="btn btn-ghost" data-act="quiz">${esc(t(UI.dontKnow))}</button>`)}
     <p class="disclaimer">${esc(t(UI.disclaimer))}</p>
-  </section>`;
+  </div>`;
 }
 
 function quizHTML() {
   const q = QUIZ[quiz.i];
   const pct = (quiz.i / QUIZ.length) * 100;
-  return `<section class="fade-in">
+  return `<div class="fade-in">
     <div class="progress"><i style="width:${pct}%"></i></div>
-    <div class="muted small">${esc(t(UI.quizOf))} ${quiz.i + 1} / ${QUIZ.length}</div>
+    <div class="qnum">Q${quiz.i + 1} / ${QUIZ.length}</div>
     <div class="qtext">${esc(t(q.q))}</div>
-    ${q.options.map((o, i) => `<button class="opt" data-act="answer" data-i="${i}">${esc(t(o.text))}</button>`).join("")}
+    ${q.options.map((o, i) => `<button class="opt" data-act="answer" data-i="${i}"><span class="k">${"AB"[i]}</span><span>${esc(t(o.text))}</span></button>`).join("")}
     <a class="btn btn-ghost" href="#/">${esc(t(UI.back))}</a>
-  </section>`;
+  </div>`;
 }
 
 function resultHTML(type) {
   const d = TYPES[type];
   const opp = opposite(type);
   const o = TYPES[opp];
-  const stage = STAGES[d.stage];
-  const axesRow = type.split("").map((L, i) => {
+  const axesTxt = type.split("").map((L, i) => {
     const ax = AXES[i];
     const side = ax.a.letter === L ? ax.a : ax.b;
-    return `<div><b>${L}</b>${esc(t(side.label))}</div>`;
-  }).join("");
+    return `${L} ${esc(t(side.label))}`;
+  }).join(" · ");
   const oppSet = PAPERS[opp];
   const oppStarter = oppSet ? [oppSet.foundational?.[0], oppSet.recent?.[0]].filter(Boolean) : [];
   const evidence = EVIDENCE.cite
-    ? `<div class="evidence"><b>${esc(t(UI.evidenceTitle))}</b><br>${esc(t(EVIDENCE))}<br>
-        <a href="${esc(EVIDENCE.url)}" target="_blank" rel="noopener">${esc(EVIDENCE.cite)}</a></div>`
+    ? `<div class="evidence"><div class="lbl">${esc(t(UI.evidenceTitle))}</div>${esc(t(EVIDENCE))}<br>
+        <a href="${esc(EVIDENCE.url)}" target="_blank" rel="noopener">${esc(EVIDENCE.cite)} ↗</a></div>`
     : "";
   const grid = Object.keys(TYPES).map((k) => `<a href="#/r/${k}" class="${k === type ? "cur" : ""}">${k}</a>`).join("");
+  const parts = d.body.map((p) => esc(t(PARTS[p]))).join(", ");
 
-  return `<section class="fade-in">
-    <div class="card">
-      <div class="section-label">${esc(t(UI.myField))}</div>
-      <div class="type-big">${type}</div>
-      <div class="nick">${esc(t(d.nick))}</div>
-      <div class="field-name">${esc(t(d.field))}</div>
-      <div class="chips"><span class="chip gold">${esc(t(UI.loopStage))} · ${esc(stage.en)}${lang === "ko" ? ` (${esc(stage.ko)})` : ""}</span></div>
-      <div class="axes-row">${axesRow}</div>
-    </div>
-
-    ${loopHTML(d.stage)}
-
-    <div class="card">
-      <div class="section-label">${esc(t(UI.easyTitle))}</div>
-      <p>${esc(t(d.easy))}</p>
-      <div class="section-label" style="margin-top:14px">${esc(t(UI.barrierTitle))}</div>
-      <p class="muted">${esc(t(d.barrier))}</p>
-      <div class="section-label" style="margin-top:14px">${esc(t(UI.toolsTitle))}</div>
-      <div class="chips">${d.tools.map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div>
-    </div>
-
-    <div class="card">
-      <div class="section-label">${esc(t(UI.papersTitle))}</div>
-      <div id="papers">${papersBlock(type)}</div>
-    </div>
-
-    <div class="card opp">
-      <div class="section-label" style="color:var(--gold-bright)">${esc(t(UI.oppTitle))}</div>
-      <p class="small muted">${esc(t(UI.oppClaim))}</p>
-      <div class="vs"><span class="me">${type}</span><span class="arrow">⇄</span><span class="type-mid">${opp}</span></div>
-      ${statsEnabled ? `<div class="room" id="roomOpp" data-opp="${opp}">${roomText(opp)}</div>` : ""}
-      <div class="nick">${esc(t(o.nick))}</div>
-      <div class="field-name" style="font-size:19px">${esc(t(o.field))}</div>
-      <p style="margin-top:8px">${esc(t(o.easy))}</p>
-      <div class="chips">${o.tools.map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div>
-      <div class="quote">
-        <h3>${esc(t(UI.synergyTitle))}</h3>
-        <p class="muted" style="margin:0">${esc(t(PAIRS[pairKey(type, opp)]))}</p>
+  return `<div class="fade-in">
+    <section class="blk">
+      <div class="blk-h"><span>${L2("결과", "Result")} / ${type}</span><span>agentic-vision.loop</span></div>
+      <div class="robot" id="robot" aria-label="${L2("휴머노이드 3D 모델", "3D humanoid model")}"><div class="loading">${L2("3D 모델 불러오는 중…", "loading 3D model…")}</div></div>
+      <div class="robot-cap"><span>${L2("이 분야가 다루는 부위", "Body parts in focus")}: <span class="on">${parts}</span></span><span class="hint">${L2("드래그해서 돌리기", "drag to rotate")}</span></div>
+      <div class="credit">Unitree G1 · <a href="https://github.com/unitreerobotics/unitree_ros" target="_blank" rel="noopener">URDF</a> © Unitree Robotics, BSD-3</div>
+      <div class="blk-b" style="border-top:1px solid var(--line)">
+        <div class="type-big">${type}</div>
+        <dl class="kv">
+          <dt>FIELD</dt><dd class="field-name">${esc(t(d.field))}</dd>
+          <dt>ROLE</dt><dd class="nick">${esc(t(d.nick))}</dd>
+          <dt>AXES</dt><dd class="mono small">${axesTxt}</dd>
+        </dl>
       </div>
-      ${oppStarter.length ? `<div class="section-label" style="margin-top:14px">${esc(t(UI.oppPapers))}</div>${oppStarter.map(paperHTML).join("")}` : ""}
+    </section>
+
+    ${railHTML(d.stage)}
+
+    ${blk(`02 / ${esc(t(UI.easyTitle))}`, "", `
+      <p>${esc(t(d.easy))}</p>
+      <div class="lbl">${esc(t(UI.barrierTitle))}</div>
+      <p class="muted">${esc(t(d.barrier))}</p>
+      <div class="lbl">${esc(t(UI.toolsTitle))}</div>
+      <div class="tags">${d.tools.map((x) => `<span class="tag">${esc(x)}</span>`).join("")}</div>`)}
+
+    <section class="blk"><div class="blk-h"><span>03 / ${esc(t(UI.papersTitle))}</span><span>${L2("기초 3 · 최신 3", "3 + 3")}</span></div>
+      <div class="blk-b" id="papers">${papersBlock(type)}</div></section>
+
+    ${blk(`04 / ${esc(t(UI.oppTitle))}`, `${type} ⇄ ${opp}`, `
+      <p class="small muted">${esc(t(UI.oppClaim))}</p>
+      <div class="vs"><span class="me">${type}</span><span class="arrow">⇄</span><span class="them">${opp}</span></div>
+      ${statsEnabled ? `<div class="room" id="roomOpp" data-opp="${opp}">${roomText(opp)}</div>` : ""}
+      <div class="field-name">${esc(t(o.field))}</div>
+      <div class="nick" style="margin-bottom:8px">${esc(t(o.nick))}</div>
+      <p>${esc(t(o.easy))}</p>
+      <div class="tags">${o.tools.map((x) => `<span class="tag">${esc(x)}</span>`).join("")}</div>
+      <div class="quote"><h3>${esc(t(UI.synergyTitle))}</h3><p class="muted" style="margin:0">${esc(t(PAIRS[pairKey(type, opp)]))}</p></div>
+      ${oppStarter.length ? `<div class="lbl">${esc(t(UI.oppPapers))}</div>${oppStarter.map(paperHTML).join("")}` : ""}
       ${evidence}
-      <a class="btn btn-ghost" href="#/r/${opp}">${opp} →</a>
-    </div>
+      <a class="btn btn-ghost" href="#/r/${opp}">${opp} ${L2("결과 전체 보기", "full result")} →</a>`, "opp")}
 
     <button class="btn btn-gold" data-act="save" data-type="${type}">${esc(t(UI.save))}</button>
     <a class="btn btn-ghost" href="#/">${esc(t(UI.back))}</a>
 
-    <div class="card">
-      <div class="section-label">${esc(t(UI.allTypes))}</div>
-      <div class="grid16">${grid}</div>
-    </div>
+    ${blk(`05 / ${esc(t(UI.allTypes))}`, "16", `<div class="grid16">${grid}</div>`)}
     <p class="disclaimer">${esc(t(UI.disclaimer))}</p>
-  </section>`;
+  </div>`;
 }
 
 /* ---------- people in the room ---------- */
@@ -185,15 +182,37 @@ function ensureRoomSub() {
   roomSub = subscribe(({ counts }) => { roomCounts = counts; updateRoom(); });
 }
 
+/* ---------- 3D robot ---------- */
+let robotCleanup = null;
+async function mountRobotFor(type) {
+  robotCleanup?.();
+  robotCleanup = null;
+  const el = document.getElementById("robot");
+  if (!el) return;
+  try {
+    const { mountRobot } = await import("./robot.js");
+    const cleanup = await mountRobot(el, TYPES[type].body);
+    if (el.isConnected) { robotCleanup = cleanup; el.querySelector(".loading")?.remove(); } else cleanup();
+  } catch (e) {
+    console.warn("3D model failed", e);
+    const l = el.querySelector(".loading");
+    if (l) l.textContent = lang === "ko" ? "3D 모델을 불러오지 못했어요" : "Could not load the 3D model";
+  }
+}
+
 /* ---------- router ---------- */
 function render(scroll = true) {
+  robotCleanup?.();
+  robotCleanup = null;
   const h = location.hash.replace(/^#\/?/, "");
   if (h === "quiz") {
     quiz ??= { i: 0, votes: {} };
     app.innerHTML = quizHTML();
   } else if (h.startsWith("r/") && isType(h.slice(2).toUpperCase())) {
-    app.innerHTML = resultHTML(h.slice(2).toUpperCase());
+    const type = h.slice(2).toUpperCase();
+    app.innerHTML = resultHTML(type);
     ensureRoomSub();
+    mountRobotFor(type);
   } else {
     quiz = null;
     app.innerHTML = homeHTML();
