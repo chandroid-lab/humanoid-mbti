@@ -135,6 +135,14 @@ p { margin: 0 0 10px; }
 .credit { font-family: var(--mono); font-size: 10.5px; color: var(--faint); padding: 0 12px 8px; }
 .credit a { color: var(--faint); }
 
+.robot-view { position: absolute; border: 1px solid rgba(214, 194, 127, 0.8); pointer-events: none; overflow: hidden; }
+.rv-h { position: absolute; top: 0; left: 0; right: 0; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; color: #14110a; background: rgba(214, 194, 127, 0.9); padding: 1px 5px; }
+.rv-boxes { position: absolute; inset: 0; }
+.rv-b { position: absolute; border: 1.5px solid; }
+.rv-b span { position: absolute; left: -1.5px; bottom: 100%; font-family: var(--mono); font-size: 9px; color: #0a1220; padding: 0 3px; white-space: nowrap; }
+.rv-s { position: absolute; left: 0; right: 0; bottom: 0; font-family: var(--mono); font-size: 9.5px; color: var(--text); background: rgba(6, 12, 20, 0.75); padding: 2px 5px; }
+.rv-s:empty { display: none; }
+
 /* tags */
 .tags { display: flex; flex-wrap: wrap; gap: 4px; }
 .tag { font-family: var(--mono); font-size: 11.5px; border: 1px solid var(--line); padding: 2px 7px; color: var(--cb); }

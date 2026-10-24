@@ -9,6 +9,7 @@ function loadLibs() {
     import("three"), // resolved by the import map in index.html
     import("three/addons/loaders/GLTFLoader.js"),
     import("three/addons/controls/OrbitControls.js"),
+    import("three/addons/environments/RoomEnvironment.js"),
   ]);
   return libs;
 }
@@ -96,7 +97,8 @@ const MOTIONS = {
     const o = { ...ARMS_REST }, p = (t / 7) % 1;
     o.waist_yaw_joint = p < 0.35 ? 0.6 * Math.sin(TAU * p / 0.35) : 0;
     const lean = seg(p, 0.4, 0.55) * (1 - seg(p, 0.8, 0.95));
-    o.waist_pitch_joint = 0.4 * lean;
+    o.waist_pitch_joint = 0.22 * lean;
+    o._zoom = lean;
     reachR(o, 0.8 * lean, 0.1);
     fingers(o, "right", 0.6 * lean); // point
     o.right_hand_index_0_joint = 0; o.right_hand_index_1_joint = 0;
@@ -178,10 +180,16 @@ const MOTIONS = {
 
 // Work environment per motion, and how long one loop of that motion is (s).
 const SCENES = {
-  pickplace: { kind: "table", loop: 6 }, plan: { kind: "table", loop: 8 }, codefix: { kind: "table", loop: 8 },
-  stop: { kind: "table", loop: 6, hazard: true }, grasp: { kind: "table" },
-  walk: { kind: "floor", speed: 0.55 }, step: { kind: "floor", speed: 0.9 },
-  scan: { kind: "shelves" }, lookagain: { kind: "shelves" },
+  pickplace: { kind: "table", loop: 6, status: (p) => p < 0.25 ? "detect box → reach" : p < 0.55 ? "grasp → carry" : p < 0.75 ? "place in tray" : "done ✓" },
+  plan: { kind: "table", loop: 8, status: (p) => p < 0.3 ? "scan → plan: [reach, grasp, place]" : p < 0.5 ? "step 1 · reach" : p < 0.7 ? "step 2 · grasp" : "step 3 · place ✓" },
+  codefix: { kind: "table", loop: 8, status: (p) => p < 0.25 ? "try 1 · reach(x=+0.12)" : p < 0.5 ? "miss ✗ → fix code: x=0.0" : p < 0.85 ? "try 2 · grasp ✓" : "" },
+  stop: { kind: "table", loop: 6, hazard: true, status: (p) => p < 0.22 ? "reach box" : p < 0.62 ? "hazard in path → STOP" : "retract · ask human" },
+  grasp: { kind: "table" },
+  walk: { kind: "floor", speed: 0.55, status: () => "terrain: flat · step ok" },
+  step: { kind: "floor", speed: 0.9, status: () => "control loop 500 Hz" },
+  scan: { kind: "shelves", status: () => "mapping · 3D memory +1" },
+  lookagain: { kind: "shelves", loop: 7, zoom: true, status: (p) => p < 0.45 ? "scan · unsure" : p < 0.85 ? "zoom ×2 · look again" : "confident ✓",
+    conf: (p) => p < 0.45 ? 0.5 : p < 0.85 ? 0.95 : 0.9 },
 };
 
 // Vertical drop of the pelvis so the stance foot stays on the floor (thigh ≈ shank ≈ 0.3 m).
@@ -193,9 +201,53 @@ function pelvisDrop(q) {
   return Math.min(leg("left"), leg("right"));
 }
 
+/* ---------- procedural textures (no image downloads) ---------- */
+function canvasTex(THREE, w, h, draw, repeat = [1, 1]) {
+  const c = document.createElement("canvas");
+  c.width = w; c.height = h;
+  draw(c.getContext("2d"), w, h);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(...repeat);
+  tex.anisotropy = 4;
+  return tex;
+}
+function rand(seed) { let s = seed; return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+function noise(g, w, h, n, r, colorFn) {
+  for (let i = 0; i < n; i++) { g.fillStyle = colorFn(r()); g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
+}
+const TEX = {
+  concrete: (g, w, h) => {
+    const r = rand(7);
+    g.fillStyle = "#3b4550"; g.fillRect(0, 0, w, h);
+    noise(g, w, h, 9000, r, (v) => `rgba(${v > 0.5 ? 255 : 0},${v > 0.5 ? 255 : 0},${v > 0.5 ? 255 : 0},${0.03 + v * 0.05})`);
+    g.strokeStyle = "rgba(10,16,24,0.55)"; g.lineWidth = 2;
+    g.strokeRect(0, 0, w, h); // tile seams
+  },
+  wood: (g, w, h) => {
+    const r = rand(3);
+    const grad = g.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, "#80593a"); grad.addColorStop(1, "#6a4a30");
+    g.fillStyle = grad; g.fillRect(0, 0, w, h);
+    for (let y = 0; y < h; y += 2) {
+      g.strokeStyle = `rgba(40,24,12,${0.08 + 0.12 * Math.abs(Math.sin(y * 0.15 + Math.sin(y * 0.03) * 3))})`;
+      g.beginPath(); g.moveTo(0, y); for (let x = 0; x <= w; x += 16) g.lineTo(x, y + Math.sin(x * 0.02 + y) * 1.5); g.stroke();
+    }
+    noise(g, w, h, 1500, r, (v) => `rgba(30,18,8,${v * 0.15})`);
+  },
+  cardboard: (g, w, h) => {
+    const r = rand(11);
+    g.fillStyle = "#b48b58"; g.fillRect(0, 0, w, h);
+    noise(g, w, h, 3000, r, (v) => `rgba(90,60,30,${v * 0.18})`);
+    g.fillStyle = "rgba(225,210,170,0.75)"; g.fillRect(w * 0.4, 0, w * 0.2, h); // packing tape
+    g.strokeStyle = "rgba(80,55,25,0.6)"; g.lineWidth = 3; g.strokeRect(1, 1, w - 2, h - 2);
+  },
+};
+
 // Mount a viewer into `el`. parts: ["head", ...] to highlight; motion: a key of MOTIONS.
 export async function mountRobot(el, parts, motion) {
-  const [THREE, { GLTFLoader }, { OrbitControls }] = await loadLibs();
+  const [THREE, { GLTFLoader }, { OrbitControls }, { RoomEnvironment }] = await loadLibs();
   if (!el.isConnected) return () => {};
   assetPromise ??= Promise.all([
     new Promise((res, rej) => new GLTFLoader().load(`${MODEL}.glb`, res, undefined, rej)),
@@ -205,25 +257,43 @@ export async function mountRobot(el, parts, motion) {
   if (!el.isConnected) return () => {};
 
   const w = el.clientWidth, h = el.clientHeight;
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setSize(w, h);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   el.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.add(new THREE.HemisphereLight(0xeaf3ff, 0x0a1a2e, 1.5));
-  const key = new THREE.DirectionalLight(0xffffff, 2.0); key.position.set(2, 3, 3); scene.add(key);
-  const rim = new THREE.DirectionalLight(0x75aadb, 1.0); rim.position.set(-2, 1.5, -2.5); scene.add(rim);
+  const BG = 0x0b1726;
+  scene.background = new THREE.Color(BG);
+  scene.fog = new THREE.Fog(BG, 3.2, 8);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+  scene.add(new THREE.HemisphereLight(0xdfeeff, 0x1a2430, 0.35));
+  const key = new THREE.DirectionalLight(0xfff4e6, 2.4);
+  key.position.set(1.6, 3.2, 2.2);
+  key.castShadow = true;
+  key.shadow.mapSize.set(1024, 1024);
+  Object.assign(key.shadow.camera, { left: -1.6, right: 1.6, top: 2.2, bottom: -0.4, near: 0.5, far: 8 });
+  key.shadow.bias = -0.0004;
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0x75aadb, 0.8); rim.position.set(-2, 1.5, -2.5); scene.add(rim);
 
   const root = gltf.scene.clone(true);
   const want = new Set(parts);
+  let headMesh = null;
   root.traverse((o) => {
     if (!o.isMesh) return;
-    const on = want.has(meta.parts[o.name]);
+    const part = meta.parts[o.name];
+    if (part === "head") headMesh = o;
+    const on = want.has(part);
     o.geometry = o.geometry.clone();
     o.geometry.computeVertexNormals();
-    o.material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.6, metalness: 0.1, color: on ? 0xffffff : 0x4a5866 });
+    o.material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.5, metalness: 0.15, envMapIntensity: 0.7, color: on ? 0xffffff : 0x56606c });
+    o.castShadow = true;
     if (on) o.add(new THREE.LineSegments(new THREE.EdgesGeometry(o.geometry, 60),
       new THREE.LineBasicMaterial({ color: 0xd6c27f, transparent: true, opacity: 0.85 })));
   });
@@ -237,30 +307,44 @@ export async function mountRobot(el, parts, motion) {
     const node = root.getObjectByName(j.body);
     if (node) J.push({ name, node, rest: node.quaternion.clone(), axis: new THREE.Vector3(...j.axis).normalize(), range: j.range });
   }
-  const tmp = new THREE.Quaternion();
+  const tmpQ = new THREE.Quaternion();
   const fn = MOTIONS[motion] || MOTIONS.scan;
   function pose(t) {
     const q = fn(t);
     for (const j of J) {
       const v = Math.min(j.range[1], Math.max(j.range[0], q[j.name] || 0));
-      j.node.quaternion.copy(j.rest).multiply(tmp.setFromAxisAngle(j.axis, v));
+      j.node.quaternion.copy(j.rest).multiply(tmpQ.setFromAxisAngle(j.axis, v));
     }
     top.position.y = topY - pelvisDrop(q);
+    return q;
   }
   pose(0);
+  root.updateMatrixWorld(true);
 
   // ----- environment -----
+  const sc = SCENES[motion] || {};
   const env = new THREE.Group();
   scene.add(env);
-  const grid = new THREE.GridHelper(8, 32, 0x2b4a68, 0x152a40);
-  env.add(grid);
-  const sc = SCENES[motion] || {};
-  const mat = (c, r = 0.8) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: 0.05 });
+  const std = (o) => new THREE.MeshStandardMaterial({ roughness: 0.8, metalness: 0.05, ...o });
   const V = (x = 0, y = 0, z = 0) => new THREE.Vector3(x, y, z);
+  const add = (geo, m, x, y, z, shadow = true) => {
+    const mesh = new THREE.Mesh(geo, m);
+    mesh.position.set(x, y, z);
+    mesh.castShadow = shadow; mesh.receiveShadow = true;
+    env.add(mesh);
+    return mesh;
+  };
+  const floorTex = canvasTex(THREE, 256, 256, TEX.concrete, [16, 16]);
+  const floor = add(new THREE.PlaneGeometry(8, 8), std({ map: floorTex, roughness: 0.9 }), 0, 0, 0, false);
+  floor.rotation.x = -Math.PI / 2;
+  const cardboard = std({ map: canvasTex(THREE, 128, 128, TEX.cardboard), roughness: 0.95 });
+  const metal = std({ color: 0x9aa3ad, metalness: 0.8, roughness: 0.35 });
+
   const fA = root.getObjectByName("right_hand_index_1_link"), fB = root.getObjectByName("right_hand_thumb_2_link");
   const grabPoint = (out) => { const b = V(); fA.getWorldPosition(out); fB.getWorldPosition(b); return out.add(b).multiplyScalar(0.5); };
+  const targets = []; // things the robot camera "detects": { obj, label, color }
   let cube = null, held = false, offset = V(), pickPos = null, tableTop = 0, lastT = 0;
-  const CUBE = 0.06;
+  const CUBE = 0.065;
   if (sc.kind === "table" && fA && fB) {
     // find where the hand grabs and releases by sampling one loop of the motion
     const L = sc.loop || 6;
@@ -272,45 +356,154 @@ export async function mountRobot(el, parts, motion) {
       if (g <= 0.5 && prevG > 0.5) place = grabPoint(V());
       prevG = g;
     }
-    if (!pick) { pose(L * 0.3); root.updateMatrixWorld(true); pick = grabPoint(V()); } // reach target without grasping
+    if (!pick) { pose(L * 0.3); root.updateMatrixWorld(true); pick = grabPoint(V()); }
     place ??= pick.clone();
     pose(0); root.updateMatrixWorld(true);
     tableTop = Math.min(pick.y, place.y) - CUBE / 2 - 0.005;
-    const minX = Math.min(pick.x, place.x) - 0.22, maxX = Math.max(pick.x, place.x) + 0.22;
-    const minZ = Math.min(pick.z, place.z) - 0.12, maxZ = Math.max(pick.z, place.z) + 0.25;
-    const top = new THREE.Mesh(new THREE.BoxGeometry(maxX - minX, 0.035, maxZ - minZ), mat(0x2c4258));
-    top.position.set((minX + maxX) / 2, tableTop - 0.0175, (minZ + maxZ) / 2);
-    env.add(top);
-    for (const [x, z] of [[minX + 0.03, minZ + 0.03], [maxX - 0.03, minZ + 0.03], [minX + 0.03, maxZ - 0.03], [maxX - 0.03, maxZ - 0.03]]) {
-      const leg = new THREE.Mesh(new THREE.BoxGeometry(0.03, tableTop - 0.035, 0.03), mat(0x1d3044));
-      leg.position.set(x, (tableTop - 0.035) / 2, z);
-      env.add(leg);
+    const minX = Math.min(pick.x, place.x) - 0.3, maxX = Math.max(pick.x, place.x) + 0.3;
+    const minZ = Math.min(pick.z, place.z) - 0.1, maxZ = Math.max(pick.z, place.z) + 0.28;
+    const wood = std({ map: canvasTex(THREE, 512, 128, TEX.wood, [1, 1]), roughness: 0.55 });
+    add(new THREE.BoxGeometry(maxX - minX, 0.035, maxZ - minZ), wood, (minX + maxX) / 2, tableTop - 0.0175, (minZ + maxZ) / 2);
+    for (const [x, z] of [[minX + 0.04, minZ + 0.04], [maxX - 0.04, minZ + 0.04], [minX + 0.04, maxZ - 0.04], [maxX - 0.04, maxZ - 0.04]]) {
+      add(new THREE.CylinderGeometry(0.014, 0.014, tableTop - 0.035, 12), metal, x, (tableTop - 0.035) / 2, z);
     }
     if (motion !== "grasp") {
-      cube = new THREE.Mesh(new THREE.BoxGeometry(CUBE, CUBE, CUBE), mat(0x75aadb, 0.5));
-      pickPos = V(pick.x, tableTop + CUBE / 2, pick.z);
-      cube.position.copy(pickPos);
-      env.add(cube);
+      cube = add(new THREE.BoxGeometry(CUBE, CUBE * 0.85, CUBE), cardboard, pick.x, tableTop + CUBE * 0.425, pick.z);
+      pickPos = cube.position.clone();
+      targets.push({ obj: cube, label: "box", color: "#d6c27f" });
+    }
+    if (place.distanceTo(pick) > 0.1) { // a tray to put things in
+      const tray = new THREE.Group();
+      const blue = std({ color: 0x2f6aa3, roughness: 0.45 });
+      const T = 0.16, H = 0.035, th = 0.006;
+      for (const [gx, gy, gz, px, py, pz] of [[T, th, T, 0, 0, 0], [T, H, th, 0, H / 2, T / 2], [T, H, th, 0, H / 2, -T / 2], [th, H, T, T / 2, H / 2, 0], [th, H, T, -T / 2, H / 2, 0]]) {
+        const m = new THREE.Mesh(new THREE.BoxGeometry(gx, gy, gz), blue); m.position.set(px, py, pz); m.castShadow = m.receiveShadow = true; tray.add(m);
+      }
+      tray.position.set(place.x, tableTop, place.z);
+      env.add(tray);
+      targets.push({ obj: tray, label: "tray", color: "#75aadb" });
     }
     if (sc.hazard) { // something the robot must not touch: it stops short of it
-      const cone = new THREE.Mesh(new THREE.ConeGeometry(0.045, 0.12, 20), mat(0xe0745a, 0.6));
-      cone.position.set(pick.x, tableTop + 0.06, pick.z + 0.09);
+      const cone = new THREE.Group();
+      const orange = std({ color: 0xe8642c, roughness: 0.5 });
+      const c1 = new THREE.Mesh(new THREE.ConeGeometry(0.04, 0.13, 24), orange); c1.position.y = 0.075;
+      const band = new THREE.Mesh(new THREE.CylinderGeometry(0.024, 0.029, 0.022, 24), std({ color: 0xf2f2f2, roughness: 0.4 })); band.position.y = 0.08;
+      const base = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.012, 0.1), std({ color: 0x1b1b1b })); base.position.y = 0.006;
+      for (const m of [c1, band, base]) { m.castShadow = true; cone.add(m); }
+      cone.position.set(pick.x, tableTop, pick.z + 0.07);
       env.add(cone);
-      cube.position.set(pick.x + 0.12, tableTop + CUBE / 2, pick.z + 0.06);
+      cube.position.set(pick.x + 0.14, tableTop + CUBE * 0.425, pick.z + 0.05);
       pickPos = cube.position.clone();
+      targets.push({ obj: cone, label: "hazard", color: "#e8642c" });
     }
   }
   if (sc.kind === "shelves") {
-    for (let i = 0; i < 7; i++) { // behind and beside the robot, never between it and the camera
-      const a = Math.PI * 0.62 + i * (Math.PI * 0.76 / 6), r = 1.1 + 0.25 * (i % 2);
-      const hgt = 0.35 + 0.3 * ((i * 37) % 5) / 4;
-      const b = new THREE.Mesh(new THREE.BoxGeometry(0.28, hgt, 0.28), mat(i % 3 ? 0x2c4258 : 0x3d5873));
-      b.position.set(Math.sin(a) * r, hgt / 2, Math.cos(a) * r);
-      env.add(b);
+    for (const [ang, rad] of [[Math.PI * 0.72, 1.25], [Math.PI, 1.35], [Math.PI * 1.28, 1.25]]) {
+      const unit = new THREE.Group();
+      const W = 0.8, D = 0.35, H = 1.4;
+      for (const [x, z] of [[-W / 2, -D / 2], [W / 2, -D / 2], [-W / 2, D / 2], [W / 2, D / 2]]) {
+        const p = new THREE.Mesh(new THREE.BoxGeometry(0.025, H, 0.025), metal); p.position.set(x, H / 2, z); p.castShadow = true; unit.add(p);
+      }
+      const r = rand(Math.round(ang * 100));
+      for (const y of [0.12, 0.6, 1.08]) {
+        const s = new THREE.Mesh(new THREE.BoxGeometry(W, 0.02, D), metal); s.position.y = y; s.receiveShadow = s.castShadow = true; unit.add(s);
+        for (let x = -W / 2 + 0.12; x < W / 2 - 0.1; x += 0.2 + r() * 0.08) {
+          const bw = 0.12 + r() * 0.08, bh = 0.1 + r() * 0.14;
+          const b = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, 0.2), cardboard); b.position.set(x, y + 0.01 + bh / 2, 0); b.castShadow = true; unit.add(b);
+        }
+      }
+      unit.position.set(Math.sin(ang) * rad, 0, Math.cos(ang) * rad);
+      unit.lookAt(0, 0, 0);
+      env.add(unit);
+    }
+    // a low cart in front: what the robot looks at (low enough not to hide the robot)
+    const cartTop = 0.42, cz = 0.95;
+    add(new THREE.BoxGeometry(0.7, 0.03, 0.42), metal, 0, cartTop, cz);
+    add(new THREE.BoxGeometry(0.7, 0.02, 0.42), metal, 0, 0.1, cz);
+    for (const [x, z] of [[-0.33, cz - 0.19], [0.33, cz - 0.19], [-0.33, cz + 0.19], [0.33, cz + 0.19]]) add(new THREE.CylinderGeometry(0.012, 0.012, cartTop, 10), metal, x, cartTop / 2, z);
+    const r = rand(5);
+    [-0.2, 0.02, 0.22].forEach((x, i) => {
+      const bw = 0.12 + r() * 0.06, bh = 0.08 + r() * 0.1;
+      const b = add(new THREE.BoxGeometry(bw, bh, 0.14), cardboard, x, cartTop + 0.015 + bh / 2, cz + (i - 1) * 0.04);
+      targets.push({ obj: b, label: "box", color: "#d6c27f" });
+    });
+  }
+
+  const passing = []; // props that slide past while walking
+  if (sc.kind === "floor") {
+    const pallet = std({ color: 0x8a6a45, roughness: 0.9 });
+    const orange = std({ color: 0xe8642c, roughness: 0.5 });
+    const items = [[-0.75, 2.6, "pallet"], [0.8, 1.2, "cone"], [-0.85, 0.0, "cone"], [0.75, -1.4, "pallet"], [-0.7, -2.6, "pallet"]];
+    for (const [x, z, kind] of items) {
+      const g = new THREE.Group();
+      if (kind === "pallet") {
+        for (const dx of [-0.25, 0, 0.25]) { const m = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.1, 0.8), pallet); m.position.set(dx, 0.05, 0); m.castShadow = true; g.add(m); }
+        const topb = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.025, 0.8), pallet); topb.position.y = 0.11; topb.castShadow = true; g.add(topb);
+        const load = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.3, 0.5), cardboard); load.position.y = 0.27; load.castShadow = true; g.add(load);
+      } else {
+        const c = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.32, 24), orange); c.position.y = 0.17; c.castShadow = true; g.add(c);
+        const b = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.02, 0.24), std({ color: 0x1b1b1b })); b.position.y = 0.01; g.add(b);
+      }
+      g.position.set(x, 0, z);
+      env.add(g);
+      passing.push({ g, z0: z });
+      targets.push({ obj: g, label: kind, color: kind === "cone" ? "#e8642c" : "#d6c27f" });
     }
   }
+
+  // ----- the robot's own camera (head), shown as an inset -----
+  const headCam = new THREE.PerspectiveCamera(62, 4 / 3, 0.05, 12);
+  const torso = root.getObjectByName("torso_link");
+  if (headMesh && torso) {
+    const hb = new THREE.Box3().setFromObject(headMesh), hc = hb.getCenter(V());
+    scene.add(headCam);
+    headCam.position.set(hc.x, hc.y - 0.02, hb.max.z + 0.01);
+    headCam.lookAt(hc.x, hc.y - 0.55, hc.z + 1.0);
+    torso.attach(headCam); // now it turns with the waist
+  }
+  const inset = document.createElement("div");
+  inset.className = "robot-view";
+  inset.innerHTML = `<div class="rv-h">ROBOT VIEW · HEAD CAM</div><div class="rv-boxes"></div><div class="rv-s"></div>`;
+  el.appendChild(inset);
+  const boxesEl = inset.querySelector(".rv-boxes"), statusEl = inset.querySelector(".rv-s");
+  const iw = Math.round(Math.min(w * 0.42, 190)), ih = Math.round(iw * 0.75), M = 8;
+  Object.assign(inset.style, { width: `${iw}px`, height: `${ih}px`, right: `${M}px`, top: `${M}px` });
+
+  const pv = V(), bb = new THREE.Box3();
+  function drawDetections(t) {
+    const found = [];
+    for (const d of targets) {
+      bb.setFromObject(d.obj);
+      let x0 = 1, y0 = 1, x1 = -1, y1 = -1, ok = true;
+      for (let i = 0; i < 8; i++) {
+        pv.set(i & 1 ? bb.max.x : bb.min.x, i & 2 ? bb.max.y : bb.min.y, i & 4 ? bb.max.z : bb.min.z).project(headCam);
+        if (pv.z > 1) { ok = false; break; }
+        x0 = Math.min(x0, pv.x); x1 = Math.max(x1, pv.x); y0 = Math.min(y0, pv.y); y1 = Math.max(y1, pv.y);
+      }
+      if (!ok || x1 < -1 || x0 > 1 || y1 < -1 || y0 > 1) continue;
+      const L = Math.max(0, (x0 + 1) / 2 * iw), R = Math.min(iw, (x1 + 1) / 2 * iw);
+      const T = Math.max(0, (1 - y1) / 2 * ih), B = Math.min(ih, (1 - y0) / 2 * ih);
+      const base = sc.conf ? sc.conf(((t % (sc.loop || 1e9)) / (sc.loop || 1e9))) : 0.9;
+      const c = Math.min(0.99, base + 0.05 * Math.sin(t * 3 + L));
+      const conf = d.obj === cube && held ? "grasped" : `${c < 0.7 ? "? " : ""}${c.toFixed(2)}`;
+      found.push({ L, T, R, B, d, text: `${d.label} ${conf}`, area: (R - L) * (B - T) });
+    }
+    // label the biggest of each kind only, so text never piles up in the small view
+    const labelled = new Set();
+    found.sort((a, b) => b.area - a.area);
+    boxesEl.innerHTML = found.map((f) => {
+      const show = !labelled.has(f.d.label); labelled.add(f.d.label);
+      return `<div class="rv-b" style="left:${f.L}px;top:${f.T}px;width:${f.R - f.L}px;height:${f.B - f.T}px;border-color:${f.d.color}">${show ? `<span style="background:${f.d.color}">${f.text}</span>` : ""}</div>`;
+    }).join("");
+  }
+
   function envStep(t) {
-    if (sc.kind === "floor") grid.position.z = -((t * sc.speed) % 0.25);
+    if (sc.kind === "floor") { // the world slides back: the robot walks forward
+      floorTex.offset.y = -((t * sc.speed) / 0.5) % 1;
+      for (const p of passing) p.g.position.z = ((((p.z0 - t * sc.speed) + 3.5) % 7) + 7) % 7 - 3.5;
+    }
+    if (sc.zoom) headCam.fov = 62 - 22 * (fn(t)._zoom || 0), headCam.updateProjectionMatrix();
+    statusEl.textContent = sc.status ? sc.status(((t % (sc.loop || 1e9)) / (sc.loop || 1e9))) : "";
     if (!cube) return;
     const L = sc.loop || 6;
     if (t % L < lastT % L) { cube.position.copy(pickPos); held = false; } // new loop: reset the box
@@ -322,22 +515,22 @@ export async function mountRobot(el, parts, motion) {
       cube.position.copy(gp).add(offset);
     } else if (held) {
       held = false;
-      cube.position.y = tableTop + CUBE / 2;
+      cube.position.y = tableTop + CUBE * 0.425;
     }
   }
 
   const box = new THREE.Box3().setFromObject(root);
-  const size = box.getSize(new THREE.Vector3()), center = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(V()), center = box.getCenter(V());
   const camera = new THREE.PerspectiveCamera(30, w / h, 0.01, 50);
-  const dist = (size.y / 2) / Math.tan((15 * Math.PI) / 180) * 1.02;
-  camera.position.set(center.x + dist * 0.45, center.y + size.y * 0.08, center.z + dist);
+  const dist = (size.y / 2) / Math.tan((15 * Math.PI) / 180) * 1.05;
+  camera.position.set(center.x + dist * 0.5, center.y + size.y * 0.12, center.z + dist);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.target.copy(center);
   controls.enableZoom = false;
   controls.enablePan = false;
   controls.minPolarAngle = Math.PI * 0.3;
-  controls.maxPolarAngle = Math.PI * 0.62;
+  controls.maxPolarAngle = Math.PI * 0.6;
   controls.update();
 
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -347,14 +540,26 @@ export async function mountRobot(el, parts, motion) {
   io.observe(el);
   function loop() {
     if (!visible || !el.isConnected) { raf = 0; return; }
-    if (!reduce) { const t = (performance.now() - t0) / 1000; pose(t); root.updateMatrixWorld(true); envStep(t); }
+    const t = reduce ? 1.5 : (performance.now() - t0) / 1000;
+    pose(t); root.updateMatrixWorld(true); envStep(t);
     controls.update();
+    renderer.setScissorTest(false);
+    renderer.setViewport(0, 0, w, h);
     renderer.render(scene, camera);
+    if (headMesh) {
+      headMesh.visible = false; // don't see the inside of its own head
+      renderer.setScissorTest(true);
+      renderer.setScissor(w - iw - M, h - ih - M, iw, ih);
+      renderer.setViewport(w - iw - M, h - ih - M, iw, ih);
+      renderer.render(scene, headCam);
+      headMesh.visible = true;
+      drawDetections(t);
+    }
     raf = requestAnimationFrame(loop);
   }
   loop();
 
-  return () => { cancelAnimationFrame(raf); io.disconnect(); controls.dispose(); renderer.dispose(); };
+  return () => { cancelAnimationFrame(raf); io.disconnect(); controls.dispose(); renderer.dispose(); pmrem.dispose(); inset.remove(); };
 }
 
 export const MOTION_NAMES = Object.keys(MOTIONS);
