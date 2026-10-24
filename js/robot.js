@@ -186,7 +186,7 @@ const SCENES = {
   codefix: { kind: "table", loop: 8, item: "coffee", status: (p) => p < 0.25 ? "try 1 · reach(x=+0.12)" : p < 0.5 ? "miss ✗ → fix code: x=0.0" : p < 0.85 ? "try 2 · grasp ✓" : "" },
   stop: { kind: "table", loop: 6, item: "coffee", hazard: true, status: (p) => p < 0.22 ? "reach coffee" : p < 0.62 ? "human hand → STOP" : "retract · ask human" },
   grasp: { kind: "table" },
-  walk: { kind: "floor", speed: 0.55, status: () => "sidewalk · curb 1.2 m left" },
+  walk: { kind: "floor", speed: 0.55, status: () => "sidewalk · curb 0.9 m left" },
   step: { kind: "floor", speed: 0.9, status: () => "control loop 500 Hz" },
   scan: { kind: "room", status: () => "mapping · 3D memory +1" },
   lookagain: { kind: "room", loop: 7, zoom: true, status: (p) => p < 0.45 ? "scan · unsure" : p < 0.85 ? "zoom ×2 · look again" : "confident ✓",
@@ -501,14 +501,55 @@ export async function mountRobot(el, parts, motion) {
         const pep = [[-0.01, 0], [0.025, 0.012], [0.03, -0.014]].map(([x, z]) => { const m = M(new THREE.CylinderGeometry(0.008, 0.008, 0.003, 12), std({ color: 0xa8322a }), x, 0.0105, z); return m; });
         return { g: grp(slice, crust, ...pep), h: 0.02, label: "pizza" };
       },
-      taxi(s = 1) {
-        const yellow = std({ color: 0xf2b705, roughness: 0.35, metalness: 0.2 });
-        const glass = std({ color: 0x1b2a3a, roughness: 0.1, metalness: 0.5 });
-        const parts = [M(new THREE.BoxGeometry(1.9 * s, 0.5 * s, 0.85 * s), yellow, 0, 0.45 * s, 0), M(new THREE.BoxGeometry(1.05 * s, 0.38 * s, 0.8 * s), glass, -0.05 * s, 0.88 * s, 0),
-          M(new THREE.BoxGeometry(0.28 * s, 0.1 * s, 0.14 * s), std({ color: 0xfff6d8, emissive: 0x6b5a20 }), 0, 1.12 * s, 0),
-          M(new THREE.BoxGeometry(1.9 * s, 0.06 * s, 0.86 * s), std({ color: 0x1b1b1b }), 0, 0.42 * s, 0)];
-        for (const [x, z] of [[-0.62, -0.42], [0.62, -0.42], [-0.62, 0.42], [0.62, 0.42]]) { const wh = M(new THREE.CylinderGeometry(0.17 * s, 0.17 * s, 0.1 * s, 18), std({ color: 0x111111 }), x * s, 0.17 * s, z * s); wh.rotation.x = Math.PI / 2; parts.push(wh); }
-        return { g: grp(...parts), h: 1.15 * s, label: "taxi" };
+      taxi(s = 1) { // a real-size sedan cab (length 4.6 m), built along +x
+        const paint = new THREE.MeshPhysicalMaterial({ color: 0xf2b705, roughness: 0.28, metalness: 0.3, clearcoat: 1, clearcoatRoughness: 0.08 });
+        const glass = new THREE.MeshPhysicalMaterial({ color: 0x0d1621, roughness: 0.05, metalness: 0.6, clearcoat: 1 });
+        const black = std({ color: 0x121316, roughness: 0.6 });
+        const chrome = std({ color: 0xd8dde3, metalness: 1, roughness: 0.18 });
+        const W = 1.8;
+        const shape = (pts) => { const sh = new THREE.Shape(); sh.moveTo(...pts[0]); for (const q of pts.slice(1)) Array.isArray(q[0]) ? sh.absarc(...q[0]) : sh.lineTo(...q); return sh; };
+        // side silhouette with wheel arches
+        const body = new THREE.Shape();
+        body.moveTo(2.3, 0.3); body.lineTo(1.8, 0.3); body.absarc(1.4, 0.33, 0.4, 0, Math.PI, false);
+        body.lineTo(-0.95, 0.3); body.absarc(-1.35, 0.33, 0.4, 0, Math.PI, false);
+        body.lineTo(-2.3, 0.3); body.lineTo(-2.32, 0.62); body.quadraticCurveTo(-2.3, 0.8, -2.0, 0.82);
+        body.lineTo(-1.0, 0.95); body.quadraticCurveTo(-0.55, 1.3, -0.3, 1.42); body.lineTo(0.7, 1.43);
+        body.quadraticCurveTo(1.2, 1.3, 1.55, 1.0); body.lineTo(2.2, 0.97); body.quadraticCurveTo(2.33, 0.9, 2.32, 0.62); body.lineTo(2.3, 0.3);
+        const ext = (sh, depth, bevel) => { const g = new THREE.ExtrudeGeometry(sh, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel, bevelSegments: 4, curveSegments: 24 }); g.translate(0, 0, -depth / 2); return g; };
+        const shell = M(ext(body, W - 0.16, 0.08), paint);
+        // greenhouse: tinted glass slightly wider than the body, under the roof line
+        const gh = new THREE.Shape();
+        gh.moveTo(-0.98, 0.97); gh.quadraticCurveTo(-0.55, 1.28, -0.3, 1.38); gh.lineTo(0.68, 1.39); gh.quadraticCurveTo(1.15, 1.27, 1.5, 1.0); gh.lineTo(-0.98, 0.97);
+        const windows = M(ext(gh, W - 0.02, 0.01), glass);
+        const pillarB = M(new THREE.BoxGeometry(0.09, 0.42, W + 0.02), paint, 0.22, 1.17, 0);
+        const parts = [shell, windows, pillarB];
+        // wheels
+        for (const [x, z] of [[1.4, 1], [-1.35, 1], [1.4, -1], [-1.35, -1]]) {
+          const tire = M(new THREE.CylinderGeometry(0.33, 0.33, 0.24, 28), black, x, 0.33, z * (W / 2 - 0.12)); tire.rotation.x = Math.PI / 2;
+          const rim = M(new THREE.CylinderGeometry(0.2, 0.2, 0.25, 20), chrome, x, 0.33, z * (W / 2 - 0.12)); rim.rotation.x = Math.PI / 2;
+          parts.push(tire, rim);
+        }
+        // lights, bumpers, mirrors
+        for (const z of [-0.6, 0.6]) {
+          parts.push(M(RB(0.06, 0.1, 0.32, 0.02), std({ color: 0xffffff, emissive: 0xfff1c8, emissiveIntensity: 1.2 }), -2.33, 0.72, z));
+          parts.push(M(RB(0.06, 0.12, 0.3, 0.02), std({ color: 0x8a0f12, emissive: 0xc0141a, emissiveIntensity: 0.9 }), 2.34, 0.78, z));
+          const mirror = M(RB(0.12, 0.08, 0.12, 0.02), paint, -0.85, 1.02, z * 1.6); parts.push(mirror);
+        }
+        parts.push(M(RB(0.12, 0.16, W - 0.05, 0.04), black, -2.36, 0.42, 0), M(RB(0.12, 0.16, W - 0.05, 0.04), black, 2.36, 0.42, 0));
+        // checker band along both sides
+        const checker = canvasTex(THREE, 256, 16, (g, w, h) => { for (let i = 0; i < 32; i++) for (let j = 0; j < 2; j++) { g.fillStyle = (i + j) % 2 ? "#111" : "#f4f4f0"; g.fillRect(i * 8, j * 8, 8, 8); } }, [1, 1]);
+        for (const z of [1, -1]) {
+          const band = M(new THREE.PlaneGeometry(2.2, 0.07), std({ map: checker, roughness: 0.4 }), 0.1, 0.78, z * (W / 2 + 0.005));
+          if (z < 0) band.rotation.y = Math.PI;
+          parts.push(band);
+        }
+        // roof light
+        const sign = canvasTex(THREE, 128, 40, (g, w, h) => { g.fillStyle = "#fff6d8"; g.fillRect(0, 0, w, h); g.fillStyle = "#1b1b1b"; g.font = "bold 28px sans-serif"; g.textAlign = "center"; g.fillText("TAXI", w / 2, 30); });
+        const roofSign = M(RB(0.5, 0.16, 0.22, 0.04), std({ map: sign, emissive: 0x6b5a20, emissiveIntensity: 0.6 }), 0.15, 1.53, 0);
+        parts.push(roofSign);
+        const g = grp(...parts);
+        g.scale.setScalar(s);
+        return { g, h: 1.6 * s, label: "taxi" };
       },
       hydrant() {
         const red = std({ color: 0xb3261e, roughness: 0.5, metalness: 0.2 });
@@ -635,10 +676,10 @@ export async function mountRobot(el, parts, motion) {
   if (sc.kind === "floor") {
     floorTex.repeat.set(10, 10); // big sidewalk slabs
     const roadTex = canvasTex(THREE, 128, 256, TEX.asphalt, [1, 6]);
-    const road = add(new THREE.PlaneGeometry(2.6, 8), std({ map: roadTex, roughness: 0.95 }), -2.6, 0.003, 0, false);
+    const road = add(new THREE.PlaneGeometry(2.6, 8), std({ map: roadTex, roughness: 0.95 }), -2.25, 0.003, 0, false);
     road.rotation.x = -Math.PI / 2;
-    add(new THREE.BoxGeometry(0.12, 0.12, 8), std({ color: 0x8b939c, roughness: 0.8 }), -1.25, 0.06, 0, false); // curb
-    const items = [[-1.0, 1.0, "hydrant"]];
+    add(new THREE.BoxGeometry(0.12, 0.12, 8), std({ color: 0x8b939c, roughness: 0.8 }), -0.95, 0.06, 0, false); // curb
+    const items = [[-0.75, 1.0, "hydrant"]];
     for (const [x, z, kind] of items) {
       const o = P[kind]();
       o.g.position.set(x, 0, z);
@@ -647,10 +688,10 @@ export async function mountRobot(el, parts, motion) {
       targets.push({ obj: o.g, label: o.label, color: kind === "hydrant" ? "#e8642c" : "#75aadb" });
     }
     const cab = P.taxi(1);
-    cab.g.position.set(-2.9, 0, 3);
+    cab.g.position.set(-1.95, 0, 3);
     cab.g.rotation.y = Math.PI / 2;
     env.add(cab.g);
-    passing.push({ g: cab.g, z0: 3, speed: 3.2, road: roadTex });
+    passing.push({ g: cab.g, z0: 3, speed: 1.8, road: roadTex });
     targets.push({ obj: cab.g, label: "taxi", color: "#f2b705" });
   }
 
