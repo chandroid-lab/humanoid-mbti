@@ -1,0 +1,24 @@
+Image credits
+
+assets/figs/*.jpg — Fig. 1 of the listed arXiv papers, resized. Each paper is distributed under the license shown (checked via arXiv OAI-PMH); attribution is shown next to each figure on the site.
+
+  ISTJ: https://arxiv.org/abs/2505.14266  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  ISTP: https://arxiv.org/abs/2506.07339  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  ISFJ: https://arxiv.org/abs/2310.08864  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  INTJ: https://arxiv.org/abs/2508.14099  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  INTP: https://arxiv.org/abs/1803.10122  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  INFJ: https://arxiv.org/abs/2401.12963  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  INFP: https://arxiv.org/abs/2203.06173  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  ESTJ: https://arxiv.org/abs/2601.07718  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  ESTP: https://arxiv.org/abs/2303.03381  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  ESFJ: https://arxiv.org/abs/2511.02832  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  ESFP: https://arxiv.org/abs/2505.02833  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  ENTJ: https://arxiv.org/abs/2406.09246  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  ENTP: https://arxiv.org/abs/2603.22435  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  ENFJ: https://arxiv.org/abs/2307.01928  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+  ENFP: https://arxiv.org/abs/2312.14135  (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)
+
+assets/smpl_wave.jpg — frames rendered from the SMPL body model (Loper et al., "SMPL: A Skinned Multi-Person Linear Model", SIGGRAPH Asia 2015),
+used for non-commercial research/education under the SMPL Model License. Only rendered images are included; the SMPL model data is not redistributed.
+
+assets/g1.glb, assets/g1.json — see LICENSE-unitree-g1.txt.

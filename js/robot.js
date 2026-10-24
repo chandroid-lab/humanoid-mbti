@@ -184,8 +184,9 @@ const SCENES = {
   pickplace: { kind: "table", loop: 6, item: "bagel", dest: "plate", status: (p) => p < 0.25 ? "detect bagel → reach" : p < 0.55 ? "grasp → carry" : p < 0.75 ? "place on plate" : "done ✓" },
   plan: { kind: "table", loop: 8, item: "pizza", dest: "plate", status: (p) => p < 0.3 ? "\"serve the slice\" → plan 3 steps" : p < 0.5 ? "step 1 · reach" : p < 0.7 ? "step 2 · grasp" : "step 3 · place ✓" },
   codefix: { kind: "table", loop: 8, item: "coffee", status: (p) => p < 0.25 ? "try 1 · reach(x=+0.12)" : p < 0.5 ? "miss ✗ → fix code: x=0.0" : p < 0.85 ? "try 2 · grasp ✓" : "" },
-  stop: { kind: "table", loop: 6, item: "coffee", hazard: true, status: (p) => p < 0.22 ? "reach coffee" : p < 0.62 ? "human hand → STOP" : "retract · ask human" },
+  stop: { kind: "table", loop: 6, item: "coffee", hazard: true, status: (p) => p < 0.22 ? "reach coffee" : p < 0.62 ? "hot kettle in path → STOP" : "retract · ask human" },
   grasp: { kind: "table" },
+  mimic: { kind: "demo", status: () => "human video → pose → retarget" },
   walk: { kind: "floor", speed: 0.55, status: () => "sidewalk · curb 0.9 m left" },
   step: { kind: "floor", speed: 0.9, status: () => "control loop 500 Hz" },
   scan: { kind: "room", status: () => "mapping · 3D memory +1" },
@@ -572,6 +573,21 @@ export async function mountRobot(el, parts, motion) {
         const bags = [[0, 0.2, 0, 0.24], [0.3, 0.17, 0.1, 0.2], [0.12, 0.42, 0.04, 0.18]].map(([x, y, z, r]) => { const m = M(new THREE.SphereGeometry(r, 14, 10), blk, x, y, z); m.scale.set(1, 0.85, 1); return m; });
         return { g: grp(...bags), h: 0.55, label: "trash" };
       },
+      kettle() { // hot kettle with steam: the hazard in the safety scene
+        const steel = std({ color: 0xc9ced4, metalness: 0.9, roughness: 0.25 });
+        const body = lathe([[0, 0], [0.07, 0], [0.078, 0.02], [0.072, 0.08], [0.045, 0.11], [0.02, 0.12], [0, 0.12]], steel);
+        const lidKnob = M(new THREE.SphereGeometry(0.012, 12, 8), std({ color: 0x1c1e22 }), 0, 0.125, 0);
+        const handle = M(new THREE.TorusGeometry(0.05, 0.007, 8, 20, Math.PI), std({ color: 0x1c1e22, roughness: 0.5 }), 0, 0.115, 0);
+        const spout = M(new THREE.CylinderGeometry(0.008, 0.014, 0.08, 10), steel, -0.08, 0.07, 0); spout.rotation.z = 0.9;
+        const g = grp(body, lidKnob, handle, spout);
+        const steam = [];
+        for (let i = 0; i < 6; i++) {
+          const puff = new THREE.Mesh(new THREE.SphereGeometry(0.018, 10, 8), new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: 0.35, roughness: 1, depthWrite: false }));
+          puff.userData.phase = i / 6; g.add(puff); steam.push(puff);
+        }
+        g.userData.steam = steam;
+        return { g, h: 0.13, label: "hot kettle" };
+      },
       arm() { // a person's forearm and hand reaching in: the hazard
         const skin = std({ color: 0xd9a17e, roughness: 0.6 });
         const sleeve = std({ color: 0x3a4f6b, roughness: 0.8 });
@@ -584,6 +600,7 @@ export async function mountRobot(el, parts, motion) {
   })();
 
   const targets = []; // things the robot camera "detects": { obj, label, color }
+  let steamPuffs = null, demo = null;
   let item = null, itemH = 0, held = false, offset = V(), pickPos = null, tableTop = 0, lastT = 0, dropY = 0;
   if (sc.kind === "table" && fA && fB) {
     const it = sc.item ? P[sc.item]() : null;
@@ -627,11 +644,11 @@ export async function mountRobot(el, parts, motion) {
       dropY = tableTop + 0.012;
       targets.push({ obj: d.g, label: d.label, color: "#75aadb" });
     }
-    if (sc.hazard) { // a person's hand reaches in; the robot must stop
-      const a = P.arm();
-      a.g.position.set(pick.x + 0.03, tableTop + 0.03, pick.z + 0.05);
-      a.g.rotation.y = 0.5;
+    if (sc.hazard) { // something hot is in the way; the robot must stop
+      const a = P.kettle();
+      a.g.position.set(pick.x + 0.02, tableTop, pick.z + 0.06);
       env.add(a.g);
+      steamPuffs = a.g.userData.steam;
       item.position.set(pick.x - 0.05, tableTop, pick.z + 0.1);
       pickPos = item.position.clone();
       targets.push({ obj: a.g, label: a.label, color: "#e8642c" });
@@ -672,6 +689,29 @@ export async function mountRobot(el, parts, motion) {
     const onTable = [[P.bagel(), -0.06, 0.1], [P.coffee(), 0.15, 0.08], [P.plant(0.9), -0.24, -0.12], [P.laptop(), 0.1, -0.14]];
     onTable.forEach(([o, x, dz]) => { o.g.position.set(x, tTop + 0.018, cz + dz); env.add(o.g); if (o.label === "bagel" || o.label === "coffee") targets.push({ obj: o.g, label: o.label, color: "#d6c27f" }); });
   }
+  if (sc.kind === "demo") {
+    // a monitor playing a human video: an SMPL body (rendered offline) waving, with pose keypoints
+    const tex = new THREE.TextureLoader().load("assets/smpl_wave.jpg");
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.repeat.set(1 / 6, 1 / 4);
+    const monitor = new THREE.Group();
+    const bezel = new THREE.Mesh(RB(0.78, 0.78, 0.04, 0.02), std({ color: 0x15181c, roughness: 0.4, metalness: 0.3 }));
+    const screen = new THREE.Mesh(new THREE.PlaneGeometry(0.72, 0.72), new THREE.MeshBasicMaterial({ map: tex, toneMapped: false }));
+    screen.position.z = 0.021;
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.75, 12), metal); pole.position.set(0, -0.72, -0.03);
+    const foot = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.24, 0.03, 32), std({ color: 0x15181c, metalness: 0.4, roughness: 0.4 })); foot.position.set(0, -1.08, -0.03);
+    for (const m of [bezel, pole, foot]) { m.castShadow = true; monitor.add(m); }
+    monitor.add(screen);
+    monitor.position.set(-0.85, 1.1, 0.45);
+    monitor.lookAt(0.6, 1.05, 1.6); // between the robot and the viewer
+    env.add(monitor);
+    demo = { tex };
+    targets.push({ obj: screen, label: "person · SMPL pose", color: "#75aadb" });
+    const credit = document.createElement("div");
+    credit.className = "rv-credit";
+    credit.textContent = "human video: SMPL render (Loper et al. 2015)";
+    el.appendChild(credit);
+  }
   const passing = []; // props that slide past while walking
   if (sc.kind === "floor") {
     floorTex.repeat.set(10, 10); // big sidewalk slabs
@@ -702,7 +742,7 @@ export async function mountRobot(el, parts, motion) {
     const hb = new THREE.Box3().setFromObject(headMesh), hc = hb.getCenter(V());
     scene.add(headCam);
     headCam.position.set(hc.x, hc.y - 0.02, hb.max.z + 0.01);
-    headCam.lookAt(hc.x, hc.y - 0.55, hc.z + 1.0);
+    headCam.lookAt(hc.x + (sc.kind === "demo" ? -0.6 : 0), hc.y - (sc.kind === "demo" ? 0.05 : 0.55), hc.z + 1.0);
     torso.attach(headCam); // now it turns with the waist
   }
   const inset = document.createElement("div");
@@ -748,6 +788,11 @@ export async function mountRobot(el, parts, motion) {
       if (passing.length && passing[passing.length - 1].road) passing[passing.length - 1].road.offset.y = -((t * sc.speed) / 1.33) % 1;
     }
     if (sc.zoom) headCam.fov = 62 - 22 * (fn(t)._zoom || 0), headCam.updateProjectionMatrix();
+    if (steamPuffs) for (const p of steamPuffs) { const k = (t * 0.5 + p.userData.phase) % 1; p.position.set(-0.11 - k * 0.05, 0.12 + k * 0.22, Math.sin(k * 9 + p.userData.phase * 6) * 0.02); p.scale.setScalar(0.6 + k * 1.6); p.material.opacity = 0.4 * (1 - k); }
+    if (demo) { // the video plays a beat ahead; the robot copies it (see MOTIONS.mimic)
+      const f = Math.floor((((t + 0.25) * 1.1) % 1) * 24);
+      demo.tex.offset.set((f % 6) / 6, 1 - (Math.floor(f / 6) + 1) / 4);
+    }
     statusEl.textContent = sc.status ? sc.status(((t % (sc.loop || 1e9)) / (sc.loop || 1e9))) : "";
     if (!item) return;
     const L = sc.loop || 6;
@@ -767,8 +812,10 @@ export async function mountRobot(el, parts, motion) {
   const box = new THREE.Box3().setFromObject(root);
   const size = box.getSize(V()), center = box.getCenter(V());
   const camera = new THREE.PerspectiveCamera(30, w / h, 0.01, 50);
-  const dist = (size.y / 2) / Math.tan((15 * Math.PI) / 180) * 1.05;
-  camera.position.set(center.x + dist * 0.5, center.y + size.y * 0.12, center.z + dist);
+  const wide = sc.kind === "demo"; // show the person and the robot together
+  if (wide) { center.x -= 0.25; center.y += 0.12; }
+  const dist = (size.y / 2) / Math.tan((15 * Math.PI) / 180) * (wide ? 1.45 : 1.05);
+  camera.position.set(center.x + dist * (wide ? 0.25 : 0.5), center.y + size.y * 0.12, center.z + dist);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.target.copy(center);
@@ -804,7 +851,7 @@ export async function mountRobot(el, parts, motion) {
   }
   loop();
 
-  return () => { cancelAnimationFrame(raf); io.disconnect(); controls.dispose(); renderer.dispose(); pmrem.dispose(); inset.remove(); };
+  return () => { cancelAnimationFrame(raf); io.disconnect(); controls.dispose(); renderer.dispose(); pmrem.dispose(); inset.remove(); el.querySelector('.rv-credit')?.remove(); };
 }
 
 export const MOTION_NAMES = Object.keys(MOTIONS);

@@ -1,5 +1,6 @@
 import { STAGES, AXES, TYPES, PARTS, PAIRS, QUIZ, UI, EVIDENCE, opposite, pairKey } from "./data.js";
 import { PAPERS } from "./papers.js";
+import { FIGS } from "./figs.js";
 import { vote, subscribe, statsEnabled } from "./stats.js";
 import { drawCard } from "./card.js";
 
@@ -62,6 +63,50 @@ function papersBlock(type) {
       <button class="tab" role="tab" data-act="tab" data-tab="recent" aria-selected="${paperTab === "recent"}">${esc(t(UI.recent))}</button>
     </div>
     <div>${list.map(paperHTML).join("")}</div>`;
+}
+
+function figHTML(type) {
+  const f = FIGS[type];
+  if (f) {
+    const all = [...(PAPERS[type]?.foundational || []), ...(PAPERS[type]?.recent || [])];
+    const p = all.find((x) => x.arxiv === f.arxiv) || {};
+    return `<figure class="fig">
+      <a href="${esc(f.arxiv)}" target="_blank" rel="noopener"><img src="${esc(f.img)}" alt="${esc(p.title || "")} Fig. 1" loading="lazy"></a>
+      <figcaption><span class="mono">FIG. 1</span> ${esc(p.title || "")} · ${esc(p.authors || "")} ${esc(String(p.year || ""))} ·
+        <a href="${esc(f.licenseUrl)}" target="_blank" rel="noopener">${esc(f.license)}</a></figcaption>
+    </figure>`;
+  }
+  if (type === "ISFP") return slipChartHTML();
+  return "";
+}
+
+// ISFP: no CC-licensed figure among its papers, so draw an illustrative chart instead.
+function slipChartHTML() {
+  // illustrative data: grip force (N) over time; tactile sensor detects slip at 1.2 s, controller squeezes harder
+  const pts = [];
+  for (let t = 0; t <= 3.0001; t += 0.05) {
+    let f = t < 0.4 ? 5 * t : 2.0;
+    if (t >= 1.2 && t < 1.35) f = 2.0 - 0.6 * Math.sin(((t - 1.2) / 0.15) * Math.PI / 2);
+    if (t >= 1.35) f = 1.4 + 1.6 * (1 - Math.exp(-(t - 1.35) / 0.12));
+    pts.push([t, f]);
+  }
+  const W = 320, H = 150, L = 34, R = 10, T = 14, B = 26;
+  const x = (t) => L + (t / 3) * (W - L - R), y = (f) => T + (1 - f / 3.5) * (H - T - B);
+  const path = pts.map(([t, f], i) => `${i ? "L" : "M"}${x(t).toFixed(1)},${y(f).toFixed(1)}`).join("");
+  const grid = [0, 1, 2, 3].map((f) => `<line x1="${L}" x2="${W - R}" y1="${y(f)}" y2="${y(f)}" stroke="rgba(185,217,235,.12)"/><text x="${L - 6}" y="${y(f) + 3}" text-anchor="end">${f}</text>`).join("");
+  const xt = [0, 1, 2, 3].map((t) => `<text x="${x(t)}" y="${H - 8}" text-anchor="middle">${t}s</text>`).join("");
+  const ko = lang === "ko";
+  return `<figure class="fig">
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${ko ? "잡는 힘 그래프: 1.2초에 미끄러짐을 감지하고 힘을 올림" : "Grip force chart: slip detected at 1.2 s, force increased"}" class="chart">
+      <rect x="${x(1.2)}" y="${T}" width="${x(1.35) - x(1.2)}" height="${H - T - B}" fill="rgba(232,100,44,.18)"/>
+      ${grid}${xt}
+      <path d="${path}" fill="none" stroke="#75aadb" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="${x(3)}" cy="${y(pts[pts.length - 1][1])}" r="3.5" fill="#75aadb"/>
+      <text x="${x(1.2) + 4}" y="${T + 10}" class="ann">${ko ? "미끄러짐 감지" : "slip detected"}</text>
+      <text x="${x(2.0)}" y="${y(3.0) - 6}" class="lbl2">${ko ? "잡는 힘 (N)" : "grip force (N)"}</text>
+    </svg>
+    <figcaption><span class="mono">VIZ</span> ${ko ? "촉각 센서가 미끄러짐을 느끼면 손이 바로 더 꽉 쥐어요 (예시 데이터)" : "When the tactile sensor feels a slip, the hand squeezes harder (illustrative data)"}</figcaption>
+  </figure>`;
 }
 
 /* ---------- screens ---------- */
@@ -144,7 +189,7 @@ function resultHTML(type) {
       <div class="tags">${d.tools.map((x) => `<span class="tag">${esc(x)}</span>`).join("")}</div>`)}
 
     <section class="blk"><div class="blk-h"><span>03 / ${esc(t(UI.papersTitle))}</span><span>${L2("기초 3 · 최신 3", "3 + 3")}</span></div>
-      <div class="blk-b" id="papers">${papersBlock(type)}</div></section>
+      <div class="blk-b">${figHTML(type)}<div id="papers">${papersBlock(type)}</div></div></section>
 
     ${blk(`04 / ${esc(t(UI.oppTitle))}`, `${type} ⇄ ${opp}`, `
       <p class="small muted">${esc(t(UI.oppClaim))}</p>
