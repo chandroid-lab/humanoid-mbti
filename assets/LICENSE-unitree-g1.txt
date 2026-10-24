@@ -1,10 +1,9 @@
-assets/g1.glb is derived from the Unitree G1 URDF and meshes in
-https://github.com/unitreerobotics/unitree_ros (robots/g1_description/g1_29dof_with_hand_rev_1_0.urdf).
-Modified: posed, meshes decimated, links merged into parts, converted to glTF (tools/build_robot.py).
+assets/g1.glb is derived from the Unitree G1 model in MuJoCo Menagerie
+https://github.com/google-deepmind/mujoco_menagerie/tree/main/unitree_g1 (g1_with_hands.xml),
+which is based on https://github.com/unitreerobotics/unitree_ros.
+Modified: meshes decimated, bodies merged into parts, converted to glTF (tools/build_robot.py).
 
-BSD 3-Clause License
-
-Copyright (c) 2016-2022 HangZhou YuShu TECHNOLOGY CO.,LTD. ("Unitree Robotics")
+Copyright (c) 2016-2023 HangZhou YuShu TECHNOLOGY CO.,LTD. ("Unitree Robotics")
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
