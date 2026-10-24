@@ -44,6 +44,8 @@ export const TYPES = {
   ISTJ: {
     stage: "see",
     body: ["head", "torso"],
+    motion: "balance",
+    act: { ko: "좌우로 무게를 옮기며 내 자세를 추정하는 중", en: "Shifting its weight while estimating its own pose" },
     field: { ko: "센서·구동기 신뢰성과 상태 추정", en: "Sensor & actuator reliability, state estimation" },
     nick:  { ko: "로봇의 감각을 믿게 만드는 검증가", en: "The one who makes robot senses trustworthy" },
     easy:  {
@@ -59,6 +61,8 @@ export const TYPES = {
   ISTP: {
     stage: "act",
     body: ["torso"],
+    motion: "step",
+    act: { ko: "빠르게 발을 구르며 실시간으로 균형 잡는 중", en: "Stepping fast, balancing in real time" },
     field: { ko: "실시간 제어 루프와 엣지 추론", en: "Real-time control loops & edge inference" },
     nick:  { ko: "1밀리초를 다루는 장인", en: "The craftsperson of milliseconds" },
     easy:  {
@@ -74,6 +78,8 @@ export const TYPES = {
   ISFJ: {
     stage: "think",
     body: ["arms", "hands"],
+    motion: "pickplace",
+    act: { ko: "물건을 집어 옮기는 시연 동작", en: "A pick-and-place demonstration" },
     field: { ko: "사람 시연 데이터 수집과 품질 관리", en: "Human demonstration data & quality" },
     nick:  { ko: "로봇의 교과서를 만드는 사람", en: "The one who writes the robot's textbook" },
     easy:  {
@@ -89,6 +95,8 @@ export const TYPES = {
   ISFP: {
     stage: "act",
     body: ["hands"],
+    motion: "grasp",
+    act: { ko: "손가락을 오므렸다 펴며 쥐는 중", en: "Closing and opening its fingers to grasp" },
     field: { ko: "정교한 손 조작과 시각+촉각 융합", en: "Dexterous hands & visuo-tactile fusion" },
     nick:  { ko: "손끝으로 세상을 느끼는 사람", en: "The one who feels the world through fingertips" },
     easy:  {
@@ -104,6 +112,8 @@ export const TYPES = {
   INTJ: {
     stage: "think",
     body: ["torso", "legs"],
+    motion: "squat",
+    act: { ko: "몸 전체를 계산해 앉았다 일어서는 중", en: "Squatting with whole-body planning" },
     field: { ko: "계층형 계획과 전신 최적 제어", en: "Hierarchical planning & whole-body optimal control" },
     nick:  { ko: "몇 수 앞을 계산하는 전략가", en: "The strategist who plans moves ahead" },
     easy:  {
@@ -119,6 +129,8 @@ export const TYPES = {
   INTP: {
     stage: "think",
     body: ["head"],
+    motion: "scan",
+    act: { ko: "주변을 둘러보며 3D 기억을 쌓는 중", en: "Looking around to build a 3D memory" },
     field: { ko: "월드 모델과 3D 장면 메모리", en: "World models & 3D scene memory" },
     nick:  { ko: "머릿속에 세상을 짓는 이론가", en: "The theorist who builds the world in their head" },
     easy:  {
@@ -134,6 +146,8 @@ export const TYPES = {
   INFJ: {
     stage: "fix",
     body: ["torso"],
+    motion: "stop",
+    act: { ko: "손을 뻗다가 위험하면 멈추는 중", en: "Reaching, then stopping when it's unsafe" },
     field: { ko: "에이전트 안전: LLM 계획 검증과 인간 감독", en: "Agent safety: verifying LLM plans & human oversight" },
     nick:  { ko: "로봇의 브레이크를 설계하는 사람", en: "The one who designs the robot's brakes" },
     easy:  {
@@ -149,6 +163,8 @@ export const TYPES = {
   INFP: {
     stage: "see",
     body: ["head"],
+    motion: "mimic",
+    act: { ko: "사람 영상 속 동작을 따라 손을 흔드는 중", en: "Copying a wave it saw in human video" },
     field: { ko: "사람 영상으로 보는 법·쓰는 법 배우기", en: "Learning from human (egocentric) video" },
     nick:  { ko: "사람의 눈으로 배우는 관찰자", en: "The observer who learns through human eyes" },
     easy:  {
@@ -164,6 +180,8 @@ export const TYPES = {
   ESTJ: {
     stage: "act",
     body: ["legs", "head"],
+    motion: "walk",
+    act: { ko: "지형을 보며 걷는 중", en: "Walking while watching the terrain" },
     field: { ko: "시각 기반 보행과 sim-to-real 평가 체계", en: "Perceptive locomotion & sim-to-real evaluation" },
     nick:  { ko: "수천 대를 동시에 훈련시키는 감독", en: "The coach who trains thousands at once" },
     easy:  {
@@ -179,6 +197,8 @@ export const TYPES = {
   ESTP: {
     stage: "fix",
     body: ["legs"],
+    motion: "hop",
+    act: { ko: "웅크렸다 튀어 오르는 연습 중", en: "Practicing a crouch-and-spring" },
     field: { ko: "험한 지형 실험과 빠른 하드웨어 프로토타이핑", en: "Field experiments & rapid hardware prototyping" },
     nick:  { ko: "일단 밖에 나가 보는 실험가", en: "The experimenter who just takes it outside" },
     easy:  {
@@ -194,6 +214,8 @@ export const TYPES = {
   ESFJ: {
     stage: "see",
     body: ["head", "arms"],
+    motion: "teleop",
+    act: { ko: "원격 조종자의 팔을 그대로 따라 하는 중", en: "Mirroring a remote operator's arms" },
     field: { ko: "VR 원격조종 시스템", en: "VR teleoperation systems" },
     nick:  { ko: "사람과 로봇을 잇는 연결자", en: "The connector between human and robot" },
     easy:  {
@@ -209,6 +231,8 @@ export const TYPES = {
   ESFP: {
     stage: "act",
     body: ["arms", "legs"],
+    motion: "dance",
+    act: { ko: "사람의 춤을 따라 추는 중", en: "Dancing along with a person" },
     field: { ko: "사람 전신 모션 모방", en: "Human whole-body motion imitation" },
     nick:  { ko: "사람의 움직임을 로봇에 옮기는 퍼포머", en: "The performer who makes robots move like people" },
     easy:  {
@@ -224,6 +248,8 @@ export const TYPES = {
   ENTJ: {
     stage: "think",
     body: ["head", "torso", "arms"],
+    motion: "pickplace",
+    act: { ko: "보고, 집고, 옮기는 전체 동작", en: "See, grasp, move: the whole pipeline" },
     field: { ko: "VLA 기반 전신 시스템 통합", en: "VLA-based whole-system integration" },
     nick:  { ko: "로봇의 두뇌를 조립하는 총괄", en: "The architect who assembles the robot brain" },
     easy:  {
@@ -239,6 +265,8 @@ export const TYPES = {
   ENTP: {
     stage: "fix",
     body: ["arms", "hands"],
+    motion: "codefix",
+    act: { ko: "뻗었다 빗나가면 코드를 고쳐 다시 뻗는 중", en: "Reaching, missing, fixing the code, reaching again" },
     field: { ko: "Code as Policies: 로봇 코드를 쓰고 고치는 LLM", en: "Code as Policies: LLMs that write & fix robot code" },
     nick:  { ko: "로봇에게 코드로 말을 거는 해커", en: "The hacker who talks to robots in code" },
     easy:  {
@@ -254,6 +282,8 @@ export const TYPES = {
   ENFJ: {
     stage: "think",
     body: ["torso", "arms"],
+    motion: "plan",
+    act: { ko: "둘러보고 계획한 뒤 순서대로 집는 중", en: "Looking around, planning, then picking in order" },
     field: { ko: "언어 지시 기반 멀티스텝 작업 계획", en: "Language-guided multi-step task planning" },
     nick:  { ko: "큰 일을 작은 단계로 나누는 리더", en: "The leader who breaks big tasks into steps" },
     easy:  {
@@ -269,6 +299,8 @@ export const TYPES = {
   ENFP: {
     stage: "see",
     body: ["head"],
+    motion: "lookagain",
+    act: { ko: "둘러보다가 다가가서 다시 보는 중", en: "Looking around, then leaning in to look again" },
     field: { ko: "Agentic Vision: 다시 들여다보는 에이전트", en: "Agentic vision: agents that look again" },
     nick:  { ko: "궁금하면 다시 들여다보는 탐험가", en: "The explorer who looks again when curious" },
     easy:  {

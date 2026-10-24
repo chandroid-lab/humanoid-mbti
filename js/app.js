@@ -121,7 +121,8 @@ function resultHTML(type) {
     <section class="blk">
       <div class="blk-h"><span>${L2("결과", "Result")} / ${type}</span><span>agentic-vision.loop</span></div>
       <div class="robot" id="robot" aria-label="${L2("휴머노이드 3D 모델", "3D humanoid model")}"><div class="loading">${L2("3D 모델 불러오는 중…", "loading 3D model…")}</div></div>
-      <div class="robot-cap"><span>${L2("이 분야가 다루는 부위", "Body parts in focus")}: <span class="on">${parts}</span></span><span class="hint">${L2("드래그해서 돌리기", "drag to rotate")}</span></div>
+      <div class="robot-cap"><span><span class="mono" style="color:var(--gold-bright)">▶</span> ${esc(t(d.act))}</span><span class="hint">${L2("드래그해서 돌리기", "drag to rotate")}</span></div>
+      <div class="robot-cap" style="border-top:0;padding-top:0"><span class="muted">${L2("이 분야가 다루는 부위", "Body parts in focus")}: <span class="on">${parts}</span></span></div>
       <div class="credit">Unitree G1 · <a href="https://github.com/google-deepmind/mujoco_menagerie/tree/main/unitree_g1" target="_blank" rel="noopener">model</a> © Unitree Robotics, BSD-3</div>
       <div class="blk-b" style="border-top:1px solid var(--line)">
         <div class="type-big">${type}</div>
@@ -191,7 +192,7 @@ async function mountRobotFor(type) {
   if (!el) return;
   try {
     const { mountRobot } = await import("./robot.js");
-    const cleanup = await mountRobot(el, TYPES[type].body);
+    const cleanup = await mountRobot(el, TYPES[type].body, TYPES[type].motion);
     if (el.isConnected) { robotCleanup = cleanup; el.querySelector(".loading")?.remove(); } else cleanup();
   } catch (e) {
     console.warn("3D model failed", e);

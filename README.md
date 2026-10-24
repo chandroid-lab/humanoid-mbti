@@ -55,3 +55,14 @@ python3 tools/build_papers.py
 python3 -m http.server 8931
 # http://localhost:8931
 ```
+
+## 3D 로봇 모델 다시 만들기
+
+`assets/g1.glb`와 `assets/g1.json`은 MuJoCo Menagerie의 `unitree_g1/g1_with_hands.xml`에서 만들었습니다. 관절 구조가 살아 있어서 분야별 동작을 재생할 수 있습니다. 동작은 `js/robot.js`의 `MOTIONS`, 작업 환경은 `SCENES`에 있습니다.
+
+```bash
+pip install trimesh fast_simplification
+python3 tools/build_articulated.py --mjcf <menagerie>/unitree_g1/g1_with_hands.xml --out assets/g1 --faces 120000 \
+  --parts '{"head":"head","hands":"hand","legs":"hip|knee|ankle","arms":"shoulder|elbow|wrist","torso":"."}'
+```
+

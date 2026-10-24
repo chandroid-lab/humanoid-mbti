@@ -126,7 +126,7 @@ p { margin: 0 0 10px; }
 .nick { color: var(--gold-bright); }
 
 /* 3D robot */
-.robot { position: relative; height: 340px; background: radial-gradient(60% 50% at 50% 55%, rgba(117, 170, 219, 0.14), transparent 70%); }
+.robot { position: relative; height: 380px; background: radial-gradient(60% 50% at 50% 55%, rgba(117, 170, 219, 0.14), transparent 70%); }
 .robot canvas { display: block; width: 100% !important; height: 100% !important; touch-action: none; }
 .robot .loading { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--mono); font-size: 12px; color: var(--faint); pointer-events: none; }
 .robot-cap { display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--line); padding: 8px 12px; font-size: 12.5px; }
