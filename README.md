@@ -14,6 +14,15 @@
 
 `apiKey`는 웹에 공개되어도 괜찮은 값입니다. 실제 보안은 3번에서 넣은 규칙이 담당합니다. 규칙은 MBTI 4글자만 저장되도록 막아 두었습니다.
 
+## 1-1. 관리자 계정 (집계 초기화용)
+
+1. Firebase 콘솔 **빌드 → Authentication → 시작하기 → 로그인 방법**에서 **이메일/비밀번호**를 사용 설정합니다.
+2. **Users 탭 → 사용자 추가**를 누릅니다. 이메일은 `admin@humanoid-mbti.firebaseapp.com`, 비밀번호는 원하는 값으로 정합니다.
+3. Realtime Database **규칙** 탭에 최신 `database.rules.json`을 다시 붙여 넣고 **게시**합니다. 이 규칙은 관리자 계정만 응답을 지울 수 있게 합니다.
+4. (선택) Authentication **설정 → 사용자 작업**에서 "생성(가입) 사용 설정"을 끄면, 다른 사람이 계정을 새로 만들 수 없게 됩니다.
+
+관리자 페이지 주소는 `.../humanoid-mbti/admin.html`입니다. 사이트 어디에도 링크되어 있지 않습니다.
+
 ## 2. GitHub Pages로 배포
 
 ```bash
@@ -28,7 +37,7 @@ gh api -X POST repos/{owner}/humanoid-mbti/pages -f "source[branch]=main" -f "so
 ## 3. 발표 당일
 
 - **리허설**: `live.html?demo`를 열면 가짜 데이터로 화면을 미리 볼 수 있습니다.
-- **발표 직전 초기화**: Firebase 콘솔의 Realtime Database에서 `votes` 항목을 삭제합니다.
+- **발표 직전 초기화**: `admin.html`에서 관리자 비밀번호로 로그인한 뒤 **집계 초기화**를 누릅니다. Firebase 콘솔의 Realtime Database에서 `votes` 항목을 직접 지워도 됩니다.
 - **발표 중**: `live.html`을 화면에 띄웁니다. QR 코드는 사이트 주소로 자동 생성됩니다. 다른 주소를 쓰려면 `live.html?url=https://...`처럼 붙입니다.
 - 같은 기기에서 다시 응답하면 이전 응답을 덮어써서 중복으로 세지 않습니다. "다른 유형 구경하기"로 둘러본 결과는 집계되지 않습니다.
 

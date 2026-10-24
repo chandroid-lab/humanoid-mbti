@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>관리자 · Humanoid × MBTI</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%23003057%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%227%22 fill=%22none%22 stroke=%22%23b9d9eb%22 stroke-width=%223%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%222.5%22 fill=%22%23b3a369%22/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    input[type="password"] {
+      width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line);
+      background: var(--surface); color: var(--text); font: inherit; font-size: 16px; margin-bottom: 10px;
+    }
+    input[type="password"]:focus { outline: 2px solid var(--cb); outline-offset: 1px; }
+    .count { font-size: 64px; font-weight: 800; color: var(--cb); line-height: 1; font-variant-numeric: tabular-nums; }
+    .msg { min-height: 1.6em; font-size: 14px; margin-top: 10px; }
+    .msg.err { color: #f0a0a0; }
+    .msg.ok { color: var(--gold-bright); }
+    .btn-danger { background: #c0504d; color: #fff; }
+    .btn-danger:disabled { opacity: 0.5; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="./">Humanoid × MBTI</a>
+      <span class="muted small">관리자</span>
+    </header>
+
+    <section id="login" class="card" hidden>
+      <h2>관리자 로그인</h2>
+      <form id="loginForm">
+        <input type="password" id="pw" placeholder="비밀번호" autocomplete="current-password" required />
+        <button class="btn btn-primary" type="submit" id="loginBtn">로그인</button>
+      </form>
+      <div class="msg err" id="loginMsg"></div>
+    </section>
+
+    <section id="panel" hidden>
+      <div class="card">
+        <div class="section-label">현재 참여</div>
+        <div class="count" id="count">–</div>
+        <p class="muted small" style="margin-top:6px">발표 화면에 실시간으로 반영돼요.</p>
+      </div>
+      <div class="card">
+        <h2>집계 초기화</h2>
+        <p class="muted small">모든 응답을 지우고 0부터 다시 시작해요. 되돌릴 수 없어요.</p>
+        <button class="btn btn-danger" id="resetBtn">집계 초기화</button>
+        <div class="msg" id="resetMsg"></div>
+      </div>
+      <a class="btn btn-ghost" href="live.html" target="_blank" rel="noopener">발표 화면 열기 ↗</a>
+      <button class="btn btn-ghost" id="logoutBtn">로그아웃</button>
+    </section>
+
+    <p class="muted small" id="status">불러오는 중…</p>
+  </div>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
