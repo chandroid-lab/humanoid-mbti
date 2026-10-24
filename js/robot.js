@@ -10,6 +10,7 @@ function loadLibs() {
     import("three/addons/loaders/GLTFLoader.js"),
     import("three/addons/controls/OrbitControls.js"),
     import("three/addons/environments/RoomEnvironment.js"),
+    import("three/addons/geometries/RoundedBoxGeometry.js"),
   ]);
   return libs;
 }
@@ -218,6 +219,16 @@ function noise(g, w, h, n, r, colorFn) {
   for (let i = 0; i < n; i++) { g.fillStyle = colorFn(r()); g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
 }
 const TEX = {
+  marble: (g, w, h) => {
+    const r = rand(21);
+    g.fillStyle = "#e9e6df"; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 14; i++) {
+      g.strokeStyle = `rgba(110,115,125,${0.08 + r() * 0.18})`; g.lineWidth = 0.6 + r() * 1.6;
+      let x = r() * w, y = 0; g.beginPath(); g.moveTo(x, y);
+      while (y < h) { x += (r() - 0.5) * 30; y += 10 + r() * 20; g.lineTo(x, y); }
+      g.stroke();
+    }
+  },
   skyline: (g, w, h) => {
     const sky = g.createLinearGradient(0, 0, 0, h);
     sky.addColorStop(0, "#050b16"); sky.addColorStop(0.7, "#0d2038"); sky.addColorStop(1, "#1a2f4a");
@@ -289,7 +300,8 @@ const TEX = {
 
 // Mount a viewer into `el`. parts: ["head", ...] to highlight; motion: a key of MOTIONS.
 export async function mountRobot(el, parts, motion) {
-  const [THREE, { GLTFLoader }, { OrbitControls }, { RoomEnvironment }] = await loadLibs();
+  const [THREE, { GLTFLoader }, { OrbitControls }, { RoomEnvironment }, { RoundedBoxGeometry }] = await loadLibs();
+  const RB = (w, h, d, r = 0.01) => new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2, h / 2, d / 2));
   if (!el.isConnected) return () => {};
   assetPromise ??= Promise.all([
     new Promise((res, rej) => new GLTFLoader().load(`${MODEL}.glb`, res, undefined, rej)),
@@ -441,15 +453,15 @@ export async function mountRobot(el, parts, motion) {
         let x = 0;
         for (let i = 0; i < n; i++) {
           const t = 0.018 + (i % 3) * 0.006, hh = 0.16 + (i % 2) * 0.03;
-          meshes.push(M(new THREE.BoxGeometry(t, hh, 0.11), std({ color: cols[i % cols.length], roughness: 0.7 }), x, hh / 2, 0));
+          meshes.push(M(RB(t, hh, 0.11, 0.004), std({ color: cols[i % cols.length], roughness: 0.7 }), x, hh / 2, 0));
           x += t + 0.002;
         }
         return { g: grp(...meshes), h: 0.19, label: "books" };
       },
       laptop() {
         const dark = std({ color: 0x2a2d33, metalness: 0.5, roughness: 0.4 });
-        const base = M(new THREE.BoxGeometry(0.26, 0.012, 0.18), dark, 0, 0.006, 0);
-        const lid = M(new THREE.BoxGeometry(0.26, 0.17, 0.008), dark, 0, 0.09, -0.095); lid.rotation.x = -0.25;
+        const base = M(RB(0.26, 0.012, 0.18, 0.005), dark, 0, 0.006, 0);
+        const lid = M(RB(0.26, 0.17, 0.008, 0.004), dark, 0, 0.09, -0.095); lid.rotation.x = -0.25;
         const screen = M(new THREE.PlaneGeometry(0.235, 0.145), std({ color: 0x14365a, emissive: 0x0e2a48, roughness: 0.2 }), 0, 0.09, -0.09); screen.rotation.x = -0.25;
         return { g: grp(base, lid, screen), h: 0.18, label: "laptop" };
       },
@@ -551,14 +563,18 @@ export async function mountRobot(el, parts, motion) {
     tableTop = Math.min(pick.y, place.y) - itemH * 0.5;
     const minX = Math.min(pick.x, place.x) - 0.32, maxX = Math.max(pick.x, place.x) + 0.42;
     const minZ = Math.min(pick.z, place.z) - 0.1, maxZ = Math.max(pick.z, place.z) + 0.3;
-    const wood = std({ map: canvasTex(THREE, 512, 128, TEX.wood, [1, 1]), roughness: 0.55 });
-    add(new THREE.BoxGeometry(maxX - minX, 0.035, maxZ - minZ), wood, (minX + maxX) / 2, tableTop - 0.0175, (minZ + maxZ) / 2);
-    for (const [x, z] of [[minX + 0.04, minZ + 0.04], [maxX - 0.04, minZ + 0.04], [minX + 0.04, maxZ - 0.04], [maxX - 0.04, maxZ - 0.04]]) {
-      add(new THREE.CylinderGeometry(0.014, 0.014, tableTop - 0.035, 12), metal, x, (tableTop - 0.035) / 2, z);
-    }
+    // round marble bistro table on one cast-iron pedestal, big enough for both spots
+    const cx = (minX + maxX) / 2, cz = (minZ + maxZ) / 2;
+    const rad = Math.max(maxX - minX, maxZ - minZ) / 2 + 0.02;
+    const marble = std({ map: canvasTex(THREE, 512, 512, TEX.marble), roughness: 0.25, metalness: 0.0 });
+    const iron = std({ color: 0x1c1e22, roughness: 0.45, metalness: 0.6 });
+    add(new THREE.CylinderGeometry(rad, rad, 0.03, 64), marble, cx, tableTop - 0.015, cz);
+    add(new THREE.TorusGeometry(rad, 0.008, 8, 64).rotateX(Math.PI / 2), iron, cx, tableTop - 0.03, cz);
+    const ped = new THREE.Mesh(new THREE.LatheGeometry([[0.0, 0], [0.26, 0], [0.26, 0.02], [0.08, 0.06], [0.035, 0.12], [0.03, tableTop - 0.12], [0.05, tableTop - 0.06], [0.12, tableTop - 0.035], [0, tableTop - 0.035]].map(([x, y]) => new THREE.Vector2(x, y)), 40), iron);
+    ped.position.set(cx, 0, cz); ped.castShadow = ped.receiveShadow = true; env.add(ped);
     const put = (o, x, z, ry = 0) => { o.g.position.set(x, tableTop, z); o.g.rotation.y = ry; env.add(o.g); return o; };
     // decoration at the far end, away from the arm
-    put(P.plant(0.7), minX + 0.1, minZ + 0.08); // back corner, out of the camera's way
+    put(P.plant(0.7), cx - rad * 0.62, cz - rad * 0.55); // back edge, out of the camera's way
     if (it) {
       item = put(it, pick.x, pick.z, -0.4).g;
       pickPos = item.position.clone();
@@ -586,8 +602,8 @@ export async function mountRobot(el, parts, motion) {
     for (const [ang, rad] of [[Math.PI * 0.75, 1.35], [Math.PI * 1.25, 1.35]]) {
       const unit = new THREE.Group();
       const W = 0.9, D = 0.3, H = 1.6;
-      for (const x of [-W / 2, W / 2]) { const sd = new THREE.Mesh(new THREE.BoxGeometry(0.03, H, D), wood); sd.position.set(x, H / 2, 0); sd.castShadow = true; unit.add(sd); }
-      for (const y of [0.02, 0.42, 0.82, 1.22, 1.6]) { const s = new THREE.Mesh(new THREE.BoxGeometry(W, 0.025, D), wood); s.position.y = y; s.castShadow = s.receiveShadow = true; unit.add(s); }
+      for (const x of [-W / 2, W / 2]) { const sd = new THREE.Mesh(RB(0.035, H, D, 0.012), wood); sd.position.set(x, H / 2, 0); sd.castShadow = true; unit.add(sd); }
+      for (const y of [0.02, 0.42, 0.82, 1.22, 1.6]) { const s = new THREE.Mesh(RB(W, 0.028, D, 0.01), wood); s.position.y = y; s.castShadow = s.receiveShadow = true; unit.add(s); }
       [[0.42, "books", -0.3], [0.42, "plant", 0.25], [0.82, "books", 0.05], [1.22, "books", -0.25], [1.22, "mug", 0.25], [0.02, "books", 0.1]].forEach(([y, k, x], i) => {
         const o = k === "books" ? P.books(5 + (i % 3)) : P[k](0.8); o.g.position.set(x, y + 0.012, 0); unit.add(o.g);
       });
@@ -596,9 +612,23 @@ export async function mountRobot(el, parts, motion) {
       env.add(unit);
     }
     const tTop = 0.42, cz = 0.95;
-    add(new THREE.BoxGeometry(0.8, 0.035, 0.45), wood, 0, tTop, cz);
-    for (const [x, z] of [[-0.36, cz - 0.19], [0.36, cz - 0.19], [-0.36, cz + 0.19], [0.36, cz + 0.19]]) add(new THREE.BoxGeometry(0.035, tTop, 0.035), wood, x, tTop / 2, z);
-    const onTable = [[P.bagel(), -0.04, 0.06], [P.coffee(), 0.16, 0.06], [P.plant(0.9), -0.3, -0.05], [P.laptop(), 0.12, -0.1]];
+    add(new THREE.CylinderGeometry(0.42, 0.42, 0.035, 64), wood, 0, tTop, cz);
+    for (let i = 0; i < 3; i++) { // three tapered legs
+      const a = i * (Math.PI * 2 / 3) + 0.4;
+      const leg = add(new THREE.CylinderGeometry(0.018, 0.01, tTop, 10), wood, Math.cos(a) * 0.3, tTop / 2, cz + Math.sin(a) * 0.3);
+      leg.rotation.set(Math.sin(a) * 0.12, 0, -Math.cos(a) * 0.12);
+    }
+    const rug = add(new THREE.CircleGeometry(1.1, 64), std({ color: 0x3b4f6b, roughness: 1 }), 0, 0.004, 0.45, false);
+    rug.rotation.x = -Math.PI / 2;
+    const ring = add(new THREE.RingGeometry(1.0, 1.06, 64), std({ color: 0xb3a369, roughness: 1 }), 0, 0.005, 0.45, false);
+    ring.rotation.x = -Math.PI / 2;
+    // arc floor lamp
+    const brass = std({ color: 0xb3a369, metalness: 0.8, roughness: 0.3 });
+    const arc = new THREE.Mesh(new THREE.TubeGeometry(new THREE.QuadraticBezierCurve3(V(-1.1, 0.05, -0.2), V(-1.1, 2.1, -0.2), V(-0.35, 1.6, 0.3)), 40, 0.014, 8), brass);
+    arc.castShadow = true; env.add(arc);
+    add(new THREE.CylinderGeometry(0.14, 0.16, 0.04, 32), std({ color: 0x1c1e22, metalness: 0.5, roughness: 0.4 }), -1.1, 0.02, -0.2);
+    const shade = add(new THREE.SphereGeometry(0.13, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2), std({ color: 0xf3ead2, emissive: 0xffd88a, emissiveIntensity: 0.5, side: THREE.DoubleSide }), -0.35, 1.5, 0.3);
+    const onTable = [[P.bagel(), -0.06, 0.1], [P.coffee(), 0.15, 0.08], [P.plant(0.9), -0.24, -0.12], [P.laptop(), 0.1, -0.14]];
     onTable.forEach(([o, x, dz]) => { o.g.position.set(x, tTop + 0.018, cz + dz); env.add(o.g); if (o.label === "bagel" || o.label === "coffee") targets.push({ obj: o.g, label: o.label, color: "#d6c27f" }); });
   }
   const passing = []; // props that slide past while walking
