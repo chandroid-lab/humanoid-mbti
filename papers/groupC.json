@@ -1,0 +1,266 @@
+{
+  "ESTJ": {
+    "foundational": [
+      {
+        "title": "Learning to Walk in Minutes Using Massively Parallel Deep Reinforcement Learning",
+        "authors": "Rudin et al.",
+        "year": 2021,
+        "venue": "CoRL 2021",
+        "arxiv": "https://arxiv.org/abs/2109.11978",
+        "project": "https://leggedrobotics.github.io/legged_gym/",
+        "why_ko": "GPU 하나로 로봇 수천 대를 동시에 시뮬레이션해 몇 분 만에 걷기를 배우게 했어요.",
+        "why_en": "Showed that thousands of simulated robots on one GPU can learn walking in minutes."
+      },
+      {
+        "title": "Learning robust perceptive locomotion for quadrupedal robots in the wild",
+        "authors": "Miki et al.",
+        "year": 2022,
+        "venue": "Science Robotics 2022",
+        "arxiv": "https://arxiv.org/abs/2201.08117",
+        "project": "https://leggedrobotics.github.io/rl-perceptiveloco/",
+        "why_ko": "주변 지형 지도(눈)와 몸의 감각을 합쳐 야외 산길도 안정적으로 걷게 했어요.",
+        "why_en": "Fused terrain perception with body sensing so a legged robot could hike real outdoor trails."
+      },
+      {
+        "title": "Legged Locomotion in Challenging Terrains using Egocentric Vision",
+        "authors": "Agarwal et al.",
+        "year": 2022,
+        "venue": "CoRL 2022",
+        "arxiv": "https://arxiv.org/abs/2211.07638",
+        "project": "https://vision-locomotion.github.io/",
+        "why_ko": "지도 없이 로봇 머리의 깊이 카메라 영상만 보고 계단과 틈을 건너게 했어요.",
+        "why_en": "Robot climbs stairs and crosses gaps using only its onboard depth camera, no map."
+      }
+    ],
+    "recent": [
+      {
+        "title": "BeamDojo: Learning Agile Humanoid Locomotion on Sparse Footholds",
+        "authors": "Wang et al.",
+        "year": 2025,
+        "venue": "RSS 2025",
+        "arxiv": "https://arxiv.org/abs/2502.10363",
+        "project": "https://why618188.github.io/beamdojo/",
+        "why_ko": "휴머노이드가 발 디딜 곳을 보고 골라 좁은 평균대와 징검다리 위를 걸어요.",
+        "why_en": "A humanoid perceives and picks safe footholds to walk across narrow beams and stepping stones."
+      },
+      {
+        "title": "Hiking in the Wild: A Scalable Perceptive Parkour Framework for Humanoids",
+        "authors": "Zhu et al.",
+        "year": 2026,
+        "venue": "CoRL 2026",
+        "arxiv": "https://arxiv.org/abs/2601.07718",
+        "project": "https://project-instinct.github.io/hiking-in-the-wild/",
+        "why_ko": "깊이 카메라만으로 휴머노이드가 험한 야외 지형을 빠르게 오르내려요.",
+        "why_en": "Depth-camera-based humanoid that traverses rough outdoor terrain at speed, with open-source code."
+      },
+      {
+        "title": "MuJoCo Playground",
+        "authors": "Zakka et al.",
+        "year": 2025,
+        "venue": "RSS 2025",
+        "arxiv": "https://arxiv.org/abs/2502.08844",
+        "project": "https://playground.mujoco.org/",
+        "why_ko": "시뮬레이션 학습부터 실제 로봇 적용까지 몇 분 만에 해볼 수 있는 공개 도구예요.",
+        "why_en": "Open-source GPU framework that takes robot policies from simulation to real hardware quickly."
+      }
+    ]
+  },
+  "ESTP": {
+    "foundational": [
+      {
+        "title": "RMA: Rapid Motor Adaptation for Legged Robots",
+        "authors": "Kumar et al.",
+        "year": 2021,
+        "venue": "RSS 2021",
+        "arxiv": "https://arxiv.org/abs/2107.04034",
+        "project": "https://ashish-kmr.github.io/rma-legged-robots/",
+        "why_ko": "로봇이 걸으면서 바닥 상태나 짐 무게 변화를 눈치채고 1초도 안 돼 적응해요.",
+        "why_en": "Robot adapts within a fraction of a second to new terrain, payloads, and surprises while walking."
+      },
+      {
+        "title": "Real-World Humanoid Locomotion with Reinforcement Learning",
+        "authors": "Radosavovic et al.",
+        "year": 2023,
+        "venue": "Science Robotics 2024",
+        "arxiv": "https://arxiv.org/abs/2303.03381",
+        "project": "https://learning-humanoid-locomotion.github.io/",
+        "why_ko": "강화학습(시행착오 학습)만으로 휴머노이드가 밀려도 넘어지지 않고 야외를 걸어요.",
+        "why_en": "A fully learned controller let a real humanoid walk outdoors and resist pushes."
+      },
+      {
+        "title": "Robot Parkour Learning",
+        "authors": "Zhuang et al.",
+        "year": 2023,
+        "venue": "CoRL 2023",
+        "arxiv": "https://arxiv.org/abs/2309.05665",
+        "project": "https://robot-parkour.github.io/",
+        "why_ko": "카메라를 보며 높은 곳 오르기, 틈 뛰어넘기 같은 파쿠르를 로봇이 해내요.",
+        "why_en": "Low-cost robots learned vision-based parkour: climbing, leaping gaps, and crawling under obstacles."
+      }
+    ],
+    "recent": [
+      {
+        "title": "ASAP: Aligning Simulation and Real-World Physics for Learning Agile Humanoid Whole-Body Skills",
+        "authors": "He et al.",
+        "year": 2025,
+        "venue": "RSS 2025",
+        "arxiv": "https://arxiv.org/abs/2502.01143",
+        "project": "https://agile.human2humanoid.com/",
+        "why_ko": "시뮬레이션과 현실의 물리 차이를 보정해 휴머노이드가 점프·킥 같은 민첩한 동작을 해요.",
+        "why_en": "Corrects sim-vs-real physics mismatch so humanoids perform agile jumps and kicks."
+      },
+      {
+        "title": "ToddlerBot: Open-Source ML-Compatible Humanoid Platform for Loco-Manipulation",
+        "authors": "Shi et al.",
+        "year": 2025,
+        "venue": "CoRL 2025",
+        "arxiv": "https://arxiv.org/abs/2502.00893",
+        "project": "https://toddlerbot.github.io/",
+        "why_ko": "누구나 저렴하게 만들 수 있는 오픈소스 소형 휴머노이드예요.",
+        "why_en": "Low-cost, open-source small humanoid that anyone can build for learning research."
+      },
+      {
+        "title": "Learning Getting-Up Policies for Real-World Humanoid Robots",
+        "authors": "He et al.",
+        "year": 2025,
+        "venue": "RSS 2025",
+        "arxiv": "https://arxiv.org/abs/2502.12152",
+        "project": "https://humanoid-getup.github.io/",
+        "why_ko": "넘어진 휴머노이드가 어떤 자세·바닥에서도 스스로 일어나는 법을 배워요.",
+        "why_en": "Teaches real humanoids to get up by themselves from any fallen pose or terrain."
+      }
+    ]
+  },
+  "ESFJ": {
+    "foundational": [
+      {
+        "title": "Teleoperation of Humanoid Robots: A Survey",
+        "authors": "Darvish et al.",
+        "year": 2023,
+        "venue": "IEEE Transactions on Robotics 2023",
+        "arxiv": "https://arxiv.org/abs/2301.04317",
+        "project": "https://humanoid-teleoperation.github.io/",
+        "why_ko": "사람이 휴머노이드를 원격 조종하는 기술 전체를 한눈에 정리한 입문용 리뷰예요.",
+        "why_en": "A comprehensive beginner-friendly overview of how humans remotely control humanoid robots."
+      },
+      {
+        "title": "iCub3 Avatar System: Enabling Remote Fully-Immersive Embodiment of Humanoid Robots",
+        "authors": "Dafarra et al.",
+        "year": 2022,
+        "venue": "Science Robotics 2024",
+        "arxiv": "https://arxiv.org/abs/2203.06972",
+        "project": null,
+        "why_ko": "VR 헤드셋과 착용 장비로 멀리 있는 휴머노이드 몸에 들어간 듯 조종해요.",
+        "why_en": "Operator 'becomes' a distant humanoid through VR headset, haptics, and body tracking."
+      },
+      {
+        "title": "Open-TeleVision: Teleoperation with Immersive Active Visual Feedback",
+        "authors": "Cheng et al.",
+        "year": 2024,
+        "venue": "CoRL 2024",
+        "arxiv": "https://arxiv.org/abs/2407.01512",
+        "project": "https://robot-tv.github.io/",
+        "why_ko": "내 머리를 돌리면 로봇 카메라도 따라 돌고, 입체 영상으로 로봇 눈을 그대로 봐요.",
+        "why_en": "Head-tracked stereo cameras let operators see through the robot's eyes in VR."
+      }
+    ],
+    "recent": [
+      {
+        "title": "AMO: Adaptive Motion Optimization for Hyper-Dexterous Humanoid Whole-Body Control",
+        "authors": "Li et al.",
+        "year": 2025,
+        "venue": "RSS 2025",
+        "arxiv": "https://arxiv.org/abs/2505.03738",
+        "project": "https://amo-humanoid.github.io/",
+        "why_ko": "VR 기기로 휴머노이드 상체·허리·다리까지 한꺼번에 자연스럽게 조종해요.",
+        "why_en": "VR teleoperation of a humanoid's whole body, including bending and reaching low or high."
+      },
+      {
+        "title": "CLONE: Closed-Loop Whole-Body Humanoid Teleoperation for Long-Horizon Tasks",
+        "authors": "Li et al.",
+        "year": 2025,
+        "venue": "arXiv 2025",
+        "arxiv": "https://arxiv.org/abs/2506.08931",
+        "project": "https://humanoid-clone.github.io/",
+        "why_ko": "MR 헤드셋으로 위치를 계속 보정해, 오래 걸으며 하는 작업도 원격으로 정확히 해요.",
+        "why_en": "Mixed-reality headset teleop with closed-loop correction keeps humanoids accurate over long tasks."
+      },
+      {
+        "title": "TWIST2: Scalable, Portable, and Holistic Humanoid Data Collection System",
+        "authors": "Ze et al.",
+        "year": 2025,
+        "venue": "ICRA 2026",
+        "arxiv": "https://arxiv.org/abs/2511.02832",
+        "project": "https://yanjieze.com/projects/TWIST2/",
+        "why_ko": "VR 헤드셋과 고개 돌리는 로봇 목 카메라로, 비싼 모션캡처 없이 휴머노이드 온몸을 조종해요.",
+        "why_en": "Portable VR headset plus a head-turning robot neck camera enables mocap-free whole-body humanoid teleop."
+      }
+    ]
+  },
+  "ESFP": {
+    "foundational": [
+      {
+        "title": "DeepMimic: Example-Guided Deep Reinforcement Learning of Physics-Based Character Skills",
+        "authors": "Peng et al.",
+        "year": 2018,
+        "venue": "ACM TOG (SIGGRAPH 2018)",
+        "arxiv": "https://arxiv.org/abs/1804.02717",
+        "project": "https://xbpeng.github.io/projects/DeepMimic/index.html",
+        "why_ko": "물리 법칙을 따르는 캐릭터가 사람 동작 영상을 따라 하도록 가르친 원조 연구예요.",
+        "why_en": "The classic method for physics-based characters to imitate human motion-capture clips."
+      },
+      {
+        "title": "Learning Human-to-Humanoid Real-Time Whole-Body Teleoperation",
+        "authors": "He et al.",
+        "year": 2024,
+        "venue": "IROS 2024",
+        "arxiv": "https://arxiv.org/abs/2403.04436",
+        "project": "https://human2humanoid.com/",
+        "why_ko": "일반 카메라로 찍은 사람 몸동작을 휴머노이드가 실시간으로 따라 해요.",
+        "why_en": "A humanoid copies a person's whole-body motion in real time from a simple RGB camera."
+      },
+      {
+        "title": "Expressive Whole-Body Control for Humanoid Robots",
+        "authors": "Cheng et al.",
+        "year": 2024,
+        "venue": "RSS 2024",
+        "arxiv": "https://arxiv.org/abs/2402.16796",
+        "project": "https://expressive-humanoid.github.io/",
+        "why_ko": "사람 동작 데이터를 배워 휴머노이드가 춤추고 악수하는 표현력 있는 움직임을 해요.",
+        "why_en": "Humanoid learns expressive upper-body motions like dancing and handshakes from human data."
+      }
+    ],
+    "recent": [
+      {
+        "title": "TWIST: Teleoperated Whole-Body Imitation System",
+        "authors": "Ze et al.",
+        "year": 2025,
+        "venue": "CoRL 2025",
+        "arxiv": "https://arxiv.org/abs/2505.02833",
+        "project": "https://yanjieze.com/projects/TWIST/",
+        "why_ko": "모션캡처로 사람의 온몸 움직임을 휴머노이드가 그대로 따라 하며 일해요.",
+        "why_en": "Motion-capture teleop lets a humanoid mirror a person's whole body for real tasks."
+      },
+      {
+        "title": "BeyondMimic: From Motion Tracking to Versatile Humanoid Control via Guided Diffusion",
+        "authors": "Liao et al.",
+        "year": 2025,
+        "venue": "arXiv 2025",
+        "arxiv": "https://arxiv.org/abs/2508.08241",
+        "project": "https://beyondmimic.github.io/",
+        "why_ko": "사람의 역동적인 동작을 정교하게 따라 하고, 새 과제에도 응용하는 휴머노이드예요.",
+        "why_en": "High-quality tracking of dynamic human motions, then reused flexibly for new tasks."
+      },
+      {
+        "title": "Retargeting Matters: General Motion Retargeting for Humanoid Motion Tracking",
+        "authors": "Araujo et al.",
+        "year": 2025,
+        "venue": "ICRA 2026",
+        "arxiv": "https://arxiv.org/abs/2510.02252",
+        "project": "https://jaraujo98.github.io/retargeting_matters/",
+        "why_ko": "사람과 다른 로봇 몸에 동작을 옮기는 '리타게팅'이 성능을 좌우함을 보였어요.",
+        "why_en": "Shows that converting human motion to robot bodies (retargeting) strongly affects tracking quality."
+      }
+    ]
+  }
+}

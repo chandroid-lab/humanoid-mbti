@@ -1,0 +1,13 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "votes": {
+      ".read": true,
+      "$id": {
+        ".write": "$id.length <= 40",
+        ".validate": "newData.isString() && newData.val().matches(/^[EI][SN][TF][JP]$/)"
+      }
+    }
+  }
+}

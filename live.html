@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Live · Humanoid × MBTI</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%23003057%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%227%22 fill=%22none%22 stroke=%22%23b9d9eb%22 stroke-width=%223%22/%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%222.5%22 fill=%22%23b3a369%22/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .viz-root {
+      --surface-1: #0c1d35;
+      --text-primary: #eaf3fa;
+      --text-secondary: #9fb6c9;
+      --text-muted: #6f879c;
+      --series-a: #4a8fd8;  /* left letter of each axis (E/S/T/J) */
+      --series-b: #b08d3a;  /* right letter (I/N/F/P) */
+      --seq: 74, 143, 216; /* single-hue sequential, as rgb for alpha steps */
+    }
+    body { overflow-x: hidden; }
+    .live { display: grid; grid-template-columns: minmax(280px, 0.8fr) 1.6fr; gap: 28px; padding: 28px 36px; min-height: 100dvh; max-width: 1600px; margin: 0 auto; }
+    .left { display: flex; flex-direction: column; gap: 18px; }
+    .live h1 { font-size: clamp(26px, 2.6vw, 40px); margin: 0; white-space: normal; }
+    .qr { background: #fff; border-radius: 18px; padding: 16px; width: 100%; max-width: 360px; aspect-ratio: 1; }
+    .qr svg { width: 100%; height: 100%; display: block; }
+    .url { font-size: 15px; color: var(--text-secondary); word-break: break-all; }
+    .hero { display: flex; gap: 14px; }
+    .hero .tile { flex: 1; background: var(--surface-1); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+    .hero .num { font-size: clamp(44px, 5vw, 76px); font-weight: 800; line-height: 1; color: var(--cb); font-variant-numeric: tabular-nums; }
+    .hero .num.gold { color: var(--gold-bright); }
+    .hero .cap { color: var(--text-secondary); font-size: 14px; margin-top: 6px; }
+    .right { display: grid; grid-template-rows: auto auto; gap: 22px; align-content: start; }
+    .panel { background: var(--surface-1); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
+    .panel h2 { font-size: 17px; color: var(--text-secondary); font-weight: 600; margin-bottom: 12px; }
+    .heat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; border-radius: 12px; overflow: hidden; }
+    .cell { padding: 14px 10px; min-height: 82px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+    .cell .k { font-weight: 800; font-size: clamp(16px, 1.5vw, 22px); letter-spacing: 0.03em; }
+    .cell .f { font-size: 12px; line-height: 1.3; opacity: 0.85; }
+    .cell .n { position: absolute; top: 10px; right: 12px; font-weight: 800; font-size: clamp(20px, 2vw, 30px); font-variant-numeric: tabular-nums; }
+    .cell.pop { animation: pop .6s ease-out; }
+    @keyframes pop { 0% { box-shadow: inset 0 0 0 3px var(--gold-bright); } 100% { box-shadow: inset 0 0 0 0 transparent; } }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .axisrow { display: grid; grid-template-columns: 70px 1fr 70px; align-items: center; gap: 10px; margin: 12px 0; }
+    .axisrow .lab { font-weight: 800; font-size: 18px; color: var(--text-primary); }
+    .axisrow .lab small { display: block; font-weight: 500; font-size: 12px; color: var(--text-muted); }
+    .axisrow .lab.r { text-align: right; }
+    .bar { display: flex; height: 26px; gap: 2px; }
+    .bar i { display: block; height: 100%; transition: flex-grow .5s; min-width: 4px; }
+    .bar i:first-child { background: var(--series-a); border-radius: 4px 0 0 4px; }
+    .bar i:last-child { background: var(--series-b); border-radius: 0 4px 4px 0; }
+    .pct { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-secondary); margin-top: 2px; font-variant-numeric: tabular-nums; }
+    .pairs { list-style: none; padding: 0; margin: 0; }
+    .pairs li { display: flex; justify-content: space-between; padding: 7px 0; border-top: 1px solid var(--line); font-size: 15px; }
+    .pairs li:first-child { border-top: 0; }
+    .pairs li .p { font-weight: 700; letter-spacing: 0.02em; }
+    .pairs li .c { font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+    .pairs li.on .c { color: var(--gold-bright); font-weight: 800; }
+    .notice { font-size: 13px; color: var(--text-muted); }
+    .tools { display: flex; gap: 8px; }
+    .tools button, .tools a { background: none; border: 1px solid var(--line); color: var(--text-secondary); border-radius: 10px; padding: 6px 12px; font-size: 13px; cursor: pointer; text-decoration: none; }
+    @media (max-width: 900px) { .live { grid-template-columns: 1fr; } .two { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="live viz-root" id="live">
+    <section class="left">
+      <div class="eyebrow" style="margin:0">Why humanoids need agentic vision</div>
+      <h1 id="title"></h1>
+      <div class="qr" id="qr" aria-label="QR code"></div>
+      <div class="url" id="url"></div>
+      <div class="hero">
+        <div class="tile"><div class="num" id="total">0</div><div class="cap" id="totalCap"></div></div>
+        <div class="tile"><div class="num gold" id="pairCount">0</div><div class="cap" id="pairCap"></div></div>
+      </div>
+      <div class="notice" id="notice"></div>
+      <div class="tools">
+        <button type="button" id="langBtn">EN</button>
+        <button type="button" id="tableBtn"></button>
+      </div>
+    </section>
+    <section class="right">
+      <div class="panel">
+        <h2 id="heatTitle"></h2>
+        <div class="heat" id="heat" role="table"></div>
+      </div>
+      <div class="two">
+        <div class="panel"><h2 id="axisTitle"></h2><div id="axes"></div></div>
+        <div class="panel"><h2 id="pairsTitle"></h2><ul class="pairs" id="pairs"></ul></div>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+  <script type="module" src="js/live.js"></script>
+</body>
+</html>

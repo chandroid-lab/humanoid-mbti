@@ -1,0 +1,266 @@
+{
+  "ISTJ": {
+    "foundational": [
+      {
+        "title": "VINS-Mono: A Robust and Versatile Monocular Visual-Inertial State Estimator",
+        "authors": "Qin et al.",
+        "year": 2017,
+        "venue": "IEEE T-RO 2018",
+        "arxiv": "https://arxiv.org/abs/1708.03852",
+        "project": "https://github.com/HKUST-Aerial-Robotics/VINS-Mono",
+        "why_ko": "카메라 1대와 IMU(관성 센서)만으로 내 위치를 추정하는 표준 방법이에요.",
+        "why_en": "The go-to open-source recipe for tracking a robot's motion using one camera plus an IMU."
+      },
+      {
+        "title": "Contact-Aided Invariant Extended Kalman Filtering for Robot State Estimation",
+        "authors": "Hartley et al.",
+        "year": 2019,
+        "venue": "IJRR 2020",
+        "arxiv": "https://arxiv.org/abs/1904.09251",
+        "project": "https://github.com/RossHartley/invariant-ekf",
+        "why_ko": "발이 땅에 닿는 정보와 IMU를 합쳐 두 발 로봇의 몸 상태를 안정적으로 추정해요.",
+        "why_en": "Fuses foot contacts with IMU data so walking robots know their own pose and speed reliably."
+      },
+      {
+        "title": "Learning agile and dynamic motor skills for legged robots",
+        "authors": "Hwangbo et al.",
+        "year": 2019,
+        "venue": "Science Robotics 2019",
+        "arxiv": "https://arxiv.org/abs/1901.08652",
+        "project": null,
+        "why_ko": "실제 모터의 특성을 신경망으로 흉내 내서, 시뮬레이션에서 배운 걸 현실에 옮겼어요.",
+        "why_en": "Learned a neural model of real motors, letting simulation-trained skills work on a real robot."
+      }
+    ],
+    "recent": [
+      {
+        "title": "DogLegs: Robust Proprioceptive State Estimation for Legged Robots Using Multiple Leg-Mounted IMUs",
+        "authors": "Wu et al.",
+        "year": 2025,
+        "venue": "IROS 2025",
+        "arxiv": "https://arxiv.org/abs/2503.04580",
+        "project": "https://github.com/YibinWu/DogLegs",
+        "why_ko": "다리마다 IMU를 달아, 카메라 없이도 몸의 위치를 더 정확히 추정해요.",
+        "why_en": "Adds IMUs on each leg so a robot tracks itself accurately even without cameras."
+      },
+      {
+        "title": "Sampling-Based System Identification with Active Exploration for Legged Robot Sim2Real Learning",
+        "authors": "Sobanbabu et al.",
+        "year": 2025,
+        "venue": "CoRL 2025",
+        "arxiv": "https://arxiv.org/abs/2505.14266",
+        "project": "https://lecar-lab.github.io/spi-active_/",
+        "why_ko": "로봇의 실제 물리값(무게, 모터 특성 등)을 똑똑하게 찾아 시뮬레이션과 현실의 차이를 줄여요.",
+        "why_en": "Measures a robot's real physical parameters smartly, shrinking the gap between simulation and reality."
+      },
+      {
+        "title": "KILVO: Kinematic-Inertial-LiDAR-Visual Odometry with Robust Multimodal Adaptation for Humanoid Robots",
+        "authors": "Gao et al.",
+        "year": 2026,
+        "venue": "IEEE/ASME T-Mech (accepted, 2026)",
+        "arxiv": "https://arxiv.org/abs/2608.05647",
+        "project": "https://github.com/JixinGao/KILVO",
+        "why_ko": "휴머노이드의 관절·IMU·라이다·카메라를 모두 합쳐, 센서 하나가 고장 나도 버티는 위치 추정이에요.",
+        "why_en": "Combines a humanoid's joints, IMU, LiDAR and camera, staying robust when one sensor fails."
+      }
+    ]
+  },
+  "ISTP": {
+    "foundational": [
+      {
+        "title": "Highly Dynamic Quadruped Locomotion via Whole-Body Impulse Control and Model Predictive Control",
+        "authors": "Kim et al.",
+        "year": 2019,
+        "venue": "arXiv",
+        "arxiv": "https://arxiv.org/abs/1909.06586",
+        "project": null,
+        "why_ko": "느린 계획(MPC)과 빠른 전신 제어를 층층이 나눠, 로봇이 빠르게 뛰게 만든 고전이에요.",
+        "why_en": "Classic layered design: slow planning plus fast whole-body control lets the Mini Cheetah run dynamically."
+      },
+      {
+        "title": "Learning Quadrupedal Locomotion over Challenging Terrain",
+        "authors": "Lee et al.",
+        "year": 2020,
+        "venue": "Science Robotics 2020",
+        "arxiv": "https://arxiv.org/abs/2010.11251",
+        "project": null,
+        "why_ko": "시뮬레이션에서 학습한 신경망 제어기를 로봇에 올려, 험한 야외 지형을 걷게 했어요.",
+        "why_en": "A simulation-trained neural controller running on-board carried a quadruped across rough real-world terrain."
+      },
+      {
+        "title": "Sim-to-Real: Learning Agile Locomotion For Quadruped Robots",
+        "authors": "Tan et al.",
+        "year": 2018,
+        "venue": "RSS 2018",
+        "arxiv": "https://arxiv.org/abs/1804.10332",
+        "project": null,
+        "why_ko": "모터 특성과 통신 지연까지 시뮬레이션에 넣어, 학습한 걸음을 실제 로봇에서 그대로 쓰게 했어요.",
+        "why_en": "Simulated motor behavior and control latency so learned gaits worked directly on a real robot."
+      }
+    ],
+    "recent": [
+      {
+        "title": "Real-Time Execution of Action Chunking Flow Policies",
+        "authors": "Black et al.",
+        "year": 2025,
+        "venue": "NeurIPS 2025",
+        "arxiv": "https://arxiv.org/abs/2506.07339",
+        "project": "https://www.pi.website/research/real_time_chunking",
+        "why_ko": "큰 AI 모델이 생각하는 동안에도 로봇이 멈추지 않고 부드럽게 움직이게 해줘요.",
+        "why_en": "Keeps a robot moving smoothly while a large, slow AI model is still computing its next actions."
+      },
+      {
+        "title": "SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics",
+        "authors": "Shukor et al.",
+        "year": 2025,
+        "venue": "arXiv",
+        "arxiv": "https://arxiv.org/abs/2506.01844",
+        "project": "https://huggingface.co/blog/smolvla",
+        "why_ko": "작고 가벼운 로봇 AI(VLA)로, 비싼 서버 없이 일반 장비에서도 돌아가요.",
+        "why_en": "A small vision-language-action model that runs on modest hardware instead of costly servers."
+      },
+      {
+        "title": "EagleVLA: Towards Onboard Real-Time Robot Control via Foresight-Aligned Asynchronous Inference",
+        "authors": "Yang et al.",
+        "year": 2026,
+        "venue": "CoRL 2026 (Spotlight)",
+        "arxiv": "https://arxiv.org/abs/2607.12659",
+        "project": "https://github.com/PKU-SEC-Lab/EagleVLA",
+        "why_ko": "큰 로봇 AI(VLA)를 로봇에 달린 작은 컴퓨터(Jetson)에서도 지연 없이 돌리는 방법이에요.",
+        "why_en": "Runs large vision-language-action models on a robot's small onboard computer without laggy control."
+      }
+    ]
+  },
+  "ISFJ": {
+    "foundational": [
+      {
+        "title": "Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware",
+        "authors": "Zhao et al.",
+        "year": 2023,
+        "venue": "RSS 2023",
+        "arxiv": "https://arxiv.org/abs/2304.13705",
+        "project": "https://tonyzhaozh.github.io/aloha/",
+        "why_ko": "저렴한 원격조종 장비(ALOHA)로 시연 데이터를 모아 양팔 섬세 작업을 가르쳤어요.",
+        "why_en": "ALOHA: a cheap teleoperation rig whose demonstrations taught robots delicate two-arm tasks."
+      },
+      {
+        "title": "Open X-Embodiment: Robotic Learning Datasets and RT-X Models",
+        "authors": "Open X-Embodiment Collaboration",
+        "year": 2023,
+        "venue": "ICRA 2024",
+        "arxiv": "https://arxiv.org/abs/2310.08864",
+        "project": "https://robotics-transformer-x.github.io",
+        "why_ko": "여러 연구실의 서로 다른 로봇 데이터를 한데 모은 대표적인 대규모 데이터셋이에요.",
+        "why_en": "Pooled data from many labs and robot types into one large shared training dataset."
+      },
+      {
+        "title": "What Matters in Learning from Offline Human Demonstrations for Robot Manipulation",
+        "authors": "Mandlekar et al.",
+        "year": 2021,
+        "venue": "CoRL 2021",
+        "arxiv": "https://arxiv.org/abs/2108.03298",
+        "project": "https://robomimic.github.io/",
+        "why_ko": "사람 시연 데이터의 품질과 양이 로봇 학습 결과를 어떻게 바꾸는지 꼼꼼히 비교했어요.",
+        "why_en": "Systematically showed how demonstration quality and quantity change what robots can learn."
+      }
+    ],
+    "recent": [
+      {
+        "title": "AgiBot World Colosseo: A Large-scale Manipulation Platform for Scalable and Intelligent Embodied Systems",
+        "authors": "AgiBot World Contributors",
+        "year": 2025,
+        "venue": "arXiv",
+        "arxiv": "https://arxiv.org/abs/2503.06669",
+        "project": "https://agibot-world.com/",
+        "why_ko": "100대의 로봇으로 100만 개 넘는 시연을 모은 초대형 실제 로봇 데이터셋이에요.",
+        "why_en": "Over a million real-robot demonstrations collected with a fleet of about 100 robots."
+      },
+      {
+        "title": "HOMIE: Humanoid Loco-Manipulation with Isomorphic Exoskeleton Cockpit",
+        "authors": "Ben et al.",
+        "year": 2025,
+        "venue": "RSS 2025",
+        "arxiv": "https://arxiv.org/abs/2502.13013",
+        "project": "https://homietele.github.io/",
+        "why_ko": "외골격 조종석으로 휴머노이드의 팔과 이동을 한 사람이 동시에 조종해 데이터를 모아요.",
+        "why_en": "An exoskeleton cockpit lets one operator drive a humanoid's arms and walking to collect data."
+      },
+      {
+        "title": "CUPID: Curating Data your Robot Loves with Influence Functions",
+        "authors": "Agia et al.",
+        "year": 2025,
+        "venue": "CoRL 2025",
+        "arxiv": "https://arxiv.org/abs/2506.19121",
+        "project": "https://cupid-curation.github.io",
+        "why_ko": "어떤 시연 데이터가 로봇에 도움이 되고 해가 되는지 골라내는 데이터 정리법이에요.",
+        "why_en": "Identifies which demonstrations help or hurt a robot policy, so bad data can be removed."
+      }
+    ]
+  },
+  "ISFP": {
+    "foundational": [
+      {
+        "title": "Learning Dexterous In-Hand Manipulation",
+        "authors": "OpenAI et al.",
+        "year": 2018,
+        "venue": "IJRR 2020",
+        "arxiv": "https://arxiv.org/abs/1808.00177",
+        "project": "https://openai.com/index/learning-dexterity/",
+        "why_ko": "시뮬레이션에서만 배운 로봇 손이 실제로 손안에서 큐브를 돌리는 데 성공했어요.",
+        "why_en": "A robot hand trained only in simulation learned to rotate a cube in its real palm."
+      },
+      {
+        "title": "Making Sense of Vision and Touch: Self-Supervised Learning of Multimodal Representations for Contact-Rich Tasks",
+        "authors": "Lee et al.",
+        "year": 2018,
+        "venue": "ICRA 2019",
+        "arxiv": "https://arxiv.org/abs/1810.10191",
+        "project": "https://sites.google.com/view/visionandtouch",
+        "why_ko": "눈(카메라)과 촉감(힘 센서)을 합쳐 쓰면 끼우기 같은 접촉 작업이 쉬워짐을 보였어요.",
+        "why_en": "Showed that combining vision with touch and force makes contact-heavy tasks like peg insertion easier."
+      },
+      {
+        "title": "DIGIT: A Novel Design for a Low-Cost Compact High-Resolution Tactile Sensor with Application to In-Hand Manipulation",
+        "authors": "Lambeta et al.",
+        "year": 2020,
+        "venue": "IEEE RA-L 2020",
+        "arxiv": "https://arxiv.org/abs/2005.14679",
+        "project": "https://digit.ml/",
+        "why_ko": "작은 카메라로 손끝 촉감을 고해상도로 읽는, 저렴한 공개 촉각 센서예요.",
+        "why_en": "A cheap, open fingertip sensor that uses a tiny camera to 'see' touch in high resolution."
+      }
+    ],
+    "recent": [
+      {
+        "title": "Sim-to-Real Reinforcement Learning for Vision-Based Dexterous Manipulation on Humanoids",
+        "authors": "Lin et al.",
+        "year": 2025,
+        "venue": "CoRL 2025",
+        "arxiv": "https://arxiv.org/abs/2502.20396",
+        "project": "https://toruowo.github.io/recipe/",
+        "why_ko": "시뮬레이션에서 배운 손 기술을 실제 휴머노이드 손으로 옮기는 실전 레시피예요.",
+        "why_en": "A practical recipe for moving camera-based hand skills from simulation to a real humanoid."
+      },
+      {
+        "title": "Reactive Diffusion Policy: Slow-Fast Visual-Tactile Policy Learning for Contact-Rich Manipulation",
+        "authors": "Xue et al.",
+        "year": 2025,
+        "venue": "RSS 2025",
+        "arxiv": "https://arxiv.org/abs/2503.02881",
+        "project": "https://reactive-diffusion-policy.github.io",
+        "why_ko": "눈으로는 천천히 계획하고 촉감으로는 빠르게 반응하는 '느림-빠름' 정책이에요.",
+        "why_en": "Plans slowly with vision but reacts quickly with touch, like humans handling objects."
+      },
+      {
+        "title": "DexUMI: Using Human Hand as the Universal Manipulation Interface for Dexterous Manipulation",
+        "authors": "Xu et al.",
+        "year": 2025,
+        "venue": "CoRL 2025",
+        "arxiv": "https://arxiv.org/abs/2505.21864",
+        "project": "https://dex-umi.github.io/",
+        "why_ko": "사람 손에 끼우는 외골격으로 시연을 모아 여러 로봇 손에 기술을 옮겨요.",
+        "why_en": "A wearable hand exoskeleton records human demos and transfers the skills to different robot hands."
+      }
+    ]
+  }
+}
