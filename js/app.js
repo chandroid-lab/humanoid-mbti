@@ -176,6 +176,7 @@ function resultHTML(type) {
         <dl class="kv">
           <dt>FIELD</dt><dd class="field-name">${esc(t(d.field))}</dd>
           <dt>ROLE</dt><dd class="nick">${esc(t(d.nick))}</dd>
+          <dt>STRENGTH</dt><dd>${esc(t(d.strength))}</dd>
           <dt>AXES</dt><dd class="mono small">${axesTxt}</dd>
         </dl>
       </div>
@@ -202,7 +203,8 @@ function resultHTML(type) {
         <div class="robot-cap"><span><span class="mono" style="color:var(--gold-bright)">▶</span> ${esc(t(o.act))}</span><span class="hint">${opp}</span></div>
       </div>
       <div class="field-name">${esc(t(o.field))}</div>
-      <div class="nick" style="margin-bottom:8px">${esc(t(o.nick))}</div>
+      <div class="nick" style="margin-bottom:6px">${esc(t(o.nick))}</div>
+      <p class="opp-strength"><span class="mono">${L2(`${opp}의 강점`, `${opp}'s strength`)}</span> ${esc(t(o.strength))}</p>
       <p>${esc(t(o.easy))}</p>
       <div class="tags">${o.tools.map((x) => `<span class="tag">${esc(x)}</span>`).join("")}</div>
       ${figHTML(opp)}

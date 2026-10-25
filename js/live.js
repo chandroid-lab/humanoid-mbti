@@ -167,7 +167,7 @@ function renderOverlay() {
   ov.innerHTML = `<div class="ovbox" role="dialog" aria-modal="true" aria-label="${k}">
     <button class="ovclose" data-close>${t(L.close)}</button>
     <div class="ovtop">
-      <div><div class="ovtype">${k}</div><div class="ovnick">${d.nick[lang]}</div></div>
+      <div><div class="ovtype">${k}</div><div class="ovnick">${d.nick[lang]}</div><div class="ovstrength">${d.strength[lang]}</div></div>
       <div class="ovcount"><span>${n}</span>${t(L.inRoom)}</div>
     </div>
     <div class="ovfield">${d.field[lang]}</div>
