@@ -12,16 +12,6 @@
         "why_en": "The go-to open-source recipe for tracking a robot's motion using one camera plus an IMU."
       },
       {
-        "title": "Contact-Aided Invariant Extended Kalman Filtering for Robot State Estimation",
-        "authors": "Hartley et al.",
-        "year": 2019,
-        "venue": "IJRR 2020",
-        "arxiv": "https://arxiv.org/abs/1904.09251",
-        "project": "https://github.com/RossHartley/invariant-ekf",
-        "why_ko": "발이 땅에 닿는 정보와 IMU를 합쳐 두 발 로봇의 몸 상태를 안정적으로 추정한다.",
-        "why_en": "Fuses foot contacts with IMU data so walking robots know their own pose and speed reliably."
-      },
-      {
         "title": "Learning agile and dynamic motor skills for legged robots",
         "authors": "Hwangbo et al.",
         "year": 2019,
@@ -33,16 +23,6 @@
       }
     ],
     "recent": [
-      {
-        "title": "DogLegs: Robust Proprioceptive State Estimation for Legged Robots Using Multiple Leg-Mounted IMUs",
-        "authors": "Wu et al.",
-        "year": 2025,
-        "venue": "IROS 2025",
-        "arxiv": "https://arxiv.org/abs/2503.04580",
-        "project": "https://github.com/YibinWu/DogLegs",
-        "why_ko": "다리마다 IMU를 달아, 카메라 없이도 몸의 위치를 더 정확히 추정한다.",
-        "why_en": "Adds IMUs on each leg so a robot tracks itself accurately even without cameras."
-      },
       {
         "title": "Sampling-Based System Identification with Active Exploration for Legged Robot Sim2Real Learning",
         "authors": "Sobanbabu et al.",
@@ -62,6 +42,26 @@
         "project": "https://github.com/JixinGao/KILVO",
         "why_ko": "휴머노이드의 관절·IMU·라이다·카메라를 모두 합쳐, 센서 하나가 고장 나도 버티는 위치 추정이다.",
         "why_en": "Combines a humanoid's joints, IMU, LiDAR and camera, staying robust when one sensor fails."
+      }
+    ],
+    "industry": [
+      {
+        "name": "Digit 5",
+        "org": "Agility Robotics",
+        "kind": "startup",
+        "year": 2026,
+        "url": "https://www.agilityrobotics.com/solutions/digit-5",
+        "why_ko": "창고에서 돈을 받고 일하는 휴머노이드다. 새 센서로 옆 사람을 감지해 속도를 줄이거나 멈춘다. 같은 일을 수천 번 반복해도 버텨야 하는 것이 핵심이다.",
+        "why_en": "A humanoid that does paid warehouse work. New sensors spot nearby people so it slows or stops. The real test is holding up over thousands of repeats."
+      },
+      {
+        "name": "Isaac ROS Visual SLAM (cuVSLAM)",
+        "org": "NVIDIA",
+        "kind": "bigtech",
+        "year": null,
+        "url": "https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_visual_slam/index.html",
+        "why_ko": "카메라와 IMU로 로봇 위치를 GPU에서 실시간으로 추정하는 공개 패키지다. ROS 2에 바로 붙여 쓸 수 있다.",
+        "why_en": "An open package that tracks a robot's position from cameras and an IMU in real time on the GPU. It plugs straight into ROS 2."
       }
     ]
   },
@@ -86,16 +86,6 @@
         "project": null,
         "why_ko": "시뮬레이션에서 학습한 신경망 제어기를 로봇에 올려, 험한 야외 지형을 걷게 했다.",
         "why_en": "A simulation-trained neural controller running on-board carried a quadruped across rough real-world terrain."
-      },
-      {
-        "title": "Sim-to-Real: Learning Agile Locomotion For Quadruped Robots",
-        "authors": "Tan et al.",
-        "year": 2018,
-        "venue": "RSS 2018",
-        "arxiv": "https://arxiv.org/abs/1804.10332",
-        "project": null,
-        "why_ko": "모터 특성과 통신 지연까지 시뮬레이션에 넣어, 학습한 걸음을 실제 로봇에서 그대로 쓰게 했다.",
-        "why_en": "Simulated motor behavior and control latency so learned gaits worked directly on a real robot."
       }
     ],
     "recent": [
@@ -118,16 +108,26 @@
         "project": "https://huggingface.co/blog/smolvla",
         "why_ko": "작고 가벼운 로봇 AI(VLA)로, 비싼 서버 없이 일반 장비에서도 돌아간다.",
         "why_en": "A small vision-language-action model that runs on modest hardware instead of costly servers."
+      }
+    ],
+    "industry": [
+      {
+        "name": "Jetson AGX Thor",
+        "org": "NVIDIA",
+        "kind": "bigtech",
+        "year": 2025,
+        "url": "https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-thor/",
+        "why_ko": "휴머노이드 몸 안에 넣는 AI 컴퓨터다. 큰 모델을 클라우드 없이 로봇 위에서 바로 돌리는 것이 목표다.",
+        "why_en": "An AI computer built to sit inside a humanoid, so large models run on the robot itself with no cloud."
       },
       {
-        "title": "EagleVLA: Towards Onboard Real-Time Robot Control via Foresight-Aligned Asynchronous Inference",
-        "authors": "Yang et al.",
-        "year": 2026,
-        "venue": "CoRL 2026 (Spotlight)",
-        "arxiv": "https://arxiv.org/abs/2607.12659",
-        "project": "https://github.com/PKU-SEC-Lab/EagleVLA",
-        "why_ko": "큰 로봇 AI(VLA)를 로봇에 달린 작은 컴퓨터(Jetson)에서도 지연 없이 돌리는 방법이다.",
-        "why_en": "Runs large vision-language-action models on a robot's small onboard computer without laggy control."
+        "name": "Helix",
+        "org": "Figure",
+        "kind": "startup",
+        "year": 2025,
+        "url": "https://www.figure.ai/news/helix",
+        "why_ko": "천천히 생각하는 모델과 200Hz로 몸을 움직이는 빠른 모델을 나눈 VLA다. 둘 다 로봇에 실린 GPU에서 돈다.",
+        "why_en": "A VLA split into a slow 'thinking' model and a fast 200 Hz motor model, both running on the robot's own GPUs."
       }
     ]
   },
@@ -152,29 +152,9 @@
         "project": "https://robotics-transformer-x.github.io",
         "why_ko": "여러 연구실의 서로 다른 로봇 데이터를 한데 모은 대표적인 대규모 데이터셋이다.",
         "why_en": "Pooled data from many labs and robot types into one large shared training dataset."
-      },
-      {
-        "title": "What Matters in Learning from Offline Human Demonstrations for Robot Manipulation",
-        "authors": "Mandlekar et al.",
-        "year": 2021,
-        "venue": "CoRL 2021",
-        "arxiv": "https://arxiv.org/abs/2108.03298",
-        "project": "https://robomimic.github.io/",
-        "why_ko": "사람 시연 데이터의 품질과 양이 로봇 학습 결과를 어떻게 바꾸는지 꼼꼼히 비교했다.",
-        "why_en": "Systematically showed how demonstration quality and quantity change what robots can learn."
       }
     ],
     "recent": [
-      {
-        "title": "AgiBot World Colosseo: A Large-scale Manipulation Platform for Scalable and Intelligent Embodied Systems",
-        "authors": "AgiBot World Contributors",
-        "year": 2025,
-        "venue": "arXiv",
-        "arxiv": "https://arxiv.org/abs/2503.06669",
-        "project": "https://agibot-world.com/",
-        "why_ko": "100대의 로봇으로 100만 개 넘는 시연을 모은 초대형 실제 로봇 데이터셋이다.",
-        "why_en": "Over a million real-robot demonstrations collected with a fleet of about 100 robots."
-      },
       {
         "title": "HOMIE: Humanoid Loco-Manipulation with Isomorphic Exoskeleton Cockpit",
         "authors": "Ben et al.",
@@ -195,6 +175,26 @@
         "why_ko": "어떤 시연 데이터가 로봇에 도움이 되고 해가 되는지 골라내는 데이터 정리법이다.",
         "why_en": "Identifies which demonstrations help or hurt a robot policy, so bad data can be removed."
       }
+    ],
+    "industry": [
+      {
+        "name": "Skill Capture Glove (Memo)",
+        "org": "Sunday Robotics",
+        "kind": "startup",
+        "year": 2025,
+        "url": "https://www.sunday.ai/",
+        "why_ko": "사람이 200달러짜리 장갑을 끼고 집안일을 하면 그 움직임이 로봇 학습 데이터가 된다. 2만 달러짜리 원격조종 장비를 대신한다.",
+        "why_en": "People wear a $200 glove while doing chores, and their motion becomes robot training data, replacing $20,000 teleop rigs."
+      },
+      {
+        "name": "AgiBot World",
+        "org": "AgiBot",
+        "kind": "startup",
+        "year": 2025,
+        "url": "https://agibot-world.com/",
+        "why_ko": "로봇 100대로 100만 개가 넘는 실제 시연을 모은 공개 데이터셋이다. 데이터를 대량으로 모으는 공장 같은 체계를 보여 준다.",
+        "why_en": "An open dataset of over a million real demonstrations collected with 100 robots, a look at data collection run like a factory."
+      }
     ]
   },
   "ISFP": {
@@ -208,16 +208,6 @@
         "project": "https://openai.com/index/learning-dexterity/",
         "why_ko": "시뮬레이션에서만 배운 로봇 손이 실제로 손안에서 큐브를 돌리는 데 성공했다.",
         "why_en": "A robot hand trained only in simulation learned to rotate a cube in its real palm."
-      },
-      {
-        "title": "Making Sense of Vision and Touch: Self-Supervised Learning of Multimodal Representations for Contact-Rich Tasks",
-        "authors": "Lee et al.",
-        "year": 2018,
-        "venue": "ICRA 2019",
-        "arxiv": "https://arxiv.org/abs/1810.10191",
-        "project": "https://sites.google.com/view/visionandtouch",
-        "why_ko": "눈(카메라)과 촉감(힘 센서)을 합쳐 쓰면 끼우기 같은 접촉 작업이 쉬워짐을 보였다.",
-        "why_en": "Showed that combining vision with touch and force makes contact-heavy tasks like peg insertion easier."
       },
       {
         "title": "DIGIT: A Novel Design for a Low-Cost Compact High-Resolution Tactile Sensor with Application to In-Hand Manipulation",
@@ -250,16 +240,26 @@
         "project": "https://reactive-diffusion-policy.github.io",
         "why_ko": "눈으로는 천천히 계획하고 촉감으로는 빠르게 반응하는 '느림-빠름' 정책이다.",
         "why_en": "Plans slowly with vision but reacts quickly with touch, like humans handling objects."
+      }
+    ],
+    "industry": [
+      {
+        "name": "SharpaWave",
+        "org": "Sharpa",
+        "kind": "startup",
+        "year": null,
+        "url": "https://www.sharpa.com/",
+        "why_ko": "손가락 끝마다 1,000개가 넘는 촉각 픽셀을 단 22자유도 로봇 손이다. NVIDIA의 GR00T 참조 휴머노이드에도 들어갔다.",
+        "why_en": "A 22-DoF robot hand with over 1,000 touch pixels per fingertip. It's on NVIDIA's GR00T reference humanoid."
       },
       {
-        "title": "DexUMI: Using Human Hand as the Universal Manipulation Interface for Dexterous Manipulation",
-        "authors": "Xu et al.",
-        "year": 2025,
-        "venue": "CoRL 2025",
-        "arxiv": "https://arxiv.org/abs/2505.21864",
-        "project": "https://dex-umi.github.io/",
-        "why_ko": "사람 손에 끼우는 외골격으로 시연을 모아 여러 로봇 손에 기술을 옮긴다.",
-        "why_en": "A wearable hand exoskeleton records human demos and transfers the skills to different robot hands."
+        "name": "Digit 360",
+        "org": "Meta FAIR × GelSight",
+        "kind": "bigtech",
+        "year": 2024,
+        "url": "https://ai.meta.com/blog/fair-robotics-open-source/",
+        "why_ko": "손가락 끝 모양의 촉각 센서로, 약 1밀리뉴턴의 아주 작은 힘까지 느낀다. 연구자용으로 공개했다.",
+        "why_en": "A fingertip-shaped touch sensor that feels forces as small as about 1 millinewton, released for researchers."
       }
     ]
   }

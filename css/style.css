@@ -165,7 +165,7 @@ p { margin: 0 0 10px; }
 .tag { font-family: var(--mono); font-size: 11.5px; border: 1px solid var(--line); padding: 2px 7px; color: var(--cb); }
 
 /* papers */
-.tabs { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); margin-bottom: 4px; }
+.tabs { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--line); margin-bottom: 4px; }
 .tab { background: none; border: 0; padding: 8px; font-family: var(--mono); font-size: 12px; color: var(--muted); cursor: pointer; }
 .tab + .tab { border-left: 1px solid var(--line); }
 .tab[aria-selected="true"] { background: var(--cb); color: var(--navy); font-weight: 600; }
@@ -177,6 +177,9 @@ p { margin: 0 0 10px; }
 .paper .why { font-size: 13.5px; color: var(--muted); }
 .paper .links { display: flex; gap: 6px; margin-top: 7px; }
 .paper .links a { font-family: var(--mono); font-size: 11.5px; text-decoration: none; padding: 3px 9px; border: 1px solid var(--line-strong); color: var(--cb); }
+.paper .kind { font-family: var(--mono); font-size: 10.5px; font-weight: 500; padding: 1px 6px; margin-left: 4px; border: 1px solid var(--line-strong); color: var(--muted); vertical-align: 1px; white-space: nowrap; }
+.paper .kind-startup { color: var(--gold-bright); border-color: currentColor; }
+.paper .kind-bigtech { color: var(--cb); border-color: currentColor; }
 
 /* opposite */
 .opp { border-color: rgba(179, 163, 105, 0.55); }

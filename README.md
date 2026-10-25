@@ -43,7 +43,7 @@ gh api -X POST repos/{owner}/humanoid-mbti/pages -f "source[branch]=main" -f "so
 
 ## 논문 목록 수정
 
-`papers/group*.json`을 고친 뒤 아래를 실행합니다. 빠진 항목이나 중복 논문이 있으면 오류를 알려 줍니다.
+유형마다 기초 논문 2편(`foundational`), 최신 논문 2편(`recent`), 산업 사례 2개(`industry`: 기업·스타트업·빅테크의 프로젝트나 제품)가 들어갑니다. `papers/group*.json`을 고친 뒤 아래를 실행합니다. 빠진 항목이나 중복이 있으면 오류를 알려 줍니다.
 
 ```bash
 python3 tools/build_papers.py

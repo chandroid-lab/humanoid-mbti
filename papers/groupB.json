@@ -2,16 +2,6 @@
   "INTJ": {
     "foundational": [
       {
-        "title": "Crocoddyl: An Efficient and Versatile Framework for Multi-Contact Optimal Control",
-        "authors": "Mastalli et al.",
-        "year": 2019,
-        "venue": "ICRA 2020",
-        "arxiv": "https://arxiv.org/abs/1909.04947",
-        "project": "https://github.com/loco-3d/crocoddyl",
-        "why_ko": "발이 땅에 닿는 순간까지 계산해 점프·공중제비 동작을 몇 밀리초 만에 짜 주는 오픈소스 도구다.",
-        "why_en": "Open-source solver that plans contact-rich motions like jumps and flips in milliseconds."
-      },
-      {
         "title": "Integrated Task and Motion Planning",
         "authors": "Garrett et al.",
         "year": 2020,
@@ -44,16 +34,6 @@
         "why_en": "Simple real-time whole-body MPC with MuJoCo, demonstrated on real humanoid and quadruped hardware."
       },
       {
-        "title": "Hierarchical Reduced-Order Model Predictive Control for Robust Locomotion on Humanoid Robots",
-        "authors": "Ghansah et al.",
-        "year": 2025,
-        "venue": "IEEE-RAS Humanoids 2025",
-        "arxiv": "https://arxiv.org/abs/2509.04722",
-        "project": null,
-        "why_ko": "발 디딜 곳을 정하는 상위 계획과 몸을 안정시키는 하위 MPC를 겹겹이 쌓아 실제 휴머노이드(G1)를 튼튼하게 걷게 했다.",
-        "why_en": "Layered MPC: a step planner atop a body-balancing controller keeps a real Unitree G1 walking robustly."
-      },
-      {
         "title": "Task and Motion Planning for Humanoid Loco-manipulation",
         "authors": "Ciebielski et al.",
         "year": 2025,
@@ -62,6 +42,26 @@
         "project": null,
         "why_ko": "‘손발이 어디에 닿을지’를 작업 단위로 탐색하고 온몸 궤적 최적화로 이어, 걷기와 물건 다루기를 한 번에 계획한다.",
         "why_en": "Searches over contact changes and optimizes whole-body trajectories to plan long humanoid loco-manipulation."
+      }
+    ],
+    "industry": [
+      {
+        "name": "Atlas: Picking Up Momentum",
+        "org": "Boston Dynamics",
+        "kind": "company",
+        "year": 2023,
+        "url": "https://bostondynamics.com/blog/picking-up-momentum/",
+        "why_ko": "Atlas가 짐을 던지고 받는 동작의 핵심은 MPC다. 짧은 미래를 예측해 지금 할 최선의 동작을 계속 다시 계산한다.",
+        "why_en": "Atlas's toss-and-catch moves run on MPC: predict a short window ahead and keep recomputing the best action now."
+      },
+      {
+        "name": "MuJoCo MPC",
+        "org": "Google DeepMind",
+        "kind": "bigtech",
+        "year": 2022,
+        "url": "https://github.com/google-deepmind/mujoco_mpc",
+        "why_ko": "MuJoCo 시뮬레이터 위에서 MPC를 실시간으로 돌리고, 비용 함수를 바꿔 가며 결과를 바로 볼 수 있는 공개 도구다.",
+        "why_en": "An open tool for running real-time MPC in MuJoCo and seeing results instantly as you tweak the cost function."
       }
     ]
   },
@@ -76,16 +76,6 @@
         "project": "https://worldmodels.github.io/",
         "why_ko": "AI가 머릿속에 세상을 흉내 내는 ‘꿈’ 모델을 만들고 그 안에서 연습한다는 아이디어를 대중화했다.",
         "why_en": "Popularized learning a model of the world and training the agent inside its dreams."
-      },
-      {
-        "title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
-        "authors": "Mildenhall et al.",
-        "year": 2020,
-        "venue": "ECCV 2020",
-        "arxiv": "https://arxiv.org/abs/2003.08934",
-        "project": "https://www.matthewtancik.com/nerf",
-        "why_ko": "사진 몇 장으로 3D 공간을 신경망에 저장해 새로운 시점의 장면까지 그려 내는 기술의 시작이다.",
-        "why_en": "Stores a 3D scene inside a neural network from photos; sparked neural 3D mapping."
       },
       {
         "title": "ConceptGraphs: Open-Vocabulary 3D Scene Graphs for Perception and Planning",
@@ -118,16 +108,26 @@
         "project": "https://research.nvidia.com/labs/gear/dreamgen/",
         "why_ko": "영상 생성 모델로 ‘가상 시연 영상’을 만들어 휴머노이드가 새 동작 20여 가지를 배우게 했다.",
         "why_en": "Video world models generate synthetic demos, teaching a humanoid 20+ new behaviors."
+      }
+    ],
+    "industry": [
+      {
+        "name": "Cosmos",
+        "org": "NVIDIA",
+        "kind": "bigtech",
+        "year": 2025,
+        "url": "https://www.nvidia.com/en-us/ai/cosmos/",
+        "why_ko": "로봇과 자율주행을 위한 월드 모델 모음이다. 다음 장면을 영상으로 예측해 학습 데이터를 만들고 정책을 미리 시험한다.",
+        "why_en": "A family of world models for robots and cars. It predicts future video to make training data and test policies ahead of time."
       },
       {
-        "title": "Cosmos World Foundation Model Platform for Physical AI",
-        "authors": "NVIDIA et al.",
+        "name": "Marble",
+        "org": "World Labs",
+        "kind": "startup",
         "year": 2025,
-        "venue": "arXiv",
-        "arxiv": "https://arxiv.org/abs/2501.03575",
-        "project": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict1/",
-        "why_ko": "로봇·자율주행용으로 누구나 고쳐 쓸 수 있게 공개한 대형 ‘세계 모델’ 플랫폼이다.",
-        "why_en": "Open-weight world foundation models that developers fine-tune for robots and physical AI."
+        "url": "https://www.worldlabs.ai/blog/marble-world-model",
+        "why_ko": "글이나 사진 한 장으로 걸어 다닐 수 있는 3D 공간을 만든다. 결과를 Gaussian splat이나 메시로 내보낼 수 있다.",
+        "why_en": "Turns a text prompt or a single photo into an explorable 3D world, exportable as Gaussian splats or meshes."
       }
     ]
   },
@@ -152,16 +152,6 @@
         "project": "https://auto-rt.github.io/",
         "why_ko": "여러 로봇을 LLM이 지휘할 때 ‘로봇 헌법(안전 규칙)’과 사람의 감독으로 위험한 일을 걸러낸 대표 사례다.",
         "why_en": "Fleet-scale LLM robot orchestration guarded by a written robot constitution and human supervision."
-      },
-      {
-        "title": "Jailbreaking LLM-Controlled Robots",
-        "authors": "Robey et al.",
-        "year": 2024,
-        "venue": "ICRA 2025",
-        "arxiv": "https://arxiv.org/abs/2410.13691",
-        "project": "https://robopair.org/",
-        "why_ko": "교묘한 말로 LLM 로봇이 위험한 행동을 하도록 속일 수 있음을 실제 로봇으로 처음 보여 줬다.",
-        "why_en": "First to show real LLM-controlled robots can be jailbroken into harmful physical actions."
       }
     ],
     "recent": [
@@ -184,16 +174,26 @@
         "project": "https://robo-guard.github.io/",
         "why_ko": "LLM이 짠 로봇 계획을 실행 전에 검사해, 해킹 공격에도 위험 행동을 크게 줄이는 안전장치다.",
         "why_en": "RoboGuard checks LLM robot plans before execution, sharply cutting unsafe actions under jailbreaks."
+      }
+    ],
+    "industry": [
+      {
+        "name": "Halos for Robotics",
+        "org": "NVIDIA × Agility Robotics",
+        "kind": "bigtech",
+        "year": 2026,
+        "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Halos-for-Robotics-the-Industrys-First-Full-Stack-Safety-System-for-Physical-AI/",
+        "why_ko": "칩, 소프트웨어, 인증 시험까지 로봇 안전을 한 묶음으로 만든 시스템이다. Agility가 Digit의 사람 감지 기능에 처음 적용한다.",
+        "why_en": "A safety stack spanning chips, software and certification testing. Agility is the first to use it, for Digit's human detection."
       },
       {
-        "title": "SafeVLA: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning",
-        "authors": "Zhang et al.",
+        "name": "Project Fetch",
+        "org": "Anthropic",
+        "kind": "company",
         "year": 2025,
-        "venue": "NeurIPS 2025",
-        "arxiv": "https://arxiv.org/abs/2503.03480",
-        "project": "https://pku-safevla.github.io/",
-        "why_ko": "보고·듣고·움직이는 VLA 모델이 학습 단계부터 안전 제약을 지키도록 길들이는 방법이다.",
-        "why_en": "Trains vision-language-action models with explicit safety constraints built into learning."
+        "url": "https://www.anthropic.com/research/project-fetch-robot-dog",
+        "why_ko": "AI가 로봇을 얼마나 잘 다루게 됐는지 미리 재 보는 레드팀 실험이다. 로봇 경험이 없는 연구자들이 Claude와 함께 로봇개를 프로그래밍했다.",
+        "why_en": "A red-team experiment measuring how well AI can already handle robots: researchers with no robotics background programmed a robot dog with Claude."
       }
     ]
   },
@@ -218,16 +218,6 @@
         "project": "https://tetexiao.com/projects/mvp",
         "why_ko": "영상 일부를 가리고 맞히는 방식으로 사람 영상에서 배운 시각 표현이 로봇 제어에 통한다는 걸 보였다.",
         "why_en": "Showed masked-image pretraining on human videos gives strong visual features for robot control."
-      },
-      {
-        "title": "Affordances from Human Videos as a Versatile Representation for Robotics",
-        "authors": "Bahl et al.",
-        "year": 2023,
-        "venue": "CVPR 2023",
-        "arxiv": "https://arxiv.org/abs/2304.08488",
-        "project": "https://robo-affordances.github.io/",
-        "why_ko": "사람 영상에서 ‘물건의 어디를 잡고 어느 쪽으로 움직이는지’를 배워 로봇에 옮겼다.",
-        "why_en": "Learns where and how to interact with objects from human videos, then transfers to robots."
       }
     ],
     "recent": [
@@ -250,16 +240,26 @@
         "project": "https://rchalyang.github.io/EgoVLA/",
         "why_ko": "사람 1인칭 영상으로 손·손목 동작을 배운 VLA를 휴머노이드 양손 조작으로 옮긴다.",
         "why_en": "Trains a VLA on egocentric human video, then retargets hand actions to a humanoid."
+      }
+    ],
+    "industry": [
+      {
+        "name": "Apollo × Gemini 4 Argon",
+        "org": "Apptronik × Google DeepMind",
+        "kind": "startup",
+        "year": 2026,
+        "url": "https://roboticsandautomationnews.com/2026/10/22/google-deepmind-uses-gemini-4-argon-to-teach-apptroniks-apollo-humanoid-new-skills-from-video/106227/",
+        "why_ko": "사람이 콘홀(주머니 던지기)을 하는 영상만 보고 AI가 시뮬레이션을 스스로 만들어 연습했다. 그 결과 실제 Apollo 로봇이 7번 연속 성공했다.",
+        "why_en": "From plain video of a person playing cornhole, the AI built its own simulation to practice in. The real Apollo humanoid then landed 7 shots in a row."
       },
       {
-        "title": "EgoDex: Learning Dexterous Manipulation from Large-Scale Egocentric Video",
-        "authors": "Hoque et al.",
+        "name": "Project Go-Big",
+        "org": "Figure",
+        "kind": "startup",
         "year": 2025,
-        "venue": "ICLR 2026",
-        "arxiv": "https://arxiv.org/abs/2505.11709",
-        "project": "https://github.com/apple/ml-egodex",
-        "why_ko": "Apple Vision Pro로 손가락 관절까지 기록한 829시간 분량의 사람 손 조작 1인칭 영상 데이터셋이다.",
-        "why_en": "Large egocentric dataset of human dexterous manipulation with tracked 3D hand poses."
+        "url": "https://www.figure.ai/news/project-go-big",
+        "why_ko": "사람 시점 영상만으로 학습해 '냉장고로 가' 같은 말을 듣고 어수선한 집 안을 걸어 다닌다.",
+        "why_en": "Trained only on first-person human video, Figure's robot walks through cluttered homes on commands like 'go to the fridge'."
       }
     ]
   }

@@ -20,16 +20,6 @@
         "project": "https://leggedrobotics.github.io/rl-perceptiveloco/",
         "why_ko": "주변 지형 지도(눈)와 몸의 감각을 합쳐 야외 산길도 안정적으로 걷게 했다.",
         "why_en": "Fused terrain perception with body sensing so a legged robot could hike real outdoor trails."
-      },
-      {
-        "title": "Legged Locomotion in Challenging Terrains using Egocentric Vision",
-        "authors": "Agarwal et al.",
-        "year": 2022,
-        "venue": "CoRL 2022",
-        "arxiv": "https://arxiv.org/abs/2211.07638",
-        "project": "https://vision-locomotion.github.io/",
-        "why_ko": "지도 없이 로봇 머리의 깊이 카메라 영상만 보고 계단과 틈을 건너게 했다.",
-        "why_en": "Robot climbs stairs and crosses gaps using only its onboard depth camera, no map."
       }
     ],
     "recent": [
@@ -52,16 +42,26 @@
         "project": "https://project-instinct.github.io/hiking-in-the-wild/",
         "why_ko": "깊이 카메라만으로 휴머노이드가 험한 야외 지형을 빠르게 오르내린다.",
         "why_en": "Depth-camera-based humanoid that traverses rough outdoor terrain at speed, with open-source code."
+      }
+    ],
+    "industry": [
+      {
+        "name": "Isaac Lab",
+        "org": "NVIDIA",
+        "kind": "bigtech",
+        "year": null,
+        "url": "https://isaac-sim.github.io/IsaacLab/",
+        "why_ko": "GPU 하나로 로봇 수천 대를 동시에 시뮬레이션하며 보행을 학습하고 평가하는 공개 프레임워크다.",
+        "why_en": "An open framework that simulates thousands of robots at once on one GPU to train and evaluate locomotion."
       },
       {
-        "title": "MuJoCo Playground",
-        "authors": "Zakka et al.",
-        "year": 2025,
-        "venue": "RSS 2025",
-        "arxiv": "https://arxiv.org/abs/2502.08844",
-        "project": "https://playground.mujoco.org/",
-        "why_ko": "시뮬레이션 학습부터 실제 로봇 적용까지 몇 분 만에 해볼 수 있는 공개 도구다.",
-        "why_en": "Open-source GPU framework that takes robot policies from simulation to real hardware quickly."
+        "name": "ANYmal",
+        "org": "ANYbotics",
+        "kind": "startup",
+        "year": null,
+        "url": "https://www.anybotics.com/robotics/anymal/",
+        "why_ko": "ETH 취리히 연구실에서 나온 4족 로봇 회사다. 시각 기반 보행 연구를 공장과 발전소 점검 현장에서 실제로 쓴다.",
+        "why_en": "An ETH Zurich spin-off whose legged robot takes perceptive-locomotion research into real plant inspections."
       }
     ]
   },
@@ -86,16 +86,6 @@
         "project": "https://learning-humanoid-locomotion.github.io/",
         "why_ko": "강화학습(시행착오 학습)만으로 휴머노이드가 밀려도 넘어지지 않고 야외를 걷는다.",
         "why_en": "A fully learned controller let a real humanoid walk outdoors and resist pushes."
-      },
-      {
-        "title": "Robot Parkour Learning",
-        "authors": "Zhuang et al.",
-        "year": 2023,
-        "venue": "CoRL 2023",
-        "arxiv": "https://arxiv.org/abs/2309.05665",
-        "project": "https://robot-parkour.github.io/",
-        "why_ko": "카메라를 보며 높은 곳 오르기, 틈 뛰어넘기 같은 파쿠르를 로봇이 해낸다.",
-        "why_en": "Low-cost robots learned vision-based parkour: climbing, leaping gaps, and crawling under obstacles."
       }
     ],
     "recent": [
@@ -118,16 +108,26 @@
         "project": "https://toddlerbot.github.io/",
         "why_ko": "누구나 저렴하게 만들 수 있는 오픈소스 소형 휴머노이드다.",
         "why_en": "Low-cost, open-source small humanoid that anyone can build for learning research."
+      }
+    ],
+    "industry": [
+      {
+        "name": "G1",
+        "org": "Unitree Robotics",
+        "kind": "company",
+        "year": 2024,
+        "url": "https://www.unitree.com/g1",
+        "why_ko": "값이 싸고 튼튼해서 넘어지고 다시 일어나는 실험을 마음껏 할 수 있는 휴머노이드다. 이 사이트의 3D 로봇도 G1이다.",
+        "why_en": "A cheap, sturdy humanoid you can crash and stand back up again and again. The 3D robot on this site is a G1."
       },
       {
-        "title": "Learning Getting-Up Policies for Real-World Humanoid Robots",
-        "authors": "He et al.",
-        "year": 2025,
-        "venue": "RSS 2025",
-        "arxiv": "https://arxiv.org/abs/2502.12152",
-        "project": "https://humanoid-getup.github.io/",
-        "why_ko": "넘어진 휴머노이드가 어떤 자세·바닥에서도 스스로 일어나는 법을 배운다.",
-        "why_en": "Teaches real humanoids to get up by themselves from any fallen pose or terrain."
+        "name": "Booster T1",
+        "org": "Booster Robotics",
+        "kind": "startup",
+        "year": 2026,
+        "url": "https://www.booster.tech/",
+        "why_ko": "RoboCup 휴머노이드 축구의 표준 로봇 중 하나다. 회사 발표에 따르면 2026년 대회에서 이 로봇을 쓴 팀들이 모든 부문에서 우승했다.",
+        "why_en": "One of the standard robots for RoboCup humanoid soccer. Per the company, teams using it won every division at RoboCup 2026."
       }
     ]
   },
@@ -144,16 +144,6 @@
         "why_en": "A comprehensive beginner-friendly overview of how humans remotely control humanoid robots."
       },
       {
-        "title": "iCub3 Avatar System: Enabling Remote Fully-Immersive Embodiment of Humanoid Robots",
-        "authors": "Dafarra et al.",
-        "year": 2022,
-        "venue": "Science Robotics 2024",
-        "arxiv": "https://arxiv.org/abs/2203.06972",
-        "project": null,
-        "why_ko": "VR 헤드셋과 착용 장비로 멀리 있는 휴머노이드 몸에 들어간 듯 조종한다.",
-        "why_en": "Operator 'becomes' a distant humanoid through VR headset, haptics, and body tracking."
-      },
-      {
         "title": "Open-TeleVision: Teleoperation with Immersive Active Visual Feedback",
         "authors": "Cheng et al.",
         "year": 2024,
@@ -165,16 +155,6 @@
       }
     ],
     "recent": [
-      {
-        "title": "AMO: Adaptive Motion Optimization for Hyper-Dexterous Humanoid Whole-Body Control",
-        "authors": "Li et al.",
-        "year": 2025,
-        "venue": "RSS 2025",
-        "arxiv": "https://arxiv.org/abs/2505.03738",
-        "project": "https://amo-humanoid.github.io/",
-        "why_ko": "VR 기기로 휴머노이드 상체·허리·다리까지 한꺼번에 자연스럽게 조종한다.",
-        "why_en": "VR teleoperation of a humanoid's whole body, including bending and reaching low or high."
-      },
       {
         "title": "CLONE: Closed-Loop Whole-Body Humanoid Teleoperation for Long-Horizon Tasks",
         "authors": "Li et al.",
@@ -194,6 +174,26 @@
         "project": "https://yanjieze.com/projects/TWIST2/",
         "why_ko": "VR 헤드셋과 고개 돌리는 로봇 목 카메라로, 비싼 모션캡처 없이 휴머노이드 온몸을 조종한다.",
         "why_en": "Portable VR headset plus a head-turning robot neck camera enables mocap-free whole-body humanoid teleop."
+      }
+    ],
+    "industry": [
+      {
+        "name": "NEO Expert Mode",
+        "org": "1X",
+        "kind": "startup",
+        "year": 2025,
+        "url": "https://www.1x.tech/neo",
+        "why_ko": "집안일 로봇 NEO가 혼자 못 하는 일은 원격 조종사가 VR 헤드셋을 쓰고 대신 한다. 편리하지만 남이 집 안을 본다는 사생활 문제도 생긴다.",
+        "why_en": "When the home robot NEO can't do a chore, a remote operator in a VR headset takes over. Handy, but it raises privacy questions."
+      },
+      {
+        "name": "xr_teleoperate",
+        "org": "Unitree Robotics",
+        "kind": "company",
+        "year": null,
+        "url": "https://github.com/unitreerobotics/xr_teleoperate",
+        "why_ko": "Apple Vision Pro, Quest, PICO 같은 VR 기기로 Unitree 휴머노이드의 팔과 손을 조종하는 공개 코드다.",
+        "why_en": "Open code for driving Unitree humanoids' arms and hands from headsets like Apple Vision Pro, Quest or PICO."
       }
     ]
   },
@@ -218,16 +218,6 @@
         "project": "https://human2humanoid.com/",
         "why_ko": "일반 카메라로 찍은 사람 몸동작을 휴머노이드가 실시간으로 따라 한다.",
         "why_en": "A humanoid copies a person's whole-body motion in real time from a simple RGB camera."
-      },
-      {
-        "title": "Expressive Whole-Body Control for Humanoid Robots",
-        "authors": "Cheng et al.",
-        "year": 2024,
-        "venue": "RSS 2024",
-        "arxiv": "https://arxiv.org/abs/2402.16796",
-        "project": "https://expressive-humanoid.github.io/",
-        "why_ko": "사람 동작 데이터를 배워 휴머노이드가 춤추고 악수하는 표현력 있는 움직임을 한다.",
-        "why_en": "Humanoid learns expressive upper-body motions like dancing and handshakes from human data."
       }
     ],
     "recent": [
@@ -250,16 +240,26 @@
         "project": "https://beyondmimic.github.io/",
         "why_ko": "사람의 역동적인 동작을 정교하게 따라 하고, 새 과제에도 응용하는 휴머노이드다.",
         "why_en": "High-quality tracking of dynamic human motions, then reused flexibly for new tasks."
+      }
+    ],
+    "industry": [
+      {
+        "name": "Olaf robotic character",
+        "org": "Walt Disney Imagineering",
+        "kind": "company",
+        "year": 2025,
+        "url": "https://thewaltdisneycompany.com/olaf-robotic-character/",
+        "why_ko": "애니메이터가 만든 동작을 시뮬레이션 강화학습으로 따라 하게 해서 로봇이 겨울왕국의 올라프처럼 걷는다. 발소리를 줄이는 법까지 학습했다.",
+        "why_en": "Imagineering used RL in simulation to imitate animator-made motion, so the robot walks like Frozen's Olaf and even learned to step quietly."
       },
       {
-        "title": "Retargeting Matters: General Motion Retargeting for Humanoid Motion Tracking",
-        "authors": "Araujo et al.",
+        "name": "Atlas: Walk, Run, Crawl, RL Fun",
+        "org": "Boston Dynamics × RAI Institute",
+        "kind": "company",
         "year": 2025,
-        "venue": "ICRA 2026",
-        "arxiv": "https://arxiv.org/abs/2510.02252",
-        "project": "https://jaraujo98.github.io/retargeting_matters/",
-        "why_ko": "사람과 다른 로봇 몸에 동작을 옮기는 '리타게팅'이 성능을 좌우함을 보였다.",
-        "why_en": "Shows that converting human motion to robot bodies (retargeting) strongly affects tracking quality."
+        "url": "https://bostondynamics.com/video/walk-run-crawl-rl-fun/",
+        "why_ko": "사람 모션 캡처와 애니메이션을 기준으로 강화학습한 정책으로 Atlas가 걷고, 뛰고, 기어간다.",
+        "why_en": "Atlas walks, runs and crawls with RL policies trained against human motion capture and animation."
       }
     ]
   }

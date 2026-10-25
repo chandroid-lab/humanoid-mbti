@@ -48,11 +48,11 @@ $("loginForm").addEventListener("submit", async (e) => {
     const code = err.code || "";
     $("loginMsg").textContent =
       code.includes("invalid-credential") || code.includes("wrong-password") || code.includes("user-not-found")
-        ? "비밀번호가 맞지 않는다."
+        ? "비밀번호가 맞지 않습니다."
         : code.includes("too-many-requests")
-        ? "시도가 너무 많다. 잠시 뒤 다시 시도하자."
+        ? "시도가 너무 많습니다. 잠시 뒤 다시 시도해 주세요."
         : code.includes("configuration-not-found") || code.includes("operation-not-allowed")
-        ? "Firebase에서 이메일/비밀번호 로그인이 아직 꺼져 있다."
+        ? "Firebase에서 이메일/비밀번호 로그인이 아직 꺼져 있습니다."
         : `로그인 실패: ${code || err.message}`;
   } finally {
     $("loginBtn").disabled = false;
@@ -61,7 +61,7 @@ $("loginForm").addEventListener("submit", async (e) => {
 
 $("resetBtn").addEventListener("click", async () => {
   const n = $("count").textContent;
-  if (!confirm(`응답 ${n}개를 모두 지울까? 되돌릴 수 없다.`)) return;
+  if (!confirm(`응답 ${n}개를 모두 지울까요? 되돌릴 수 없습니다.`)) return;
   const msg = $("resetMsg");
   msg.className = "msg";
   msg.textContent = "지우는 중…";
@@ -69,7 +69,7 @@ $("resetBtn").addEventListener("click", async () => {
   try {
     await D.remove(D.ref(db, "votes"));
     msg.className = "msg ok";
-    msg.textContent = `초기화했다 (${new Date().toLocaleTimeString("ko-KR")}).`;
+    msg.textContent = `초기화했습니다 (${new Date().toLocaleTimeString("ko-KR")}).`;
   } catch (err) {
     msg.className = "msg err";
     msg.textContent = `실패: ${err.message}`;

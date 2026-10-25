@@ -23,19 +23,19 @@ const L = {
   showing:   { ko: "둘러보기", en: "Showing" },
   table:     { ko: "표로 보기", en: "Table view" },
   chart:     { ko: "차트로 보기", en: "Chart view" },
-  noStats:   { ko: "Firebase 설정 전이라 통계가 꺼져 있다. 리허설은 주소 끝에 ?demo를 붙인다.", en: "Stats are off until Firebase is configured. Add ?demo to the URL to rehearse." },
-  demo:      { ko: "데모 모드: 가짜 데이터다.", en: "Demo mode: fake data." },
+  noStats:   { ko: "Firebase 설정 전이라 통계가 꺼져 있습니다. 리허설은 주소 끝에 ?demo를 붙이세요.", en: "Stats are off until Firebase is configured. Add ?demo to the URL to rehearse." },
+  demo:      { ko: "데모 모드: 가짜 데이터입니다.", en: "Demo mode: fake data." },
   loopBtn:   { ko: "루프 보기", en: "Loop view" },
   typesBtn:  { ko: "유형 보기", en: "Type view" },
   loopTitle: { ko: "이 방의 루프: 단계별 인원", en: "This room's loop: people per stage" },
   people:    { ko: "명", en: "" },
-  inRoom:    { ko: "명이 이 방에 있다", en: "in this room" },
+  inRoom:    { ko: "명이 이 방에 있습니다", en: "in this room" },
   easy:      { ko: "쉽게 말하면", en: "In plain words" },
   barrier:   { ko: "기술 장벽", en: "The barrier" },
   oppStudy:  { ko: "정반대 유형", en: "Opposite type" },
   close:     { ko: "닫기 (Esc)", en: "Close (Esc)" },
-  papersH:   { ko: "읽어 볼 논문", en: "Papers to read" },
-  clickHint: { ko: "칸을 누르면 크게 볼 수 있다", en: "Click a cell to enlarge" },
+  papersH:   { ko: "읽어 볼 논문과 산업 사례", en: "Papers & industry" },
+  clickHint: { ko: "칸을 누르면 크게 볼 수 있습니다", en: "Click a cell to enlarge" },
 };
 const t = (o) => o[lang];
 
@@ -138,7 +138,7 @@ function loopHTML(counts, total) {
       <div class="ltypes">${x.types.map((k) => `<span>${k} ${counts[k] || 0}</span>`).join("")}</div>
     </div>`).join("");
   const msg = !total ? "" : lang === "ko"
-    ? `이 방에서 가장 비어 있는 단계는 <b>${weakest.join(", ")}</b>다 (${min}명). 루프가 끝까지 돌려면 누군가는 이 단계를 공부해야 한다.`
+    ? `이 방에서 가장 비어 있는 단계는 <b>${weakest.join(", ")}</b>입니다 (${min}명). 루프가 끝까지 돌려면 누군가는 이 단계를 공부해야 합니다.`
     : `The emptiest stage in this room is <b>${weakest.join(", ")}</b> (${min}). For the loop to close, someone here needs to learn it.`;
   return `<div class="loopview">${cols}</div>${msg ? `<p class="loopmsg">${msg}</p>` : ""}`;
 }
@@ -191,7 +191,7 @@ function renderOverlay() {
     if (ovType === k && el.isConnected) { ovCleanup = c; el.querySelector(".loading")?.remove(); } else c();
   }).catch((e) => console.warn("3D failed", e));
 }
-// two foundational + two recent papers, with links
+// two foundational + two recent papers + two industry items, with links
 function paperList(k) {
   const set = PAPERS[k];
   if (!set) return "";
@@ -199,7 +199,10 @@ function paperList(k) {
   const venue = (p) => (/\d{4}/.test(p.venue) ? p.venue : `${p.venue} ${p.year}`);
   return [...set.foundational.slice(0, 2).map((p) => [p, "basic"]), ...set.recent.slice(0, 2).map((p) => [p, "new"])].map(([p, tag]) => `
     <li><span class="tag ${tag}">${tag === "new" ? (lang === "ko" ? "최신" : "new") : (lang === "ko" ? "기초" : "basic")}</span><a href="${esc(p.arxiv)}" target="_blank" rel="noopener">${esc(p.title)}</a>
-      <span class="pm">${esc(p.authors)} · ${esc(venue(p))}${p.project ? ` · <a href="${esc(p.project)}" target="_blank" rel="noopener">project</a>` : ""}</span></li>`).join("");
+      <span class="pm">${esc(p.authors)} · ${esc(venue(p))}${p.project ? ` · <a href="${esc(p.project)}" target="_blank" rel="noopener">project</a>` : ""}</span></li>`).join("")
+    + (set.industry || []).map((p) => `
+    <li><span class="tag ind">${lang === "ko" ? "산업" : "industry"}</span><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.name)}</a>
+      <span class="pm">${esc([p.org, p.year].filter(Boolean).join(" · "))}</span></li>`).join("");
 }
 
 function closeOverlay() {

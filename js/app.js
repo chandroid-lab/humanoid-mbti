@@ -54,15 +54,24 @@ function paperHTML(p, i) {
   </div></div>`;
 }
 
+// company / startup / big-tech project or product
+function industryHTML(p, i) {
+  const meta = [p.org, p.year].filter(Boolean).join(" · ");
+  return `<div class="paper ind"><span class="n">[${i + 1}]</span><div>
+    <div class="t">${esc(p.name)} <span class="kind kind-${esc(p.kind)}">${esc(t(UI.kinds[p.kind]))}</span></div>
+    <div class="meta">${esc(meta)}</div>
+    <div class="why">${esc(lang === "ko" ? p.why_ko : p.why_en)}</div>
+    <div class="links"><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(t(UI.official))} ↗</a></div>
+  </div></div>`;
+}
+
 function papersBlock(type) {
   const set = PAPERS[type];
   if (!set) return `<p class="muted small">${esc(t(UI.papersLoading))}</p>`;
   const list = set[paperTab] || [];
-  return `<div class="tabs" role="tablist">
-      <button class="tab" role="tab" data-act="tab" data-tab="foundational" aria-selected="${paperTab === "foundational"}">${esc(t(UI.foundational))}</button>
-      <button class="tab" role="tab" data-act="tab" data-tab="recent" aria-selected="${paperTab === "recent"}">${esc(t(UI.recent))}</button>
-    </div>
-    <div>${list.map(paperHTML).join("")}</div>`;
+  const tab = (k) => `<button class="tab" role="tab" data-act="tab" data-tab="${k}" aria-selected="${paperTab === k}">${esc(t(UI[k]))}</button>`;
+  return `<div class="tabs" role="tablist">${tab("foundational")}${tab("recent")}${tab("industry")}</div>
+    <div>${list.map(paperTab === "industry" ? industryHTML : paperHTML).join("")}</div>`;
 }
 
 function figHTML(type) {
@@ -191,7 +200,7 @@ function resultHTML(type) {
       <div class="lbl">${esc(t(UI.toolsTitle))}</div>
       <div class="tags">${d.tools.map((x) => `<span class="tag">${esc(x)}</span>`).join("")}</div>`)}
 
-    <section class="blk"><div class="blk-h"><span>03 / ${esc(t(UI.papersTitle))}</span><span>${L2("기초 3 · 최신 3", "3 + 3")}</span></div>
+    <section class="blk"><div class="blk-h"><span>03 / ${esc(t(UI.papersTitle))}</span><span>${L2("기초 2 · 최신 2 · 산업 2", "2 + 2 + 2")}</span></div>
       <div class="blk-b">${figHTML(type)}<div id="papers">${papersBlock(type)}</div></div></section>
 
     ${blk(`04 / ${esc(t(UI.oppTitle))}`, `${type} ⇄ ${opp}`, `
@@ -225,7 +234,7 @@ function resultHTML(type) {
 function roomText(opp) {
   if (!roomCounts) return "";
   const n = roomCounts[opp] || 0;
-  if (lang === "ko") return n ? `지금 이 방에 <b>${opp}</b>가 <b>${n}명</b> 있다. 발표 끝나고 찾아가 보자!` : `아직 이 방에 ${opp}는 없다. 곧 들어올지도 모른다.`;
+  if (lang === "ko") return n ? `지금 이 방에 <b>${opp}</b>가 <b>${n}명</b> 있습니다. 발표 끝나고 찾아가 보세요!` : `아직 이 방에 ${opp}는 없습니다. 곧 들어올지도 모릅니다.`;
   return n ? `<b>${n}</b> ${opp}${n > 1 ? "s are" : " is"} in this room right now. Go find them after the talk!` : `No ${opp} in the room yet. One may join soon.`;
 }
 function updateRoom() {
@@ -254,7 +263,7 @@ async function mountRobotFor(type) {
     } catch (e) {
       console.warn("3D model failed", e);
       const l = el.querySelector(".loading");
-      if (l) l.textContent = lang === "ko" ? "3D 모델을 불러오지 못했다" : "Could not load the 3D model";
+      if (l) l.textContent = lang === "ko" ? "3D 모델을 불러오지 못했습니다" : "Could not load the 3D model";
     }
   }
 }
@@ -262,8 +271,8 @@ async function mountRobotFor(type) {
 /* ---------- vote state ---------- */
 let voteState = null; // "counted" | "already" | "off" | null (browsing via links)
 function voteNoteText() {
-  if (voteState === "counted") return lang === "ko" ? "✓ 이 결과가 현장 집계에 반영됐다" : "✓ This result was added to the live stats";
-  if (voteState === "already") return lang === "ko" ? "이미 참여했다 · 이 결과는 둘러보기라 집계되지 않는다" : "You already took part · this one is just browsing";
+  if (voteState === "counted") return lang === "ko" ? "✓ 이 결과가 현장 집계에 반영됐습니다" : "✓ This result was added to the live stats";
+  if (voteState === "already") return lang === "ko" ? "이미 참여하셨습니다 · 이 결과는 둘러보기라 집계되지 않습니다" : "You already took part · this one is just browsing";
   return "";
 }
 
@@ -355,7 +364,7 @@ function showImageModal(url, type) {
   const m = document.createElement("div");
   m.className = "modal";
   m.innerHTML = `<img src="${url}" alt="${type} result card">
-    <p>${lang === "ko" ? "이미지를 길게 눌러 저장" : "Long-press the image to save it"}</p>
+    <p>${lang === "ko" ? "이미지를 길게 눌러 저장하세요" : "Long-press the image to save it"}</p>
     <a class="btn btn-primary" style="max-width:320px" href="${url}" download="humanoid-${type}.png">${lang === "ko" ? "다운로드" : "Download"}</a>
     <button class="btn btn-ghost" style="max-width:320px">${lang === "ko" ? "닫기" : "Close"}</button>`;
   m.querySelector("button").onclick = () => { m.remove(); URL.revokeObjectURL(url); };

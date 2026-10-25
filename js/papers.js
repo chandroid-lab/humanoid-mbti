@@ -21,16 +21,6 @@ export const PAPERS = {
     "project": "https://leggedrobotics.github.io/rl-perceptiveloco/",
     "why_ko": "주변 지형 지도(눈)와 몸의 감각을 합쳐 야외 산길도 안정적으로 걷게 했다.",
     "why_en": "Fused terrain perception with body sensing so a legged robot could hike real outdoor trails."
-   },
-   {
-    "title": "Legged Locomotion in Challenging Terrains using Egocentric Vision",
-    "authors": "Agarwal et al.",
-    "year": 2022,
-    "venue": "CoRL 2022",
-    "arxiv": "https://arxiv.org/abs/2211.07638",
-    "project": "https://vision-locomotion.github.io/",
-    "why_ko": "지도 없이 로봇 머리의 깊이 카메라 영상만 보고 계단과 틈을 건너게 했다.",
-    "why_en": "Robot climbs stairs and crosses gaps using only its onboard depth camera, no map."
    }
   ],
   "recent": [
@@ -53,16 +43,26 @@ export const PAPERS = {
     "project": "https://project-instinct.github.io/hiking-in-the-wild/",
     "why_ko": "깊이 카메라만으로 휴머노이드가 험한 야외 지형을 빠르게 오르내린다.",
     "why_en": "Depth-camera-based humanoid that traverses rough outdoor terrain at speed, with open-source code."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Isaac Lab",
+    "org": "NVIDIA",
+    "kind": "bigtech",
+    "year": null,
+    "url": "https://isaac-sim.github.io/IsaacLab/",
+    "why_ko": "GPU 하나로 로봇 수천 대를 동시에 시뮬레이션하며 보행을 학습하고 평가하는 공개 프레임워크다.",
+    "why_en": "An open framework that simulates thousands of robots at once on one GPU to train and evaluate locomotion."
    },
    {
-    "title": "MuJoCo Playground",
-    "authors": "Zakka et al.",
-    "year": 2025,
-    "venue": "RSS 2025",
-    "arxiv": "https://arxiv.org/abs/2502.08844",
-    "project": "https://playground.mujoco.org/",
-    "why_ko": "시뮬레이션 학습부터 실제 로봇 적용까지 몇 분 만에 해볼 수 있는 공개 도구다.",
-    "why_en": "Open-source GPU framework that takes robot policies from simulation to real hardware quickly."
+    "name": "ANYmal",
+    "org": "ANYbotics",
+    "kind": "startup",
+    "year": null,
+    "url": "https://www.anybotics.com/robotics/anymal/",
+    "why_ko": "ETH 취리히 연구실에서 나온 4족 로봇 회사다. 시각 기반 보행 연구를 공장과 발전소 점검 현장에서 실제로 쓴다.",
+    "why_en": "An ETH Zurich spin-off whose legged robot takes perceptive-locomotion research into real plant inspections."
    }
   ]
  },
@@ -87,16 +87,6 @@ export const PAPERS = {
     "project": "https://learning-humanoid-locomotion.github.io/",
     "why_ko": "강화학습(시행착오 학습)만으로 휴머노이드가 밀려도 넘어지지 않고 야외를 걷는다.",
     "why_en": "A fully learned controller let a real humanoid walk outdoors and resist pushes."
-   },
-   {
-    "title": "Robot Parkour Learning",
-    "authors": "Zhuang et al.",
-    "year": 2023,
-    "venue": "CoRL 2023",
-    "arxiv": "https://arxiv.org/abs/2309.05665",
-    "project": "https://robot-parkour.github.io/",
-    "why_ko": "카메라를 보며 높은 곳 오르기, 틈 뛰어넘기 같은 파쿠르를 로봇이 해낸다.",
-    "why_en": "Low-cost robots learned vision-based parkour: climbing, leaping gaps, and crawling under obstacles."
    }
   ],
   "recent": [
@@ -119,16 +109,26 @@ export const PAPERS = {
     "project": "https://toddlerbot.github.io/",
     "why_ko": "누구나 저렴하게 만들 수 있는 오픈소스 소형 휴머노이드다.",
     "why_en": "Low-cost, open-source small humanoid that anyone can build for learning research."
+   }
+  ],
+  "industry": [
+   {
+    "name": "G1",
+    "org": "Unitree Robotics",
+    "kind": "company",
+    "year": 2024,
+    "url": "https://www.unitree.com/g1",
+    "why_ko": "값이 싸고 튼튼해서 넘어지고 다시 일어나는 실험을 마음껏 할 수 있는 휴머노이드다. 이 사이트의 3D 로봇도 G1이다.",
+    "why_en": "A cheap, sturdy humanoid you can crash and stand back up again and again. The 3D robot on this site is a G1."
    },
    {
-    "title": "Learning Getting-Up Policies for Real-World Humanoid Robots",
-    "authors": "He et al.",
-    "year": 2025,
-    "venue": "RSS 2025",
-    "arxiv": "https://arxiv.org/abs/2502.12152",
-    "project": "https://humanoid-getup.github.io/",
-    "why_ko": "넘어진 휴머노이드가 어떤 자세·바닥에서도 스스로 일어나는 법을 배운다.",
-    "why_en": "Teaches real humanoids to get up by themselves from any fallen pose or terrain."
+    "name": "Booster T1",
+    "org": "Booster Robotics",
+    "kind": "startup",
+    "year": 2026,
+    "url": "https://www.booster.tech/",
+    "why_ko": "RoboCup 휴머노이드 축구의 표준 로봇 중 하나다. 회사 발표에 따르면 2026년 대회에서 이 로봇을 쓴 팀들이 모든 부문에서 우승했다.",
+    "why_en": "One of the standard robots for RoboCup humanoid soccer. Per the company, teams using it won every division at RoboCup 2026."
    }
   ]
  },
@@ -145,16 +145,6 @@ export const PAPERS = {
     "why_en": "A comprehensive beginner-friendly overview of how humans remotely control humanoid robots."
    },
    {
-    "title": "iCub3 Avatar System: Enabling Remote Fully-Immersive Embodiment of Humanoid Robots",
-    "authors": "Dafarra et al.",
-    "year": 2022,
-    "venue": "Science Robotics 2024",
-    "arxiv": "https://arxiv.org/abs/2203.06972",
-    "project": null,
-    "why_ko": "VR 헤드셋과 착용 장비로 멀리 있는 휴머노이드 몸에 들어간 듯 조종한다.",
-    "why_en": "Operator 'becomes' a distant humanoid through VR headset, haptics, and body tracking."
-   },
-   {
     "title": "Open-TeleVision: Teleoperation with Immersive Active Visual Feedback",
     "authors": "Cheng et al.",
     "year": 2024,
@@ -166,16 +156,6 @@ export const PAPERS = {
    }
   ],
   "recent": [
-   {
-    "title": "AMO: Adaptive Motion Optimization for Hyper-Dexterous Humanoid Whole-Body Control",
-    "authors": "Li et al.",
-    "year": 2025,
-    "venue": "RSS 2025",
-    "arxiv": "https://arxiv.org/abs/2505.03738",
-    "project": "https://amo-humanoid.github.io/",
-    "why_ko": "VR 기기로 휴머노이드 상체·허리·다리까지 한꺼번에 자연스럽게 조종한다.",
-    "why_en": "VR teleoperation of a humanoid's whole body, including bending and reaching low or high."
-   },
    {
     "title": "CLONE: Closed-Loop Whole-Body Humanoid Teleoperation for Long-Horizon Tasks",
     "authors": "Li et al.",
@@ -195,6 +175,26 @@ export const PAPERS = {
     "project": "https://yanjieze.com/projects/TWIST2/",
     "why_ko": "VR 헤드셋과 고개 돌리는 로봇 목 카메라로, 비싼 모션캡처 없이 휴머노이드 온몸을 조종한다.",
     "why_en": "Portable VR headset plus a head-turning robot neck camera enables mocap-free whole-body humanoid teleop."
+   }
+  ],
+  "industry": [
+   {
+    "name": "NEO Expert Mode",
+    "org": "1X",
+    "kind": "startup",
+    "year": 2025,
+    "url": "https://www.1x.tech/neo",
+    "why_ko": "집안일 로봇 NEO가 혼자 못 하는 일은 원격 조종사가 VR 헤드셋을 쓰고 대신 한다. 편리하지만 남이 집 안을 본다는 사생활 문제도 생긴다.",
+    "why_en": "When the home robot NEO can't do a chore, a remote operator in a VR headset takes over. Handy, but it raises privacy questions."
+   },
+   {
+    "name": "xr_teleoperate",
+    "org": "Unitree Robotics",
+    "kind": "company",
+    "year": null,
+    "url": "https://github.com/unitreerobotics/xr_teleoperate",
+    "why_ko": "Apple Vision Pro, Quest, PICO 같은 VR 기기로 Unitree 휴머노이드의 팔과 손을 조종하는 공개 코드다.",
+    "why_en": "Open code for driving Unitree humanoids' arms and hands from headsets like Apple Vision Pro, Quest or PICO."
    }
   ]
  },
@@ -219,16 +219,6 @@ export const PAPERS = {
     "project": "https://human2humanoid.com/",
     "why_ko": "일반 카메라로 찍은 사람 몸동작을 휴머노이드가 실시간으로 따라 한다.",
     "why_en": "A humanoid copies a person's whole-body motion in real time from a simple RGB camera."
-   },
-   {
-    "title": "Expressive Whole-Body Control for Humanoid Robots",
-    "authors": "Cheng et al.",
-    "year": 2024,
-    "venue": "RSS 2024",
-    "arxiv": "https://arxiv.org/abs/2402.16796",
-    "project": "https://expressive-humanoid.github.io/",
-    "why_ko": "사람 동작 데이터를 배워 휴머노이드가 춤추고 악수하는 표현력 있는 움직임을 한다.",
-    "why_en": "Humanoid learns expressive upper-body motions like dancing and handshakes from human data."
    }
   ],
   "recent": [
@@ -251,31 +241,31 @@ export const PAPERS = {
     "project": "https://beyondmimic.github.io/",
     "why_ko": "사람의 역동적인 동작을 정교하게 따라 하고, 새 과제에도 응용하는 휴머노이드다.",
     "why_en": "High-quality tracking of dynamic human motions, then reused flexibly for new tasks."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Olaf robotic character",
+    "org": "Walt Disney Imagineering",
+    "kind": "company",
+    "year": 2025,
+    "url": "https://thewaltdisneycompany.com/olaf-robotic-character/",
+    "why_ko": "애니메이터가 만든 동작을 시뮬레이션 강화학습으로 따라 하게 해서 로봇이 겨울왕국의 올라프처럼 걷는다. 발소리를 줄이는 법까지 학습했다.",
+    "why_en": "Imagineering used RL in simulation to imitate animator-made motion, so the robot walks like Frozen's Olaf and even learned to step quietly."
    },
    {
-    "title": "Retargeting Matters: General Motion Retargeting for Humanoid Motion Tracking",
-    "authors": "Araujo et al.",
+    "name": "Atlas: Walk, Run, Crawl, RL Fun",
+    "org": "Boston Dynamics × RAI Institute",
+    "kind": "company",
     "year": 2025,
-    "venue": "ICRA 2026",
-    "arxiv": "https://arxiv.org/abs/2510.02252",
-    "project": "https://jaraujo98.github.io/retargeting_matters/",
-    "why_ko": "사람과 다른 로봇 몸에 동작을 옮기는 '리타게팅'이 성능을 좌우함을 보였다.",
-    "why_en": "Shows that converting human motion to robot bodies (retargeting) strongly affects tracking quality."
+    "url": "https://bostondynamics.com/video/walk-run-crawl-rl-fun/",
+    "why_ko": "사람 모션 캡처와 애니메이션을 기준으로 강화학습한 정책으로 Atlas가 걷고, 뛰고, 기어간다.",
+    "why_en": "Atlas walks, runs and crawls with RL policies trained against human motion capture and animation."
    }
   ]
  },
  "ENTJ": {
   "foundational": [
-   {
-    "title": "RT-1: Robotics Transformer for Real-World Control at Scale",
-    "authors": "Brohan et al.",
-    "year": 2022,
-    "venue": "RSS 2023",
-    "arxiv": "https://arxiv.org/abs/2212.06817",
-    "project": "https://robotics-transformer1.github.io/",
-    "why_ko": "로봇 13만 번의 시연을 학습해 수백 가지 일을 해내는 '큰 로봇 모델'의 출발점이다.",
-    "why_en": "Showed one Transformer trained on huge real-robot data can handle hundreds of tasks."
-   },
    {
     "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
     "authors": "Brohan et al.",
@@ -317,16 +307,26 @@ export const PAPERS = {
     "project": "https://www.pi.website/blog/pi05",
     "why_ko": "처음 가 본 집에서도 부엌·침실 정리 같은 긴 집안일을 해낸 VLA다.",
     "why_en": "A VLA that cleans kitchens and bedrooms in homes it has never seen before."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Pi API (beta)",
+    "org": "Physical Intelligence",
+    "kind": "startup",
+    "year": 2026,
+    "url": "https://www.pi.website/blog/api-beta",
+    "why_ko": "π0, π0.5 같은 로봇 기반 모델을 내 로봇 데이터로 미세조정하고 바로 서비스하게 해 주는 API다. 지금은 대기 명단으로 받는다.",
+    "why_en": "An API to fine-tune robot foundation models like π0 and π0.5 on your own robot data and serve them. Waitlist beta for now."
    },
    {
-    "title": "Gemini Robotics: Bringing AI into the Physical World",
-    "authors": "Gemini Robotics Team",
+    "name": "Skild Brain",
+    "org": "Skild AI",
+    "kind": "startup",
     "year": 2025,
-    "venue": "arXiv 2025",
-    "arxiv": "https://arxiv.org/abs/2503.20020",
-    "project": "https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/",
-    "why_ko": "거대 AI 모델 Gemini를 로봇의 눈·두뇌·손으로 확장한 구글 딥마인드의 대표 시스템이다.",
-    "why_en": "Google DeepMind extends Gemini into a full robot brain for seeing, reasoning, and acting."
+    "url": "https://www.skild.ai/blogs/building-the-general-purpose-robotic-brain",
+    "why_ko": "4족 로봇, 휴머노이드, 로봇팔처럼 몸이 달라도 '뇌' 하나로 움직이겠다는 모델이다.",
+    "why_en": "One shared 'brain' meant to run quadrupeds, humanoids and robot arms alike."
    }
   ]
  },
@@ -341,16 +341,6 @@ export const PAPERS = {
     "project": "https://code-as-policies.github.io/",
     "why_ko": "LLM이 로봇 제어 코드를 직접 짜서 실행하게 한, '코드가 곧 정책'이라는 아이디어의 시작이다.",
     "why_en": "Started the idea that an LLM can write the robot's control code itself."
-   },
-   {
-    "title": "ProgPrompt: Generating Situated Robot Task Plans using Large Language Models",
-    "authors": "Singh et al.",
-    "year": 2022,
-    "venue": "ICRA 2023",
-    "arxiv": "https://arxiv.org/abs/2209.11302",
-    "project": "https://progprompt.github.io/",
-    "why_ko": "작업 계획을 파이썬 프로그램 형태로 쓰게 해서, 주변 상황을 확인하며 실행하도록 했다.",
-    "why_en": "Prompts LLMs to write task plans as Python programs that check the scene while running."
    },
    {
     "title": "Eureka: Human-Level Reward Design via Coding Large Language Models",
@@ -375,16 +365,6 @@ export const PAPERS = {
     "why_en": "Benchmarks robot coding agents that write code, watch results, and fix it over turns."
    },
    {
-    "title": "HyCodePolicy: Hybrid Language Controllers for Multimodal Monitoring and Decision in Embodied Agents",
-    "authors": "Liu et al.",
-    "year": 2025,
-    "venue": "ICCV 2025 Workshop",
-    "arxiv": "https://arxiv.org/abs/2508.02629",
-    "project": null,
-    "why_ko": "코드를 실행하는 동안 VLM이 화면을 지켜보다가 실패 원인을 찾아 코드를 스스로 고친다.",
-    "why_en": "A VLM watches code execution, explains failures, and the system repairs its own code."
-   },
-   {
     "title": "CodeDiffuser: Attention-Enhanced Diffusion Policy via VLM-Generated Code for Instruction Ambiguity",
     "authors": "Yin et al.",
     "year": 2025,
@@ -393,6 +373,26 @@ export const PAPERS = {
     "project": "https://robopil.github.io/code-diffuser/",
     "why_ko": "애매한 지시를 VLM이 코드로 풀어 '어디를 볼지' 알려주고, 학습된 정책이 정교하게 움직인다.",
     "why_en": "VLM-written code resolves vague instructions into attention maps that guide a learned policy."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Gemini 4 Argon",
+    "org": "Google DeepMind",
+    "kind": "bigtech",
+    "year": 2026,
+    "url": "https://developers.googleblog.com/gemini-4-argon-for-robotics/",
+    "why_ko": "로봇 코드를 직접 짜고, 시뮬레이션을 만들어 검증하고, 실패하면 스스로 고친다. 이 발표의 See→Think→Act→Fix 루프를 거의 그대로 보여 준다.",
+    "why_en": "Writes robot code, builds simulations to check it, and fixes itself when it fails: nearly this talk's See→Think→Act→Fix loop."
+   },
+   {
+    "name": "ChatGPT for Robotics",
+    "org": "Microsoft",
+    "kind": "bigtech",
+    "year": 2023,
+    "url": "https://www.microsoft.com/en-us/research/articles/chatgpt-for-robotics/",
+    "why_ko": "말로 설명하면 LLM이 드론과 로봇팔 제어 코드를 짜 주는 초기 실험이다. 사람이 결과를 보고 고쳐 달라고 하는 대화식 흐름을 보여 줬다.",
+    "why_en": "An early demo where an LLM writes drone and robot-arm code from plain language, while a human reviews and asks for fixes."
    }
   ]
  },
@@ -407,16 +407,6 @@ export const PAPERS = {
     "project": "https://say-can.github.io/",
     "why_ko": "LLM의 계획에 '로봇이 지금 실제로 할 수 있는 일인지'를 함께 따져 고르게 한 SayCan이다.",
     "why_en": "SayCan: LLM plans are filtered by what the robot can actually do right now."
-   },
-   {
-    "title": "Inner Monologue: Embodied Reasoning through Planning with Language Models",
-    "authors": "Huang et al.",
-    "year": 2022,
-    "venue": "CoRL 2022",
-    "arxiv": "https://arxiv.org/abs/2207.05608",
-    "project": "https://innermonologue.github.io/",
-    "why_ko": "성공 여부·장면 설명·사람 말을 피드백으로 받아 로봇이 혼잣말하듯 계획을 다시 세운다.",
-    "why_en": "Feeds success checks, scene descriptions, and human replies back so the LLM replans."
    },
    {
     "title": "Robots That Ask For Help: Uncertainty Alignment for Large Language Model Planners",
@@ -449,16 +439,26 @@ export const PAPERS = {
     "project": "https://beingbeyond.github.io/Being-0/",
     "why_ko": "언어 계획 두뇌와 걷기·잡기 기술을 VLM이 이어 주어, 휴머노이드가 긴 일을 해낸다.",
     "why_en": "A humanoid agent where a VLM connects an LLM planner to walking and grasping skills."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Gemini Robotics-ER 2",
+    "org": "Google DeepMind",
+    "kind": "bigtech",
+    "year": 2026,
+    "url": "https://ai.google.dev/gemini-api/docs/robotics-overview",
+    "why_ko": "로봇의 '계획 담당' 모델이다. 영상을 보고 다음 단계를 정한 뒤 실제 동작은 VLA나 사람에게 넘긴다. Gemini API로 쓸 수 있다.",
+    "why_en": "A robot 'planner' model: it watches video, decides the next step, then hands execution to a VLA or a person. Available in the Gemini API."
    },
    {
-    "title": "Gemini Robotics 1.5: Pushing the Frontier of Generalist Robots with Advanced Embodied Reasoning, Thinking, and Motion Transfer",
-    "authors": "Gemini Robotics Team",
+    "name": "Redwood AI",
+    "org": "1X",
+    "kind": "startup",
     "year": 2025,
-    "venue": "arXiv 2025",
-    "arxiv": "https://arxiv.org/abs/2510.03342",
-    "project": "https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/",
-    "why_ko": "계획 담당 모델이 도구(검색 등)를 쓰며 여러 단계를 짜고, 행동 모델은 움직이기 전에 먼저 생각한다.",
-    "why_en": "A planner model orchestrates multi-step tasks with tools; the action model thinks before moving."
+    "url": "https://www.1x.tech/discover/redwood-ai",
+    "why_ko": "말로 목표를 말하면 NEO가 집 안을 걸어 다니며 물건을 가져오고 문을 연다. 몸을 움직이는 모델은 로봇 안의 GPU에서 돈다.",
+    "why_en": "Say a goal out loud and NEO walks the home to fetch things or open doors. The model that moves the body runs on the robot's own GPU."
    }
   ]
  },
@@ -473,16 +473,6 @@ export const PAPERS = {
     "project": "https://viper.cs.columbia.edu/",
     "why_ko": "질문을 받으면 LLM이 이미지를 분석하는 파이썬 코드를 짜고 실행해서 답을 찾는다.",
     "why_en": "LLM answers visual questions by writing and running Python code over the image."
-   },
-   {
-    "title": "Visual Programming: Compositional visual reasoning without training",
-    "authors": "Gupta et al.",
-    "year": 2022,
-    "venue": "CVPR 2023",
-    "arxiv": "https://arxiv.org/abs/2211.11559",
-    "project": "https://github.com/allenai/visprog",
-    "why_ko": "추가 학습 없이, 여러 시각 도구를 조합하는 짧은 프로그램으로 그림 문제를 푼다.",
-    "why_en": "Solves visual tasks by composing vision tools into short programs, with no extra training."
    },
    {
     "title": "V*: Guided Visual Search as a Core Mechanism in Multimodal LLMs",
@@ -507,16 +497,6 @@ export const PAPERS = {
     "why_en": "Reinforcement learning teaches a VLM to zoom in and re-look while it reasons."
    },
    {
-    "title": "Thyme: Think Beyond Images",
-    "authors": "Zhang et al.",
-    "year": 2025,
-    "venue": "ICLR 2026",
-    "arxiv": "https://arxiv.org/abs/2508.11630",
-    "project": "https://thyme-vl.github.io/",
-    "why_ko": "모델이 직접 코드를 써서 이미지를 자르고·돌리고·밝게 하며 계산까지 한다.",
-    "why_en": "A VLM writes and runs code to crop, rotate, enhance images, and compute."
-   },
-   {
     "title": "Vision in Action: Learning Active Perception from Human Demonstrations",
     "authors": "Xiong et al.",
     "year": 2025,
@@ -525,6 +505,26 @@ export const PAPERS = {
     "project": "https://vision-in-action.github.io/",
     "why_ko": "목(neck)을 움직이는 로봇이 사람 시연에서 '어디를 볼지' 배워, 가려진 것도 찾아 본다.",
     "why_en": "A robot with a movable neck learns from humans where to look during tasks."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Agentic Vision (Gemini 3 Flash)",
+    "org": "Google DeepMind",
+    "kind": "bigtech",
+    "year": 2026,
+    "url": "https://blog.google/innovation-and-ai/technology/developers-tools/agentic-vision-gemini-3-flash/",
+    "why_ko": "이미지를 한 번 보고 끝내지 않는다. 파이썬 코드로 확대하고 자르고 표시한 뒤 다시 보고 답한다. 이 발표 주제 그대로의 제품이다.",
+    "why_en": "Doesn't stop at one look: it runs Python to zoom, crop and mark the image, then looks again before answering. This talk's topic as a product."
+   },
+   {
+    "name": "o3: Thinking with images",
+    "org": "OpenAI",
+    "kind": "company",
+    "year": 2025,
+    "url": "https://openai.com/index/thinking-with-images/",
+    "why_ko": "추론 도중에 이미지를 돌리고 확대하며 생각한다. '이미지로 생각하기'를 많은 사람에게 처음 보여 준 모델이다.",
+    "why_en": "Rotates and zooms images in the middle of its reasoning, the model that brought 'thinking with images' to a wide audience."
    }
   ]
  },
@@ -541,16 +541,6 @@ export const PAPERS = {
     "why_en": "The go-to open-source recipe for tracking a robot's motion using one camera plus an IMU."
    },
    {
-    "title": "Contact-Aided Invariant Extended Kalman Filtering for Robot State Estimation",
-    "authors": "Hartley et al.",
-    "year": 2019,
-    "venue": "IJRR 2020",
-    "arxiv": "https://arxiv.org/abs/1904.09251",
-    "project": "https://github.com/RossHartley/invariant-ekf",
-    "why_ko": "발이 땅에 닿는 정보와 IMU를 합쳐 두 발 로봇의 몸 상태를 안정적으로 추정한다.",
-    "why_en": "Fuses foot contacts with IMU data so walking robots know their own pose and speed reliably."
-   },
-   {
     "title": "Learning agile and dynamic motor skills for legged robots",
     "authors": "Hwangbo et al.",
     "year": 2019,
@@ -562,16 +552,6 @@ export const PAPERS = {
    }
   ],
   "recent": [
-   {
-    "title": "DogLegs: Robust Proprioceptive State Estimation for Legged Robots Using Multiple Leg-Mounted IMUs",
-    "authors": "Wu et al.",
-    "year": 2025,
-    "venue": "IROS 2025",
-    "arxiv": "https://arxiv.org/abs/2503.04580",
-    "project": "https://github.com/YibinWu/DogLegs",
-    "why_ko": "다리마다 IMU를 달아, 카메라 없이도 몸의 위치를 더 정확히 추정한다.",
-    "why_en": "Adds IMUs on each leg so a robot tracks itself accurately even without cameras."
-   },
    {
     "title": "Sampling-Based System Identification with Active Exploration for Legged Robot Sim2Real Learning",
     "authors": "Sobanbabu et al.",
@@ -591,6 +571,26 @@ export const PAPERS = {
     "project": "https://github.com/JixinGao/KILVO",
     "why_ko": "휴머노이드의 관절·IMU·라이다·카메라를 모두 합쳐, 센서 하나가 고장 나도 버티는 위치 추정이다.",
     "why_en": "Combines a humanoid's joints, IMU, LiDAR and camera, staying robust when one sensor fails."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Digit 5",
+    "org": "Agility Robotics",
+    "kind": "startup",
+    "year": 2026,
+    "url": "https://www.agilityrobotics.com/solutions/digit-5",
+    "why_ko": "창고에서 돈을 받고 일하는 휴머노이드다. 새 센서로 옆 사람을 감지해 속도를 줄이거나 멈춘다. 같은 일을 수천 번 반복해도 버텨야 하는 것이 핵심이다.",
+    "why_en": "A humanoid that does paid warehouse work. New sensors spot nearby people so it slows or stops. The real test is holding up over thousands of repeats."
+   },
+   {
+    "name": "Isaac ROS Visual SLAM (cuVSLAM)",
+    "org": "NVIDIA",
+    "kind": "bigtech",
+    "year": null,
+    "url": "https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_visual_slam/index.html",
+    "why_ko": "카메라와 IMU로 로봇 위치를 GPU에서 실시간으로 추정하는 공개 패키지다. ROS 2에 바로 붙여 쓸 수 있다.",
+    "why_en": "An open package that tracks a robot's position from cameras and an IMU in real time on the GPU. It plugs straight into ROS 2."
    }
   ]
  },
@@ -615,16 +615,6 @@ export const PAPERS = {
     "project": null,
     "why_ko": "시뮬레이션에서 학습한 신경망 제어기를 로봇에 올려, 험한 야외 지형을 걷게 했다.",
     "why_en": "A simulation-trained neural controller running on-board carried a quadruped across rough real-world terrain."
-   },
-   {
-    "title": "Sim-to-Real: Learning Agile Locomotion For Quadruped Robots",
-    "authors": "Tan et al.",
-    "year": 2018,
-    "venue": "RSS 2018",
-    "arxiv": "https://arxiv.org/abs/1804.10332",
-    "project": null,
-    "why_ko": "모터 특성과 통신 지연까지 시뮬레이션에 넣어, 학습한 걸음을 실제 로봇에서 그대로 쓰게 했다.",
-    "why_en": "Simulated motor behavior and control latency so learned gaits worked directly on a real robot."
    }
   ],
   "recent": [
@@ -647,16 +637,26 @@ export const PAPERS = {
     "project": "https://huggingface.co/blog/smolvla",
     "why_ko": "작고 가벼운 로봇 AI(VLA)로, 비싼 서버 없이 일반 장비에서도 돌아간다.",
     "why_en": "A small vision-language-action model that runs on modest hardware instead of costly servers."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Jetson AGX Thor",
+    "org": "NVIDIA",
+    "kind": "bigtech",
+    "year": 2025,
+    "url": "https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-thor/",
+    "why_ko": "휴머노이드 몸 안에 넣는 AI 컴퓨터다. 큰 모델을 클라우드 없이 로봇 위에서 바로 돌리는 것이 목표다.",
+    "why_en": "An AI computer built to sit inside a humanoid, so large models run on the robot itself with no cloud."
    },
    {
-    "title": "EagleVLA: Towards Onboard Real-Time Robot Control via Foresight-Aligned Asynchronous Inference",
-    "authors": "Yang et al.",
-    "year": 2026,
-    "venue": "CoRL 2026 (Spotlight)",
-    "arxiv": "https://arxiv.org/abs/2607.12659",
-    "project": "https://github.com/PKU-SEC-Lab/EagleVLA",
-    "why_ko": "큰 로봇 AI(VLA)를 로봇에 달린 작은 컴퓨터(Jetson)에서도 지연 없이 돌리는 방법이다.",
-    "why_en": "Runs large vision-language-action models on a robot's small onboard computer without laggy control."
+    "name": "Helix",
+    "org": "Figure",
+    "kind": "startup",
+    "year": 2025,
+    "url": "https://www.figure.ai/news/helix",
+    "why_ko": "천천히 생각하는 모델과 200Hz로 몸을 움직이는 빠른 모델을 나눈 VLA다. 둘 다 로봇에 실린 GPU에서 돈다.",
+    "why_en": "A VLA split into a slow 'thinking' model and a fast 200 Hz motor model, both running on the robot's own GPUs."
    }
   ]
  },
@@ -681,29 +681,9 @@ export const PAPERS = {
     "project": "https://robotics-transformer-x.github.io",
     "why_ko": "여러 연구실의 서로 다른 로봇 데이터를 한데 모은 대표적인 대규모 데이터셋이다.",
     "why_en": "Pooled data from many labs and robot types into one large shared training dataset."
-   },
-   {
-    "title": "What Matters in Learning from Offline Human Demonstrations for Robot Manipulation",
-    "authors": "Mandlekar et al.",
-    "year": 2021,
-    "venue": "CoRL 2021",
-    "arxiv": "https://arxiv.org/abs/2108.03298",
-    "project": "https://robomimic.github.io/",
-    "why_ko": "사람 시연 데이터의 품질과 양이 로봇 학습 결과를 어떻게 바꾸는지 꼼꼼히 비교했다.",
-    "why_en": "Systematically showed how demonstration quality and quantity change what robots can learn."
    }
   ],
   "recent": [
-   {
-    "title": "AgiBot World Colosseo: A Large-scale Manipulation Platform for Scalable and Intelligent Embodied Systems",
-    "authors": "AgiBot World Contributors",
-    "year": 2025,
-    "venue": "arXiv",
-    "arxiv": "https://arxiv.org/abs/2503.06669",
-    "project": "https://agibot-world.com/",
-    "why_ko": "100대의 로봇으로 100만 개 넘는 시연을 모은 초대형 실제 로봇 데이터셋이다.",
-    "why_en": "Over a million real-robot demonstrations collected with a fleet of about 100 robots."
-   },
    {
     "title": "HOMIE: Humanoid Loco-Manipulation with Isomorphic Exoskeleton Cockpit",
     "authors": "Ben et al.",
@@ -724,6 +704,26 @@ export const PAPERS = {
     "why_ko": "어떤 시연 데이터가 로봇에 도움이 되고 해가 되는지 골라내는 데이터 정리법이다.",
     "why_en": "Identifies which demonstrations help or hurt a robot policy, so bad data can be removed."
    }
+  ],
+  "industry": [
+   {
+    "name": "Skill Capture Glove (Memo)",
+    "org": "Sunday Robotics",
+    "kind": "startup",
+    "year": 2025,
+    "url": "https://www.sunday.ai/",
+    "why_ko": "사람이 200달러짜리 장갑을 끼고 집안일을 하면 그 움직임이 로봇 학습 데이터가 된다. 2만 달러짜리 원격조종 장비를 대신한다.",
+    "why_en": "People wear a $200 glove while doing chores, and their motion becomes robot training data, replacing $20,000 teleop rigs."
+   },
+   {
+    "name": "AgiBot World",
+    "org": "AgiBot",
+    "kind": "startup",
+    "year": 2025,
+    "url": "https://agibot-world.com/",
+    "why_ko": "로봇 100대로 100만 개가 넘는 실제 시연을 모은 공개 데이터셋이다. 데이터를 대량으로 모으는 공장 같은 체계를 보여 준다.",
+    "why_en": "An open dataset of over a million real demonstrations collected with 100 robots, a look at data collection run like a factory."
+   }
   ]
  },
  "ISFP": {
@@ -737,16 +737,6 @@ export const PAPERS = {
     "project": "https://openai.com/index/learning-dexterity/",
     "why_ko": "시뮬레이션에서만 배운 로봇 손이 실제로 손안에서 큐브를 돌리는 데 성공했다.",
     "why_en": "A robot hand trained only in simulation learned to rotate a cube in its real palm."
-   },
-   {
-    "title": "Making Sense of Vision and Touch: Self-Supervised Learning of Multimodal Representations for Contact-Rich Tasks",
-    "authors": "Lee et al.",
-    "year": 2018,
-    "venue": "ICRA 2019",
-    "arxiv": "https://arxiv.org/abs/1810.10191",
-    "project": "https://sites.google.com/view/visionandtouch",
-    "why_ko": "눈(카메라)과 촉감(힘 센서)을 합쳐 쓰면 끼우기 같은 접촉 작업이 쉬워짐을 보였다.",
-    "why_en": "Showed that combining vision with touch and force makes contact-heavy tasks like peg insertion easier."
    },
    {
     "title": "DIGIT: A Novel Design for a Low-Cost Compact High-Resolution Tactile Sensor with Application to In-Hand Manipulation",
@@ -779,31 +769,31 @@ export const PAPERS = {
     "project": "https://reactive-diffusion-policy.github.io",
     "why_ko": "눈으로는 천천히 계획하고 촉감으로는 빠르게 반응하는 '느림-빠름' 정책이다.",
     "why_en": "Plans slowly with vision but reacts quickly with touch, like humans handling objects."
+   }
+  ],
+  "industry": [
+   {
+    "name": "SharpaWave",
+    "org": "Sharpa",
+    "kind": "startup",
+    "year": null,
+    "url": "https://www.sharpa.com/",
+    "why_ko": "손가락 끝마다 1,000개가 넘는 촉각 픽셀을 단 22자유도 로봇 손이다. NVIDIA의 GR00T 참조 휴머노이드에도 들어갔다.",
+    "why_en": "A 22-DoF robot hand with over 1,000 touch pixels per fingertip. It's on NVIDIA's GR00T reference humanoid."
    },
    {
-    "title": "DexUMI: Using Human Hand as the Universal Manipulation Interface for Dexterous Manipulation",
-    "authors": "Xu et al.",
-    "year": 2025,
-    "venue": "CoRL 2025",
-    "arxiv": "https://arxiv.org/abs/2505.21864",
-    "project": "https://dex-umi.github.io/",
-    "why_ko": "사람 손에 끼우는 외골격으로 시연을 모아 여러 로봇 손에 기술을 옮긴다.",
-    "why_en": "A wearable hand exoskeleton records human demos and transfers the skills to different robot hands."
+    "name": "Digit 360",
+    "org": "Meta FAIR × GelSight",
+    "kind": "bigtech",
+    "year": 2024,
+    "url": "https://ai.meta.com/blog/fair-robotics-open-source/",
+    "why_ko": "손가락 끝 모양의 촉각 센서로, 약 1밀리뉴턴의 아주 작은 힘까지 느낀다. 연구자용으로 공개했다.",
+    "why_en": "A fingertip-shaped touch sensor that feels forces as small as about 1 millinewton, released for researchers."
    }
   ]
  },
  "INTJ": {
   "foundational": [
-   {
-    "title": "Crocoddyl: An Efficient and Versatile Framework for Multi-Contact Optimal Control",
-    "authors": "Mastalli et al.",
-    "year": 2019,
-    "venue": "ICRA 2020",
-    "arxiv": "https://arxiv.org/abs/1909.04947",
-    "project": "https://github.com/loco-3d/crocoddyl",
-    "why_ko": "발이 땅에 닿는 순간까지 계산해 점프·공중제비 동작을 몇 밀리초 만에 짜 주는 오픈소스 도구다.",
-    "why_en": "Open-source solver that plans contact-rich motions like jumps and flips in milliseconds."
-   },
    {
     "title": "Integrated Task and Motion Planning",
     "authors": "Garrett et al.",
@@ -837,16 +827,6 @@ export const PAPERS = {
     "why_en": "Simple real-time whole-body MPC with MuJoCo, demonstrated on real humanoid and quadruped hardware."
    },
    {
-    "title": "Hierarchical Reduced-Order Model Predictive Control for Robust Locomotion on Humanoid Robots",
-    "authors": "Ghansah et al.",
-    "year": 2025,
-    "venue": "IEEE-RAS Humanoids 2025",
-    "arxiv": "https://arxiv.org/abs/2509.04722",
-    "project": null,
-    "why_ko": "발 디딜 곳을 정하는 상위 계획과 몸을 안정시키는 하위 MPC를 겹겹이 쌓아 실제 휴머노이드(G1)를 튼튼하게 걷게 했다.",
-    "why_en": "Layered MPC: a step planner atop a body-balancing controller keeps a real Unitree G1 walking robustly."
-   },
-   {
     "title": "Task and Motion Planning for Humanoid Loco-manipulation",
     "authors": "Ciebielski et al.",
     "year": 2025,
@@ -855,6 +835,26 @@ export const PAPERS = {
     "project": null,
     "why_ko": "‘손발이 어디에 닿을지’를 작업 단위로 탐색하고 온몸 궤적 최적화로 이어, 걷기와 물건 다루기를 한 번에 계획한다.",
     "why_en": "Searches over contact changes and optimizes whole-body trajectories to plan long humanoid loco-manipulation."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Atlas: Picking Up Momentum",
+    "org": "Boston Dynamics",
+    "kind": "company",
+    "year": 2023,
+    "url": "https://bostondynamics.com/blog/picking-up-momentum/",
+    "why_ko": "Atlas가 짐을 던지고 받는 동작의 핵심은 MPC다. 짧은 미래를 예측해 지금 할 최선의 동작을 계속 다시 계산한다.",
+    "why_en": "Atlas's toss-and-catch moves run on MPC: predict a short window ahead and keep recomputing the best action now."
+   },
+   {
+    "name": "MuJoCo MPC",
+    "org": "Google DeepMind",
+    "kind": "bigtech",
+    "year": 2022,
+    "url": "https://github.com/google-deepmind/mujoco_mpc",
+    "why_ko": "MuJoCo 시뮬레이터 위에서 MPC를 실시간으로 돌리고, 비용 함수를 바꿔 가며 결과를 바로 볼 수 있는 공개 도구다.",
+    "why_en": "An open tool for running real-time MPC in MuJoCo and seeing results instantly as you tweak the cost function."
    }
   ]
  },
@@ -869,16 +869,6 @@ export const PAPERS = {
     "project": "https://worldmodels.github.io/",
     "why_ko": "AI가 머릿속에 세상을 흉내 내는 ‘꿈’ 모델을 만들고 그 안에서 연습한다는 아이디어를 대중화했다.",
     "why_en": "Popularized learning a model of the world and training the agent inside its dreams."
-   },
-   {
-    "title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
-    "authors": "Mildenhall et al.",
-    "year": 2020,
-    "venue": "ECCV 2020",
-    "arxiv": "https://arxiv.org/abs/2003.08934",
-    "project": "https://www.matthewtancik.com/nerf",
-    "why_ko": "사진 몇 장으로 3D 공간을 신경망에 저장해 새로운 시점의 장면까지 그려 내는 기술의 시작이다.",
-    "why_en": "Stores a 3D scene inside a neural network from photos; sparked neural 3D mapping."
    },
    {
     "title": "ConceptGraphs: Open-Vocabulary 3D Scene Graphs for Perception and Planning",
@@ -911,16 +901,26 @@ export const PAPERS = {
     "project": "https://research.nvidia.com/labs/gear/dreamgen/",
     "why_ko": "영상 생성 모델로 ‘가상 시연 영상’을 만들어 휴머노이드가 새 동작 20여 가지를 배우게 했다.",
     "why_en": "Video world models generate synthetic demos, teaching a humanoid 20+ new behaviors."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Cosmos",
+    "org": "NVIDIA",
+    "kind": "bigtech",
+    "year": 2025,
+    "url": "https://www.nvidia.com/en-us/ai/cosmos/",
+    "why_ko": "로봇과 자율주행을 위한 월드 모델 모음이다. 다음 장면을 영상으로 예측해 학습 데이터를 만들고 정책을 미리 시험한다.",
+    "why_en": "A family of world models for robots and cars. It predicts future video to make training data and test policies ahead of time."
    },
    {
-    "title": "Cosmos World Foundation Model Platform for Physical AI",
-    "authors": "NVIDIA et al.",
+    "name": "Marble",
+    "org": "World Labs",
+    "kind": "startup",
     "year": 2025,
-    "venue": "arXiv",
-    "arxiv": "https://arxiv.org/abs/2501.03575",
-    "project": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict1/",
-    "why_ko": "로봇·자율주행용으로 누구나 고쳐 쓸 수 있게 공개한 대형 ‘세계 모델’ 플랫폼이다.",
-    "why_en": "Open-weight world foundation models that developers fine-tune for robots and physical AI."
+    "url": "https://www.worldlabs.ai/blog/marble-world-model",
+    "why_ko": "글이나 사진 한 장으로 걸어 다닐 수 있는 3D 공간을 만든다. 결과를 Gaussian splat이나 메시로 내보낼 수 있다.",
+    "why_en": "Turns a text prompt or a single photo into an explorable 3D world, exportable as Gaussian splats or meshes."
    }
   ]
  },
@@ -945,16 +945,6 @@ export const PAPERS = {
     "project": "https://auto-rt.github.io/",
     "why_ko": "여러 로봇을 LLM이 지휘할 때 ‘로봇 헌법(안전 규칙)’과 사람의 감독으로 위험한 일을 걸러낸 대표 사례다.",
     "why_en": "Fleet-scale LLM robot orchestration guarded by a written robot constitution and human supervision."
-   },
-   {
-    "title": "Jailbreaking LLM-Controlled Robots",
-    "authors": "Robey et al.",
-    "year": 2024,
-    "venue": "ICRA 2025",
-    "arxiv": "https://arxiv.org/abs/2410.13691",
-    "project": "https://robopair.org/",
-    "why_ko": "교묘한 말로 LLM 로봇이 위험한 행동을 하도록 속일 수 있음을 실제 로봇으로 처음 보여 줬다.",
-    "why_en": "First to show real LLM-controlled robots can be jailbroken into harmful physical actions."
    }
   ],
   "recent": [
@@ -977,16 +967,26 @@ export const PAPERS = {
     "project": "https://robo-guard.github.io/",
     "why_ko": "LLM이 짠 로봇 계획을 실행 전에 검사해, 해킹 공격에도 위험 행동을 크게 줄이는 안전장치다.",
     "why_en": "RoboGuard checks LLM robot plans before execution, sharply cutting unsafe actions under jailbreaks."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Halos for Robotics",
+    "org": "NVIDIA × Agility Robotics",
+    "kind": "bigtech",
+    "year": 2026,
+    "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Halos-for-Robotics-the-Industrys-First-Full-Stack-Safety-System-for-Physical-AI/",
+    "why_ko": "칩, 소프트웨어, 인증 시험까지 로봇 안전을 한 묶음으로 만든 시스템이다. Agility가 Digit의 사람 감지 기능에 처음 적용한다.",
+    "why_en": "A safety stack spanning chips, software and certification testing. Agility is the first to use it, for Digit's human detection."
    },
    {
-    "title": "SafeVLA: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning",
-    "authors": "Zhang et al.",
+    "name": "Project Fetch",
+    "org": "Anthropic",
+    "kind": "company",
     "year": 2025,
-    "venue": "NeurIPS 2025",
-    "arxiv": "https://arxiv.org/abs/2503.03480",
-    "project": "https://pku-safevla.github.io/",
-    "why_ko": "보고·듣고·움직이는 VLA 모델이 학습 단계부터 안전 제약을 지키도록 길들이는 방법이다.",
-    "why_en": "Trains vision-language-action models with explicit safety constraints built into learning."
+    "url": "https://www.anthropic.com/research/project-fetch-robot-dog",
+    "why_ko": "AI가 로봇을 얼마나 잘 다루게 됐는지 미리 재 보는 레드팀 실험이다. 로봇 경험이 없는 연구자들이 Claude와 함께 로봇개를 프로그래밍했다.",
+    "why_en": "A red-team experiment measuring how well AI can already handle robots: researchers with no robotics background programmed a robot dog with Claude."
    }
   ]
  },
@@ -1011,16 +1011,6 @@ export const PAPERS = {
     "project": "https://tetexiao.com/projects/mvp",
     "why_ko": "영상 일부를 가리고 맞히는 방식으로 사람 영상에서 배운 시각 표현이 로봇 제어에 통한다는 걸 보였다.",
     "why_en": "Showed masked-image pretraining on human videos gives strong visual features for robot control."
-   },
-   {
-    "title": "Affordances from Human Videos as a Versatile Representation for Robotics",
-    "authors": "Bahl et al.",
-    "year": 2023,
-    "venue": "CVPR 2023",
-    "arxiv": "https://arxiv.org/abs/2304.08488",
-    "project": "https://robo-affordances.github.io/",
-    "why_ko": "사람 영상에서 ‘물건의 어디를 잡고 어느 쪽으로 움직이는지’를 배워 로봇에 옮겼다.",
-    "why_en": "Learns where and how to interact with objects from human videos, then transfers to robots."
    }
   ],
   "recent": [
@@ -1043,16 +1033,26 @@ export const PAPERS = {
     "project": "https://rchalyang.github.io/EgoVLA/",
     "why_ko": "사람 1인칭 영상으로 손·손목 동작을 배운 VLA를 휴머노이드 양손 조작으로 옮긴다.",
     "why_en": "Trains a VLA on egocentric human video, then retargets hand actions to a humanoid."
+   }
+  ],
+  "industry": [
+   {
+    "name": "Apollo × Gemini 4 Argon",
+    "org": "Apptronik × Google DeepMind",
+    "kind": "startup",
+    "year": 2026,
+    "url": "https://roboticsandautomationnews.com/2026/10/22/google-deepmind-uses-gemini-4-argon-to-teach-apptroniks-apollo-humanoid-new-skills-from-video/106227/",
+    "why_ko": "사람이 콘홀(주머니 던지기)을 하는 영상만 보고 AI가 시뮬레이션을 스스로 만들어 연습했다. 그 결과 실제 Apollo 로봇이 7번 연속 성공했다.",
+    "why_en": "From plain video of a person playing cornhole, the AI built its own simulation to practice in. The real Apollo humanoid then landed 7 shots in a row."
    },
    {
-    "title": "EgoDex: Learning Dexterous Manipulation from Large-Scale Egocentric Video",
-    "authors": "Hoque et al.",
+    "name": "Project Go-Big",
+    "org": "Figure",
+    "kind": "startup",
     "year": 2025,
-    "venue": "ICLR 2026",
-    "arxiv": "https://arxiv.org/abs/2505.11709",
-    "project": "https://github.com/apple/ml-egodex",
-    "why_ko": "Apple Vision Pro로 손가락 관절까지 기록한 829시간 분량의 사람 손 조작 1인칭 영상 데이터셋이다.",
-    "why_en": "Large egocentric dataset of human dexterous manipulation with tracked 3D hand poses."
+    "url": "https://www.figure.ai/news/project-go-big",
+    "why_ko": "사람 시점 영상만으로 학습해 '냉장고로 가' 같은 말을 듣고 어수선한 집 안을 걸어 다닌다.",
+    "why_en": "Trained only on first-person human video, Figure's robot walks through cluttered homes on commands like 'go to the fridge'."
    }
   ]
  }
