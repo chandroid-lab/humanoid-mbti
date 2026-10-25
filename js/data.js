@@ -48,7 +48,7 @@ export const TYPES = {
     act: { ko: "좌우로 무게를 옮기며 내 자세를 추정하는 중", en: "Shifting its weight while estimating its own pose" },
     field: { ko: "센서·구동기 신뢰성과 상태 추정", en: "Sensor & actuator reliability, state estimation" },
     nick:  { ko: "로봇의 감각을 믿게 만드는 검증가", en: "The one who makes robot senses trustworthy" },
-    strength: { ko: "측정값 하나도 그냥 넘기지 않아서, 남들이 놓친 센서 오차를 찾아내요.", en: "Never lets a measurement slide, so you catch the sensor errors others miss." },
+    strength: { ko: "측정값 하나도 그냥 넘기지 않아서, 남들이 놓친 센서 오차를 찾아낸다.", en: "Never lets a measurement slide, so you catch the sensor errors others miss." },
     easy:  {
       ko: "로봇이 \"나는 지금 어디에, 어떤 자세로 있지?\"를 정확히 아는 게 모든 것의 시작이에요. 카메라와 관성 센서(IMU)를 서로 맞추고(캘리브레이션), 여러 센서를 합쳐 로봇의 위치와 자세를 추정해요.",
       en: "Everything starts with the robot knowing \"where am I, and how am I posed?\" You calibrate cameras and IMUs (motion sensors) and fuse them to estimate the robot's position and posture.",
@@ -66,7 +66,7 @@ export const TYPES = {
     act: { ko: "달리면서 실시간으로 균형 잡는 중 (사람 모션캡처)", en: "Running, balancing in real time (human mocap)" },
     field: { ko: "실시간 제어 루프와 엣지 추론", en: "Real-time control loops & edge inference" },
     nick:  { ko: "1밀리초를 다루는 장인", en: "The craftsperson of milliseconds" },
-    strength: { ko: "손으로 직접 만져 보며 문제의 원인을 누구보다 빨리 찾아내요.", en: "Hands-on, you find the root cause faster than anyone." },
+    strength: { ko: "손으로 직접 만져 보며 문제의 원인을 누구보다 빨리 찾아낸다.", en: "Hands-on, you find the root cause faster than anyone." },
     easy:  {
       ko: "로봇 관절은 1초에 수백~수천 번 명령을 받아요. 이 명령이 늦지 않게 도착하고, 신경망 정책이 로봇 안의 작은 컴퓨터(Jetson 등)에서 빠르게 돌도록 만드는 일이에요.",
       en: "Robot joints get hundreds to thousands of commands per second. You make sure they arrive on time and that neural policies run fast on the small onboard computer (e.g., Jetson).",
@@ -84,7 +84,7 @@ export const TYPES = {
     act: { ko: "물건을 집어 옮기는 시연 동작", en: "A pick-and-place demonstration" },
     field: { ko: "사람 시연 데이터 수집과 품질 관리", en: "Human demonstration data & quality" },
     nick:  { ko: "로봇의 교과서를 만드는 사람", en: "The one who writes the robot's textbook" },
-    strength: { ko: "꼼꼼하고 성실해서, 모두가 믿고 쓰는 깨끗한 데이터를 만들어요.", en: "Careful and steady, you build clean data everyone can trust." },
+    strength: { ko: "꼼꼼하고 성실해서, 모두가 믿고 쓰는 깨끗한 데이터를 만든다.", en: "Careful and steady, you build clean data everyone can trust." },
     easy:  {
       ko: "요즘 로봇은 사람이 보여 준 시범(시연)을 보고 배워요. 시연을 편하게 모으는 장비를 만들고, 좋은 데이터와 나쁜 데이터를 골라 정리하는 일이에요.",
       en: "Today's robots learn from human demonstrations. You build tools that make demos easy to collect, and you sort good data from bad.",
@@ -102,7 +102,7 @@ export const TYPES = {
     act: { ko: "손가락을 오므렸다 펴며 쥐는 중", en: "Closing and opening its fingers to grasp" },
     field: { ko: "정교한 손 조작과 시각+촉각 융합", en: "Dexterous hands & visuo-tactile fusion" },
     nick:  { ko: "손끝으로 세상을 느끼는 사람", en: "The one who feels the world through fingertips" },
-    strength: { ko: "작은 차이를 알아채는 섬세한 감각으로 손끝 조작을 정교하게 다듬어요.", en: "A fine sense for small differences polishes fingertip manipulation." },
+    strength: { ko: "작은 차이를 알아채는 섬세한 감각으로 손끝 조작을 정교하게 다듬는다.", en: "A fine sense for small differences polishes fingertip manipulation." },
     easy:  {
       ko: "사람 손처럼 손가락이 여러 개인 로봇 손으로 물건을 잡고, 돌리고, 끼우는 연구예요. 카메라로 보고 촉각 센서로 느껴서 미끄러짐까지 알아채요.",
       en: "Using multi-fingered robot hands to grasp, rotate, and insert objects—seeing with cameras and feeling with touch sensors to catch slips.",
@@ -120,7 +120,7 @@ export const TYPES = {
     act: { ko: "몸 전체를 계산해 앉았다 일어서는 중", en: "Squatting with whole-body planning" },
     field: { ko: "계층형 계획과 전신 최적 제어", en: "Hierarchical planning & whole-body optimal control" },
     nick:  { ko: "몇 수 앞을 계산하는 전략가", en: "The strategist who plans moves ahead" },
-    strength: { ko: "큰 그림과 몇 수 앞을 함께 보며, 복잡한 문제를 구조로 풀어내요.", en: "You see the big picture and moves ahead, turning complexity into structure." },
+    strength: { ko: "큰 그림과 몇 수 앞을 함께 보며, 복잡한 문제를 구조로 풀어낸다.", en: "You see the big picture and moves ahead, turning complexity into structure." },
     easy:  {
       ko: "로봇이 \"앞으로 1초 동안 어떻게 움직이는 게 가장 좋을까?\"를 계속 계산하게 만드는 일이에요(MPC). 큰 목표는 위층에서 계획하고, 관절 힘은 아래층에서 최적화하는 구조를 설계해요.",
       en: "You make the robot keep asking \"what's the best way to move over the next second?\" (MPC)—big goals planned on top, joint forces optimized below.",
@@ -138,7 +138,7 @@ export const TYPES = {
     act: { ko: "주변을 둘러보며 3D 기억을 쌓는 중", en: "Looking around to build a 3D memory" },
     field: { ko: "월드 모델과 3D 장면 메모리", en: "World models & 3D scene memory" },
     nick:  { ko: "머릿속에 세상을 짓는 이론가", en: "The theorist who builds the world in their head" },
-    strength: { ko: "원리를 끝까지 파고들어, 아무도 생각 못 한 새로운 모델을 떠올려요.", en: "You dig to first principles and imagine models no one else thought of." },
+    strength: { ko: "원리를 끝까지 파고들어, 아무도 생각 못 한 새로운 모델을 떠올린다.", en: "You dig to first principles and imagine models no one else thought of." },
     easy:  {
       ko: "로봇이 본 것을 3D로 기억하고, \"이렇게 하면 다음엔 이렇게 되겠지\"를 머릿속에서 미리 상상하게 만드는 연구예요.",
       en: "Helping robots remember what they saw in 3D and imagine \"if I do this, that will happen next.\"",
@@ -156,7 +156,7 @@ export const TYPES = {
     act: { ko: "손을 뻗다가 위험하면 멈추는 중", en: "Reaching, then stopping when it's unsafe" },
     field: { ko: "에이전트 안전: LLM 계획 검증과 인간 감독", en: "Agent safety: verifying LLM plans & human oversight" },
     nick:  { ko: "로봇의 브레이크를 설계하는 사람", en: "The one who designs the robot's brakes" },
-    strength: { ko: "기술이 사람에게 미칠 영향을 먼저 내다보고, 위험을 미리 막아요.", en: "You foresee how technology affects people and stop risks early." },
+    strength: { ko: "기술이 사람에게 미칠 영향을 먼저 내다보고, 위험을 미리 막는다.", en: "You foresee how technology affects people and stop risks early." },
     easy:  {
       ko: "언어 모델이 로봇에게 계획이나 코드를 만들어 줄 때, 위험하지 않은지 실행 전에 걸러 내는 장치를 만드는 연구예요. 사람이 언제 끼어들지도 설계해요.",
       en: "When language models write plans or code for robots, you build checks that catch dangerous actions before they run—and decide when humans should step in.",
@@ -174,7 +174,7 @@ export const TYPES = {
     act: { ko: "사람 영상 속 동작을 따라 손을 흔드는 중", en: "Copying a wave it saw in human video" },
     field: { ko: "사람 영상으로 보는 법·쓰는 법 배우기", en: "Learning from human (egocentric) video" },
     nick:  { ko: "사람의 눈으로 배우는 관찰자", en: "The observer who learns through human eyes" },
-    strength: { ko: "사람의 행동에 깊이 공감해서, 사람다운 움직임의 본질을 잡아내요.", en: "Deep empathy for people lets you capture what makes motion feel human." },
+    strength: { ko: "사람의 행동에 깊이 공감해서, 사람다운 움직임의 본질을 잡아낸다.", en: "Deep empathy for people lets you capture what makes motion feel human." },
     easy:  {
       ko: "사람이 머리에 카메라를 달고 찍은 1인칭 영상이 엄청나게 많아요. 이 영상으로 로봇이 세상을 보는 법과 손을 쓰는 법을 미리 배우게 하는 연구예요.",
       en: "There's a huge amount of first-person video of people doing things. You use it to teach robots how to see and how to use their hands.",
@@ -192,7 +192,7 @@ export const TYPES = {
     act: { ko: "인도를 보며 걷는 중 (사람 모션캡처)", en: "Walking while watching the sidewalk (human mocap)" },
     field: { ko: "시각 기반 보행과 sim-to-real 평가 체계", en: "Perceptive locomotion & sim-to-real evaluation" },
     nick:  { ko: "수천 대를 동시에 훈련시키는 감독", en: "The coach who trains thousands at once" },
-    strength: { ko: "체계와 기준을 세워서, 실험을 반복 가능하고 믿을 수 있게 만들어요.", en: "You set up systems and standards that make experiments repeatable." },
+    strength: { ko: "체계와 기준을 세워서, 실험을 반복 가능하고 믿을 수 있게 만든다.", en: "You set up systems and standards that make experiments repeatable." },
     easy:  {
       ko: "시뮬레이션 안에서 로봇 수천 대를 동시에 걷게 하며 계단과 경사를 배우게 하고, 그 실력이 진짜 로봇에서도 통하는지 체계적으로 평가하는 일이에요.",
       en: "Training thousands of simulated robots in parallel to handle stairs and slopes, then systematically testing whether those skills work on the real robot.",
@@ -210,7 +210,7 @@ export const TYPES = {
     act: { ko: "야외 시험장에서 넘어졌다 스스로 일어나는 중 (사람 모션캡처)", en: "Falling and getting back up at the field test (human mocap)" },
     field: { ko: "험한 지형 실험과 빠른 하드웨어 프로토타이핑", en: "Field experiments & rapid hardware prototyping" },
     nick:  { ko: "일단 밖에 나가 보는 실험가", en: "The experimenter who just takes it outside" },
-    strength: { ko: "실패를 두려워하지 않고 바로 실험해서, 누구보다 빨리 배워요.", en: "Unafraid of failure, you test right away and learn fastest." },
+    strength: { ko: "실패를 두려워하지 않고 바로 실험해서, 누구보다 빨리 배운다.", en: "Unafraid of failure, you test right away and learn fastest." },
     easy:  {
       ko: "자갈길, 잔디, 옆에서 밀기 같은 험한 상황에 로봇을 직접 데리고 나가 시험하고, 부서지면 고쳐서 다시 해 보는 연구예요. 파쿠르 같은 날렵한 동작도 여기 속해요.",
       en: "Taking robots onto gravel, grass, and shoves—testing, breaking, fixing, retrying. Agile skills like parkour live here too.",
@@ -228,7 +228,7 @@ export const TYPES = {
     act: { ko: "원격 조종자의 팔을 그대로 따라 하는 중", en: "Mirroring a remote operator's arms" },
     field: { ko: "VR 원격조종 시스템", en: "VR teleoperation systems" },
     nick:  { ko: "사람과 로봇을 잇는 연결자", en: "The connector between human and robot" },
-    strength: { ko: "쓰는 사람의 불편을 먼저 챙겨서, 누구나 편한 시스템을 만들어요.", en: "You put users first and build systems anyone can use." },
+    strength: { ko: "쓰는 사람의 불편을 먼저 챙겨서, 누구나 편한 시스템을 만든다.", en: "You put users first and build systems anyone can use." },
     easy:  {
       ko: "사람이 VR 헤드셋을 쓰고 고개를 돌리면 로봇 머리의 카메라도 같이 돌아가요. 사람이 로봇의 눈으로 보며 조종하고, 그 기록이 로봇의 학습 데이터가 돼요.",
       en: "Turn your head in a VR headset and the robot's head camera turns too. You operate the robot through its eyes, and those sessions become its training data.",
@@ -246,7 +246,7 @@ export const TYPES = {
     act: { ko: "사람의 춤을 그대로 따라 추는 중 (사람 모션캡처)", en: "Dancing a person's moves (human mocap)" },
     field: { ko: "사람 전신 모션 모방", en: "Human whole-body motion imitation" },
     nick:  { ko: "사람의 움직임을 로봇에 옮기는 퍼포머", en: "The performer who makes robots move like people" },
-    strength: { ko: "현장의 에너지를 살려서, 사람들이 로봇의 움직임을 즐기게 만들어요.", en: "Your live energy makes people enjoy watching robots move." },
+    strength: { ko: "현장의 에너지를 살려서, 사람들이 로봇의 움직임을 즐기게 만든다.", en: "Your live energy makes people enjoy watching robots move." },
     easy:  {
       ko: "사람의 춤이나 동작을 찍어서 로봇이 그대로 따라 하게 만드는 연구예요. 사람 몸과 로봇 몸의 차이를 맞추는 '리타겟팅'이 핵심이에요.",
       en: "Capturing human dance and motion and having the robot follow it. The key is \"retargeting\"—bridging the gap between human and robot bodies.",
@@ -264,7 +264,7 @@ export const TYPES = {
     act: { ko: "보고, 집고, 옮기는 전체 동작", en: "See, grasp, move: the whole pipeline" },
     field: { ko: "VLA 기반 전신 시스템 통합", en: "VLA-based whole-system integration" },
     nick:  { ko: "로봇의 두뇌를 조립하는 총괄", en: "The architect who assembles the robot brain" },
-    strength: { ko: "여러 팀과 기술을 한 방향으로 묶어, 아이디어를 실제 시스템으로 완성해요.", en: "You align teams and tech to turn ideas into working systems." },
+    strength: { ko: "여러 팀과 기술을 한 방향으로 묶어, 아이디어를 실제 시스템으로 완성한다.", en: "You align teams and tech to turn ideas into working systems." },
     easy:  {
       ko: "보고(Vision), 말을 이해하고(Language), 움직이는(Action) 걸 하나의 큰 모델로 묶은 게 VLA예요. 이 모델을 실제 휴머노이드의 몸, 센서, 제어기와 연결해 하나의 시스템으로 만드는 일이에요.",
       en: "A VLA model bundles seeing (Vision), understanding words (Language), and moving (Action). You wire it into a real humanoid's body, sensors, and controllers as one system.",
@@ -282,7 +282,7 @@ export const TYPES = {
     act: { ko: "뻗었다 빗나가면 코드를 고쳐 다시 뻗는 중", en: "Reaching, missing, fixing the code, reaching again" },
     field: { ko: "Code as Policies: 로봇 코드를 쓰고 고치는 LLM", en: "Code as Policies: LLMs that write & fix robot code" },
     nick:  { ko: "로봇에게 코드로 말을 거는 해커", en: "The hacker who talks to robots in code" },
-    strength: { ko: "새로운 조합을 겁 없이 시도해서, 막힌 문제의 우회로를 찾아내요.", en: "You fearlessly try new combinations and find a way around blockers." },
+    strength: { ko: "새로운 조합을 겁 없이 시도해서, 막힌 문제의 우회로를 찾아낸다.", en: "You fearlessly try new combinations and find a way around blockers." },
     easy:  {
       ko: "\"컵을 왼쪽으로 옮겨 줘\"라고 하면 언어 모델이 로봇 동작 코드를 직접 써요. 실행해 보고 실패하면 에러를 읽고 코드를 스스로 고쳐요. 학습용 보상 함수 코드를 쓰게 하기도 해요.",
       en: "Say \"move the cup left\" and a language model writes the robot's code. It runs it, reads the error when it fails, and fixes the code itself. It can even write reward functions for training.",
@@ -300,7 +300,7 @@ export const TYPES = {
     act: { ko: "둘러보고 계획한 뒤 순서대로 집는 중", en: "Looking around, planning, then picking in order" },
     field: { ko: "언어 지시 기반 멀티스텝 작업 계획", en: "Language-guided multi-step task planning" },
     nick:  { ko: "큰 일을 작은 단계로 나누는 리더", en: "The leader who breaks big tasks into steps" },
-    strength: { ko: "사람들의 의도를 잘 읽고 이끌어서, 복잡한 일을 함께 해내게 해요.", en: "You read intentions and lead people through complex work together." },
+    strength: { ko: "사람들의 의도를 잘 읽고 이끌어서, 복잡한 일을 함께 해내게 한다.", en: "You read intentions and lead people through complex work together." },
     easy:  {
       ko: "\"부엌 좀 치워 줘\" 같은 큰 지시를 로봇이 할 수 있는 작은 단계로 나눠요. 하다가 상황이 바뀌거나 사람이 말을 걸면 계획을 다시 짜요.",
       en: "Breaking a big request like \"tidy the kitchen\" into small steps the robot can actually do—and replanning when things change or someone chimes in.",
@@ -318,7 +318,7 @@ export const TYPES = {
     act: { ko: "둘러보다가 다가가서 다시 보는 중", en: "Looking around, then leaning in to look again" },
     field: { ko: "Agentic Vision: 다시 들여다보는 에이전트", en: "Agentic vision: agents that look again" },
     nick:  { ko: "궁금하면 다시 들여다보는 탐험가", en: "The explorer who looks again when curious" },
-    strength: { ko: "끝없는 호기심으로 '한 번 더 보기'를 즐기며, 새로운 가능성을 발견해요.", en: "Endless curiosity loves a second look and spots new possibilities." },
+    strength: { ko: "끝없는 호기심으로 '한 번 더 보기'를 즐기며, 새로운 가능성을 발견한다.", en: "Endless curiosity loves a second look and spots new possibilities." },
     easy:  {
       ko: "한 번 보고 끝내지 않아요. 잘 안 보이면 확대하고, 잘라 보고, 코드를 돌려 세어 보고, 고개를 돌려 다시 봐요. 이렇게 '어떻게 볼지'를 스스로 고르는 비전 에이전트를 연구해요.",
       en: "It doesn't stop at one glance. If unclear, it zooms, crops, runs code to count, or turns its head to look again—vision agents that choose how to look.",
