@@ -180,7 +180,7 @@ const MOTIONS = {
 };
 
 // Real human motion capture (LAFAN1, retargeted to G1 by Unitree) for these motions.
-const CLIPS = { walk: "walk1", step: "run1", dance: "dance1", hop: "jumps1" };
+const CLIPS = { walk: "walk1", step: "run1", dance: "dance1", hop: "jumps1", fallup: "fall1" };
 const clipCache = {};
 function loadClip(name) {
   clipCache[name] ??= fetch(`assets/motions/${name}.json`).then((r) => r.json());
@@ -198,6 +198,7 @@ const SCENES = {
   walk: { kind: "floor", speed: 0.55, status: () => "sidewalk · curb 0.9 m left" },
   step: { kind: "floor", speed: 0.9, status: () => "control loop 500 Hz" },
   hop: { kind: "floor", speed: 0.5, status: () => "landing · absorb impact" },
+  fallup: { kind: "field", status: (p, q) => !q || q._z > 0.72 ? "rough-ground test · logging" : q._z < 0.4 ? "fall detected → recovery" : "getting up…" },
   scan: { kind: "room", status: () => "mapping · 3D memory +1" },
   lookagain: { kind: "room", loop: 7, zoom: true, status: (p) => p < 0.45 ? "scan · unsure" : p < 0.85 ? "zoom ×2 · look again" : "confident ✓",
     conf: (p) => p < 0.45 ? 0.5 : p < 0.85 ? 0.95 : 0.9 },
@@ -229,6 +230,12 @@ function noise(g, w, h, n, r, colorFn) {
   for (let i = 0; i < n; i++) { g.fillStyle = colorFn(r()); g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
 }
 const TEX = {
+  dirt: (g, w, h) => {
+    const r = rand(17);
+    g.fillStyle = "#4a4234"; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 40; i++) { g.fillStyle = `rgba(${90 + r() * 40},${80 + r() * 30},${60 + r() * 20},0.25)`; g.beginPath(); g.ellipse(r() * w, r() * h, 10 + r() * 30, 6 + r() * 20, r() * 3, 0, 7); g.fill(); }
+    noise(g, w, h, 5000, r, (v) => v > 0.5 ? `rgba(160,150,130,${0.25 + v * 0.3})` : `rgba(20,16,10,${0.2 + v * 0.3})`); // gravel
+  },
   marble: (g, w, h) => {
     const r = rand(21);
     g.fillStyle = "#e9e6df"; g.fillRect(0, 0, w, h);
@@ -747,6 +754,45 @@ export async function mountRobot(el, parts, motion) {
     credit.textContent = "human video: SMPL render (Loper et al. 2015)";
     el.appendChild(credit);
   }
+  if (sc.kind === "field") {
+    // outdoor test field: dirt and gravel, rocks, grass, a slope, a marked test zone, field gear
+    floor.material.map = canvasTex(THREE, 256, 256, TEX.dirt, [10, 10]);
+    floor.material.needsUpdate = true;
+    sky.visible = false;
+    const rockM = std({ color: 0x7a7468, roughness: 0.95, flatShading: true });
+    const r = rand(29);
+    for (let i = 0; i < 26; i++) { // rocks around the clear test spot
+      const a = r() * Math.PI * 2, d = 1.0 + r() * 2.2, sz = 0.04 + r() * 0.16 * (d > 2 ? 1.6 : 1);
+      if (Math.cos(a) * d > 0.6 && Math.sin(a) * d > 0.4) continue; // keep the camera side open
+      const rock = add(new THREE.DodecahedronGeometry(sz, 0), rockM, Math.cos(a) * d, sz * 0.5, Math.sin(a) * d - 0.3);
+      rock.rotation.set(r() * 3, r() * 3, r() * 3); rock.scale.set(1, 0.6 + r() * 0.4, 1);
+    }
+    const grassM = std({ color: 0x5d7a3a, roughness: 0.9 });
+    for (let i = 0; i < 18; i++) { // grass tufts
+      const a = r() * Math.PI * 2, d = 0.9 + r() * 2.4;
+      const tuft = new THREE.Group();
+      for (let k = 0; k < 7; k++) { const b = new THREE.Mesh(new THREE.ConeGeometry(0.008, 0.12 + r() * 0.1, 4), grassM); b.position.set((r() - 0.5) * 0.08, 0.06, (r() - 0.5) * 0.08); b.rotation.set((r() - 0.5) * 0.6, 0, (r() - 0.5) * 0.6); tuft.add(b); }
+      tuft.position.set(Math.cos(a) * d, 0, Math.sin(a) * d - 0.4); env.add(tuft);
+    }
+    const slopeShape = new THREE.Shape(); slopeShape.moveTo(0, 0); slopeShape.lineTo(1.6, 0); slopeShape.lineTo(1.6, 0.45); slopeShape.lineTo(0, 0);
+    const slope = add(new THREE.ExtrudeGeometry(slopeShape, { depth: 1.2, bevelEnabled: false }), std({ map: canvasTex(THREE, 256, 256, TEX.dirt, [2, 2]), roughness: 0.95 }), -0.3, 0, -1.9);
+    // test zone: cones with yellow rope
+    const orange = std({ color: 0xe8642c, roughness: 0.5 }), rope = std({ color: 0xf2c230, roughness: 0.6 });
+    const corners = [[-1.0, -0.9], [1.0, -0.9], [1.0, 0.9], [-1.0, 0.9]];
+    corners.forEach(([x, z]) => { add(new THREE.ConeGeometry(0.07, 0.24, 20), orange, x, 0.12, z); });
+    corners.forEach(([x, z], i) => {
+      const [x2, z2] = corners[(i + 1) % 4];
+      if (i === 1 || i === 2) return; // leave the camera side open
+      const len = Math.hypot(x2 - x, z2 - z);
+      const line = add(new THREE.CylinderGeometry(0.006, 0.006, len, 6), rope, (x + x2) / 2, 0.2, (z + z2) / 2, false);
+      line.rotation.z = Math.PI / 2; line.rotation.y = -Math.atan2(z2 - z, x2 - x);
+    });
+    // field gear: crate + laptop, red toolbox
+    const crate = add(RB(0.45, 0.4, 0.4, 0.02), std({ color: 0x8b6a45, roughness: 0.85 }), -1.5, 0.2, -0.6);
+    const lap = P.laptop(); lap.g.position.set(-1.5, 0.41, -0.6); lap.g.rotation.y = 0.9; env.add(lap.g);
+    add(RB(0.36, 0.16, 0.18, 0.02), std({ color: 0xb3261e, roughness: 0.5, metalness: 0.3 }), -1.2, 0.08, -0.15);
+    targets.push({ obj: slope, label: "slope 16°", color: "#d6c27f" });
+  }
   const passing = []; // props that slide past while walking
   if (sc.kind === "floor") {
     floorTex.repeat.set(10, 10); // big sidewalk slabs
@@ -828,7 +874,7 @@ export async function mountRobot(el, parts, motion) {
       const f = Math.floor((((t + 0.25) * 1.1) % 1) * 24);
       demo.tex.offset.set((f % 6) / 6, 1 - (Math.floor(f / 6) + 1) / 4);
     }
-    statusEl.textContent = sc.status ? sc.status(((t % (sc.loop || 1e9)) / (sc.loop || 1e9))) : "";
+    statusEl.textContent = sc.status ? sc.status(((t % (sc.loop || 1e9)) / (sc.loop || 1e9)), fn(t)) : "";
     if (!item) return;
     const L = sc.loop || 6;
     if (t % L < lastT % L) { item.position.copy(pickPos); held = false; } // new loop: reset

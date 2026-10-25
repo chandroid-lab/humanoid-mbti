@@ -197,8 +197,8 @@ export const TYPES = {
   ESTP: {
     stage: "fix",
     body: ["legs"],
-    motion: "hop",
-    act: { ko: "점프하고 착지하는 연습 중 (사람 모션캡처)", en: "Jumping and landing (human mocap)" },
+    motion: "fallup",
+    act: { ko: "야외 시험장에서 넘어졌다 스스로 일어나는 중 (사람 모션캡처)", en: "Falling and getting back up at the field test (human mocap)" },
     field: { ko: "험한 지형 실험과 빠른 하드웨어 프로토타이핑", en: "Field experiments & rapid hardware prototyping" },
     nick:  { ko: "일단 밖에 나가 보는 실험가", en: "The experimenter who just takes it outside" },
     easy:  {
