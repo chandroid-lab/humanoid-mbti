@@ -1,7 +1,7 @@
 import { STAGES, AXES, TYPES, PARTS, PAIRS, QUIZ, UI, EVIDENCE, opposite, pairKey } from "./data.js";
 import { PAPERS } from "./papers.js";
 import { FIGS } from "./figs.js";
-import { vote, subscribe, statsEnabled } from "./stats.js";
+import { voteOnce, subscribe, statsEnabled } from "./stats.js";
 import { drawCard } from "./card.js";
 
 const app = document.getElementById("app");
@@ -163,6 +163,8 @@ function resultHTML(type) {
   const parts = d.body.map((p) => esc(t(PARTS[p]))).join(", ");
 
   return `<div class="fade-in">
+    <button class="btn btn-ghost again" data-act="reset" style="margin-top:12px">← ${L2("다른 MBTI 해보기", "Try another MBTI")}</button>
+    <div class="vote-note" id="voteNote">${voteNoteText()}</div>
     <section class="blk">
       <div class="blk-h"><span>${L2("결과", "Result")} / ${type}</span><span>agentic-vision.loop</span></div>
       <div class="robot" id="robot" aria-label="${L2("휴머노이드 3D 모델", "3D humanoid model")}"><div class="loading">${L2("3D 모델 불러오는 중…", "loading 3D model…")}</div></div>
@@ -195,17 +197,22 @@ function resultHTML(type) {
       <p class="small muted">${esc(t(UI.oppClaim))}</p>
       <div class="vs"><span class="me">${type}</span><span class="arrow">⇄</span><span class="them">${opp}</span></div>
       ${statsEnabled ? `<div class="room" id="roomOpp" data-opp="${opp}">${roomText(opp)}</div>` : ""}
+      <div class="oppviz">
+        <div class="robot" id="robotOpp" aria-label="${opp} 3D"><div class="loading">${L2("3D 모델 불러오는 중…", "loading 3D model…")}</div></div>
+        <div class="robot-cap"><span><span class="mono" style="color:var(--gold-bright)">▶</span> ${esc(t(o.act))}</span><span class="hint">${opp}</span></div>
+      </div>
       <div class="field-name">${esc(t(o.field))}</div>
       <div class="nick" style="margin-bottom:8px">${esc(t(o.nick))}</div>
       <p>${esc(t(o.easy))}</p>
       <div class="tags">${o.tools.map((x) => `<span class="tag">${esc(x)}</span>`).join("")}</div>
+      ${figHTML(opp)}
       <div class="quote"><h3>${esc(t(UI.synergyTitle))}</h3><p class="muted" style="margin:0">${esc(t(PAIRS[pairKey(type, opp)]))}</p></div>
       ${oppStarter.length ? `<div class="lbl">${esc(t(UI.oppPapers))}</div>${oppStarter.map(paperHTML).join("")}` : ""}
       ${evidence}
       <a class="btn btn-ghost" href="#/r/${opp}">${opp} ${L2("결과 전체 보기", "full result")} →</a>`, "opp")}
 
     <button class="btn btn-gold" data-act="save" data-type="${type}">${esc(t(UI.save))}</button>
-    <a class="btn btn-ghost" href="#/">${esc(t(UI.back))}</a>
+    <button class="btn btn-ghost" data-act="reset">← ${L2("다른 MBTI 해보기", "Try another MBTI")}</button>
 
     ${blk(`05 / ${esc(t(UI.allTypes))}`, "16", `<div class="grid16">${grid}</div>`)}
     <p class="disclaimer">${esc(t(UI.disclaimer))}</p>
@@ -229,27 +236,39 @@ function ensureRoomSub() {
 }
 
 /* ---------- 3D robot ---------- */
-let robotCleanup = null;
+let robotCleanups = [];
+function cleanupRobots() { robotCleanups.forEach((c) => c()); robotCleanups = []; }
 async function mountRobotFor(type) {
-  robotCleanup?.();
-  robotCleanup = null;
-  const el = document.getElementById("robot");
-  if (!el) return;
-  try {
-    const { mountRobot } = await import("./robot.js");
-    const cleanup = await mountRobot(el, TYPES[type].body, TYPES[type].motion);
-    if (el.isConnected) { robotCleanup = cleanup; el.querySelector(".loading")?.remove(); } else cleanup();
-  } catch (e) {
-    console.warn("3D model failed", e);
-    const l = el.querySelector(".loading");
-    if (l) l.textContent = lang === "ko" ? "3D 모델을 불러오지 못했어요" : "Could not load the 3D model";
+  cleanupRobots();
+  const jobs = [["robot", type], ["robotOpp", opposite(type)]];
+  let mod;
+  try { mod = await import("./robot.js"); } catch (e) { console.warn("3D failed", e); return; }
+  for (const [id, ty] of jobs) { // one after another, so phones don't load both at once
+    const el = document.getElementById(id);
+    if (!el) continue;
+    try {
+      const cleanup = await mod.mountRobot(el, TYPES[ty].body, TYPES[ty].motion);
+      if (el.isConnected) { robotCleanups.push(cleanup); el.querySelector(".loading")?.remove(); } else cleanup();
+    } catch (e) {
+      console.warn("3D model failed", e);
+      const l = el.querySelector(".loading");
+      if (l) l.textContent = lang === "ko" ? "3D 모델을 불러오지 못했어요" : "Could not load the 3D model";
+    }
   }
 }
 
+/* ---------- vote state ---------- */
+let voteState = null; // "counted" | "already" | "off" | null (browsing via links)
+function voteNoteText() {
+  if (voteState === "counted") return lang === "ko" ? "✓ 이 결과가 현장 집계에 반영됐어요" : "✓ This result was added to the live stats";
+  if (voteState === "already") return lang === "ko" ? "이미 참여했어요 · 이 결과는 둘러보기라 집계되지 않아요" : "You already took part · this one is just browsing";
+  return "";
+}
+
 /* ---------- router ---------- */
+let lastRoute = "";
 function render(scroll = true) {
-  robotCleanup?.();
-  robotCleanup = null;
+  cleanupRobots();
   const h = location.hash.replace(/^#\/?/, "");
   if (h === "quiz") {
     quiz ??= { i: 0, votes: {} };
@@ -261,15 +280,26 @@ function render(scroll = true) {
     mountRobotFor(type);
   } else {
     quiz = null;
+    if (lastRoute.startsWith("r/")) for (const k of Object.keys(picks)) delete picks[k]; // back from a result: start fresh
     app.innerHTML = homeHTML();
   }
+  lastRoute = h;
   if (scroll) window.scrollTo(0, 0);
 }
-window.addEventListener("hashchange", () => { paperTab = "foundational"; render(); });
+let fromPick = false; // true right after the visitor picked or finished the quiz
+window.addEventListener("hashchange", () => {
+  paperTab = "foundational";
+  if (!fromPick) voteState = null; // links from the grid etc. are browsing
+  fromPick = false;
+  render();
+});
 
 function showResult(type) {
-  vote(type); // only counted when the visitor picks or finishes the quiz, not when browsing
+  // only the first pick/quiz on this device counts; links and later tries are browsing
+  voteState = null;
+  voteOnce(type).then((st) => { voteState = st; const n = document.getElementById("voteNote"); if (n) n.textContent = voteNoteText(); });
   quiz = null;
+  fromPick = true;
   location.hash = `#/r/${type}`;
 }
 
@@ -283,6 +313,10 @@ app.addEventListener("click", (e) => {
     render(false);
   } else if (act === "go") {
     showResult(AXES.map((a) => picks[a.key]).join(""));
+  } else if (act === "reset") {
+    for (const k of Object.keys(picks)) delete picks[k];
+    quiz = null; voteState = null;
+    location.hash = "#/";
   } else if (act === "quiz") {
     quiz = { i: 0, votes: {} };
     location.hash = "#/quiz";

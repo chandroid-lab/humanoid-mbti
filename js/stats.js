@@ -28,6 +28,22 @@ function deviceId() {
   return id;
 }
 
+// Count a device only once (until the admin resets): later results are "browsing".
+// Returns "counted", "already" or "off".
+export async function voteOnce(type) {
+  try {
+    const f = await getDb();
+    if (!f) return "off";
+    const r = f.ref(f.db, `votes/${deviceId()}`);
+    if ((await f.get(r)).exists()) return "already";
+    await f.set(r, type);
+    return "counted";
+  } catch (e) {
+    console.warn("vote failed", e);
+    return "off";
+  }
+}
+
 export async function vote(type) {
   try {
     const f = await getDb();

@@ -1,5 +1,6 @@
 import { AXES, TYPES, STAGES, opposite } from "./data.js";
 import { subscribe, statsEnabled } from "./stats.js";
+import { FIGS } from "./figs.js";
 
 const params = new URLSearchParams(location.search);
 const demo = params.has("demo");
@@ -142,9 +143,17 @@ function loopHTML(counts, total) {
 }
 
 // Big overlay for one type, for explaining it during the talk.
+// Big overlay for one type: 3D scene of the field on the left, explanation on the right.
+let ovCleanup = null, ovType = null;
 function renderOverlay() {
   const k = openType, d = TYPES[k], o = opposite(k);
   let ov = document.getElementById("overlay");
+  const n = last.counts[k] || 0;
+  if (ov && ovType === k) { // live data changed: only update the count, keep the 3D view running
+    const c = ov.querySelector(".ovcount span"); if (c) c.textContent = n;
+    return;
+  }
+  ovCleanup?.(); ovCleanup = null;
   if (!ov) {
     ov = document.createElement("div");
     ov.id = "overlay";
@@ -152,7 +161,8 @@ function renderOverlay() {
     ov.addEventListener("click", (e) => { if (e.target === ov || e.target.closest("[data-close]")) closeOverlay(); });
     document.getElementById("live").appendChild(ov); // inside .viz-root so the color tokens apply
   }
-  const n = last.counts[k] || 0;
+  ovType = k;
+  const f = FIGS[k];
   ov.innerHTML = `<div class="ovbox" role="dialog" aria-modal="true" aria-label="${k}">
     <button class="ovclose" data-close>${t(L.close)}</button>
     <div class="ovtop">
@@ -161,22 +171,34 @@ function renderOverlay() {
     </div>
     <div class="ovfield">${d.field[lang]}</div>
     <div class="ovstages">${Object.entries(STAGES).map(([st, v]) => `<span class="${st === d.stage ? "on" : ""}">${v.en}</span>`).join("")}</div>
-    <div class="ovgrid">
-      <div><h3>${t(L.easy)}</h3><p>${d.easy[lang]}</p></div>
-      <div><h3>${t(L.barrier)}</h3><p>${d.barrier[lang]}</p>
-        <h3 style="margin-top:22px">${t(L.oppStudy)}: <span class="ovopp">${o}</span></h3><p>${TYPES[o].field[lang]}</p></div>
+    <div class="ovmain">
+      <div class="ovviz"><div class="robot ovrobot" id="ovRobot"><div class="loading">loading 3D…</div></div>
+        <div class="ovact">▶ ${d.act[lang]}</div></div>
+      <div class="ovgrid">
+        <div><h3>${t(L.easy)}</h3><p>${d.easy[lang]}</p></div>
+        <div><h3>${t(L.barrier)}</h3><p>${d.barrier[lang]}</p></div>
+        ${f ? `<figure class="ovfig"><img src="${f.img}" alt="${k} Fig. 1"><figcaption>FIG. 1 · ${f.license}</figcaption></figure>` : ""}
+        <div><h3>${t(L.oppStudy)}: <span class="ovopp">${o}</span></h3><p>${TYPES[o].field[lang]}</p></div>
+      </div>
     </div>
   </div>`;
+  import("./robot.js").then(async ({ mountRobot }) => {
+    const el = document.getElementById("ovRobot");
+    if (!el || ovType !== k) return;
+    const c = await mountRobot(el, d.body, d.motion);
+    if (ovType === k && el.isConnected) { ovCleanup = c; el.querySelector(".loading")?.remove(); } else c();
+  }).catch((e) => console.warn("3D failed", e));
 }
 function closeOverlay() {
-  openType = null;
+  openType = null; ovType = null;
+  ovCleanup?.(); ovCleanup = null;
   document.getElementById("overlay")?.remove();
 }
 
 document.getElementById("langBtn").onclick = () => { lang = lang === "ko" ? "en" : "ko"; render(); };
 document.getElementById("tableBtn").onclick = () => { showTable = !showTable; view = "types"; render(); };
 document.getElementById("viewBtn").onclick = () => { view = view === "loop" ? "types" : "loop"; render(); };
-const openCell = (el) => { if (el?.dataset.type) { openType = el.dataset.type; renderOverlay(); } };
+const openCell = (el) => { if (el?.dataset.type) { closeOverlay(); openType = el.dataset.type; renderOverlay(); } };
 document.getElementById("heat").addEventListener("click", (e) => openCell(e.target.closest(".cell")));
 document.getElementById("heat").addEventListener("keydown", (e) => { if (e.key === "Enter") openCell(e.target.closest(".cell")); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeOverlay(); });
