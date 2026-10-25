@@ -22,3 +22,7 @@ assets/smpl_wave.jpg — frames rendered from the SMPL body model (Loper et al.,
 used for non-commercial research/education under the SMPL Model License. Only rendered images are included; the SMPL model data is not redistributed.
 
 assets/g1.glb, assets/g1.json — see LICENSE-unitree-g1.txt.
+
+assets/motions/*.json — short loops from the LAFAN1 motion-capture dataset (Ubisoft La Forge, Harvey et al., SIGGRAPH 2020,
+https://github.com/ubisoft/ubisoft-laforge-animation-dataset, CC BY-NC-ND 4.0), as retargeted to Unitree G1 by Unitree
+(https://huggingface.co/datasets/lvhaidong/LAFAN1_Retargeting_Dataset). Used for non-commercial education.

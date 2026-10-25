@@ -20,10 +20,10 @@
       --seq: 74, 143, 216; /* single-hue sequential, as rgb for alpha steps */
     }
     body { overflow-x: hidden; }
-    .live { display: grid; grid-template-columns: minmax(280px, 0.8fr) 1.6fr; gap: 28px; padding: 28px 36px; min-height: 100dvh; max-width: 1600px; margin: 0 auto; }
+    .live { display: grid; grid-template-columns: minmax(300px, 0.95fr) 1.6fr; gap: 28px; padding: 28px 36px; min-height: 100dvh; max-width: 1600px; margin: 0 auto; }
     .left { display: flex; flex-direction: column; gap: 18px; }
     .live h1 { font-size: clamp(26px, 2.6vw, 40px); margin: 0; white-space: normal; }
-    .qr { background: #fff; border-radius: 18px; padding: 16px; width: 100%; max-width: 360px; aspect-ratio: 1; }
+    .qr { background: #fff; border-radius: 18px; padding: 16px; width: 100%; max-width: min(470px, 50vh); aspect-ratio: 1; }
     .qr svg { width: 100%; height: 100%; display: block; }
     .url { font-size: 15px; color: var(--text-secondary); word-break: break-all; }
     .hero { display: flex; gap: 14px; }
@@ -61,6 +61,10 @@
     .tools { display: flex; gap: 8px; }
     .tools button, .tools a { background: none; border: 1px solid var(--line); color: var(--text-secondary); border-radius: 0; padding: 6px 12px; font-size: 13px; cursor: pointer; text-decoration: none; }
     .cell { cursor: pointer; }
+    .robotpanel { display: flex; flex-direction: column; padding-bottom: 0; }
+    .liverobot { height: 300px; margin: 0 -20px; border-top: 1px solid var(--line); }
+    .liveact { font-size: 14px; color: var(--text-primary); padding: 8px 0 12px; min-height: 1.5em; }
+    .liveact b { font-family: var(--mono); color: var(--gold-bright); }
     .panel h2 { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
     .hero .num, .cell .n, .cell .k, .lnum, .ovtype, .ovcount span, .pairs li .p, .pairs li .c, .axisrow .lab { font-family: var(--mono); }
     .hero .cap, .notice { font-size: 13px; }
@@ -102,6 +106,15 @@
     .ovfig img { width: 100%; max-height: 200px; object-fit: contain; display: block; }
     .ovfig figcaption { background: var(--surface-1); color: var(--text-secondary); font-family: var(--mono); font-size: 12px; padding: 4px 8px; }
     .ovgrid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    .ovpapers { list-style: none; margin: 0; padding: 0; }
+    .ovpapers li { padding: 7px 0; border-top: 1px dashed var(--line); font-size: 15px; line-height: 1.4; }
+    .ovpapers li:first-child { border-top: 0; padding-top: 0; }
+    .ovpapers a { color: var(--text-primary); text-decoration: none; font-weight: 600; }
+    .ovpapers a:hover { color: var(--cb); text-decoration: underline; }
+    .ovpapers .pm { display: block; font-family: var(--mono); font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+    .ovpapers .pm a { font-weight: 400; color: var(--cb); }
+    .ovpapers .tag { font-family: var(--mono); font-size: 11px; padding: 1px 6px; margin-right: 6px; border: 1px solid var(--line); color: var(--text-secondary); }
+    .ovpapers .tag.new { color: #14110a; background: var(--gold-bright); border-color: var(--gold-bright); }
     .ovgrid h3 { font-size: 15px; color: var(--cb-strong); letter-spacing: 0.04em; margin: 0 0 8px; }
     .ovgrid p { font-size: clamp(17px, 1.6vw, 22px); line-height: 1.6; margin: 0; }
     .ovopp { color: var(--gold-bright); }
@@ -134,7 +147,7 @@
       </div>
       <div class="two">
         <div class="panel"><h2 id="axisTitle"></h2><div id="axes"></div></div>
-        <div class="panel"><h2 id="pairsTitle"></h2><ul class="pairs" id="pairs"></ul></div>
+        <div class="panel robotpanel"><h2 id="robotTitle"></h2><div class="robot liverobot" id="liveRobot"><div class="loading">loading 3D…</div></div><div class="liveact" id="liveAct"></div></div>
       </div>
     </section>
   </div>

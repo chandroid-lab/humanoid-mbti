@@ -62,7 +62,7 @@ export const TYPES = {
     stage: "act",
     body: ["torso"],
     motion: "step",
-    act: { ko: "빠르게 발을 구르며 실시간으로 균형 잡는 중", en: "Stepping fast, balancing in real time" },
+    act: { ko: "달리면서 실시간으로 균형 잡는 중 (사람 모션캡처)", en: "Running, balancing in real time (human mocap)" },
     field: { ko: "실시간 제어 루프와 엣지 추론", en: "Real-time control loops & edge inference" },
     nick:  { ko: "1밀리초를 다루는 장인", en: "The craftsperson of milliseconds" },
     easy:  {
@@ -181,7 +181,7 @@ export const TYPES = {
     stage: "act",
     body: ["legs", "head"],
     motion: "walk",
-    act: { ko: "지형을 보며 걷는 중", en: "Walking while watching the terrain" },
+    act: { ko: "인도를 보며 걷는 중 (사람 모션캡처)", en: "Walking while watching the sidewalk (human mocap)" },
     field: { ko: "시각 기반 보행과 sim-to-real 평가 체계", en: "Perceptive locomotion & sim-to-real evaluation" },
     nick:  { ko: "수천 대를 동시에 훈련시키는 감독", en: "The coach who trains thousands at once" },
     easy:  {
@@ -198,7 +198,7 @@ export const TYPES = {
     stage: "fix",
     body: ["legs"],
     motion: "hop",
-    act: { ko: "웅크렸다 튀어 오르는 연습 중", en: "Practicing a crouch-and-spring" },
+    act: { ko: "점프하고 착지하는 연습 중 (사람 모션캡처)", en: "Jumping and landing (human mocap)" },
     field: { ko: "험한 지형 실험과 빠른 하드웨어 프로토타이핑", en: "Field experiments & rapid hardware prototyping" },
     nick:  { ko: "일단 밖에 나가 보는 실험가", en: "The experimenter who just takes it outside" },
     easy:  {
@@ -232,7 +232,7 @@ export const TYPES = {
     stage: "act",
     body: ["arms", "legs"],
     motion: "dance",
-    act: { ko: "사람의 춤을 따라 추는 중", en: "Dancing along with a person" },
+    act: { ko: "사람의 춤을 그대로 따라 추는 중 (사람 모션캡처)", en: "Dancing a person's moves (human mocap)" },
     field: { ko: "사람 전신 모션 모방", en: "Human whole-body motion imitation" },
     nick:  { ko: "사람의 움직임을 로봇에 옮기는 퍼포머", en: "The performer who makes robots move like people" },
     easy:  {

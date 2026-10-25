@@ -179,6 +179,14 @@ const MOTIONS = {
   },
 };
 
+// Real human motion capture (LAFAN1, retargeted to G1 by Unitree) for these motions.
+const CLIPS = { walk: "walk1", step: "run1", dance: "dance1", hop: "jumps1" };
+const clipCache = {};
+function loadClip(name) {
+  clipCache[name] ??= fetch(`assets/motions/${name}.json`).then((r) => r.json());
+  return clipCache[name];
+}
+
 // Work environment per motion, and how long one loop of that motion is (s).
 const SCENES = {
   pickplace: { kind: "table", loop: 6, item: "bagel", dest: "plate", status: (p) => p < 0.25 ? "detect bagel → reach" : p < 0.55 ? "grasp → carry" : p < 0.75 ? "place on plate" : "done ✓" },
@@ -189,6 +197,7 @@ const SCENES = {
   mimic: { kind: "demo", status: () => "human video → pose → retarget" },
   walk: { kind: "floor", speed: 0.55, status: () => "sidewalk · curb 0.9 m left" },
   step: { kind: "floor", speed: 0.9, status: () => "control loop 500 Hz" },
+  hop: { kind: "floor", speed: 0.5, status: () => "landing · absorb impact" },
   scan: { kind: "room", status: () => "mapping · 3D memory +1" },
   lookagain: { kind: "room", loop: 7, zoom: true, status: (p) => p < 0.45 ? "scan · unsure" : p < 0.85 ? "zoom ×2 · look again" : "confident ✓",
     conf: (p) => p < 0.45 ? 0.5 : p < 0.85 ? 0.95 : 0.9 },
@@ -363,21 +372,47 @@ export async function mountRobot(el, parts, motion) {
     if (node) J.push({ name, node, rest: node.quaternion.clone(), axis: new THREE.Vector3(...j.axis).normalize(), range: j.range });
   }
   const tmpQ = new THREE.Quaternion();
-  const fn = MOTIONS[motion] || MOTIONS.scan;
+  const pelvisNode = root.getObjectByName("pelvis");
+  const pelvisRest = pelvisNode ? { p: pelvisNode.position.clone(), q: pelvisNode.quaternion.clone() } : null;
+  let fn = MOTIONS[motion] || MOTIONS.scan;
+  let clip = null;
+  if (CLIPS[motion]) {
+    try {
+      const c = await loadClip(CLIPS[motion]);
+      const n = c.q.length, idx = Object.fromEntries(c.names.map((nm, i) => [nm, i]));
+      clip = c;
+      fn = (t) => { // interpolate between frames, loop seamlessly
+        const f = (t * c.fps) % n, i0 = Math.floor(f), i1 = (i0 + 1) % n, a = f - i0;
+        const o = { ...(motion === "walk" || motion === "step" ? {} : {}) };
+        for (const nm in idx) o[nm] = c.q[i0][idx[nm]] * (1 - a) + c.q[i1][idx[nm]] * a;
+        o._z = c.z[i0] * (1 - a) + c.z[i1] * a;
+        const q0 = c.rq[i0], q1 = c.rq[i1];
+        o._rq = new THREE.Quaternion(q0[0], q0[1], q0[2], q0[3]).slerp(new THREE.Quaternion(q1[0], q1[1], q1[2], q1[3]), a);
+        return o;
+      };
+    } catch (e) { console.warn("motion clip failed, using procedural motion", e); }
+  }
   function pose(t) {
     const q = fn(t);
     for (const j of J) {
       const v = Math.min(j.range[1], Math.max(j.range[0], q[j.name] || 0));
       j.node.quaternion.copy(j.rest).multiply(tmpQ.setFromAxisAngle(j.axis, v));
     }
-    top.position.y = topY - pelvisDrop(q);
+    if (clip && pelvisNode) { // root height and tilt straight from the motion capture
+      pelvisNode.position.set(pelvisRest.p.x, pelvisRest.p.y, q._z);
+      pelvisNode.quaternion.copy(pelvisRest.q).multiply(q._rq);
+      top.position.y = topY;
+    } else {
+      top.position.y = topY - pelvisDrop(q);
+    }
     return q;
   }
   pose(0);
   root.updateMatrixWorld(true);
 
   // ----- environment -----
-  const sc = SCENES[motion] || {};
+  const sc = { ...(SCENES[motion] || {}) };
+  if (clip && sc.kind === "floor") sc.speed = Math.max(0.2, clip.speed); // floor slides at the real walking speed
   const env = new THREE.Group();
   scene.add(env);
   const std = (o) => new THREE.MeshStandardMaterial({ roughness: 0.8, metalness: 0.05, ...o });
@@ -731,7 +766,7 @@ export async function mountRobot(el, parts, motion) {
     cab.g.position.set(-1.95, 0, 3);
     cab.g.rotation.y = Math.PI / 2;
     env.add(cab.g);
-    passing.push({ g: cab.g, z0: 3, speed: 1.8, road: roadTex });
+    passing.push({ g: cab.g, z0: 3, speed: 4.5, span: 24, road: roadTex }); // passes by now and then
     targets.push({ obj: cab.g, label: "taxi", color: "#f2b705" });
   }
 
@@ -784,7 +819,7 @@ export async function mountRobot(el, parts, motion) {
   function envStep(t) {
     if (sc.kind === "floor") { // the world slides back: the robot walks forward
       floorTex.offset.y = -((t * sc.speed) / 0.5) % 1;
-      for (const p of passing) p.g.position.z = ((((p.z0 - t * (p.speed || sc.speed)) + 3.5) % 7) + 7) % 7 - 3.5;
+      for (const p of passing) { const sp = p.span || 7; p.g.position.z = ((((p.z0 - t * (p.speed || sc.speed)) + 3.5) % sp) + sp) % sp - 3.5; }
       if (passing.length && passing[passing.length - 1].road) passing[passing.length - 1].road.offset.y = -((t * sc.speed) / 1.33) % 1;
     }
     if (sc.zoom) headCam.fov = 62 - 22 * (fn(t)._zoom || 0), headCam.updateProjectionMatrix();

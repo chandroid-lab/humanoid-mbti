@@ -1,6 +1,7 @@
 import { AXES, TYPES, STAGES, opposite } from "./data.js";
 import { subscribe, statsEnabled } from "./stats.js";
 import { FIGS } from "./figs.js";
+import { PAPERS } from "./papers.js";
 
 const params = new URLSearchParams(location.search);
 const demo = params.has("demo");
@@ -17,7 +18,9 @@ const L = {
   pairCap:   { ko: "쌍의 정반대 짝이 이 방에", en: "opposite pairs in this room" },
   heat:      { ko: "유형별 분포 (숫자 = 인원)", en: "By type (number = people)" },
   axis:      { ko: "축별 비율", en: "By axis" },
-  pairs:     { ko: "정반대 짝 (서로 공부하면 시너지)", en: "Opposite pairs (study each other)" },
+  robot:     { ko: "로봇이 하는 일 (드래그해서 돌리기)", en: "What the robot does (drag to rotate)" },
+  justJoined:{ ko: "방금 참여", en: "Just joined" },
+  showing:   { ko: "둘러보기", en: "Showing" },
   table:     { ko: "표로 보기", en: "Table view" },
   chart:     { ko: "차트로 보기", en: "Chart view" },
   noStats:   { ko: "Firebase 설정 전이라 통계가 꺼져 있어요. 리허설은 주소 끝에 ?demo 를 붙이세요.", en: "Stats are off until Firebase is configured. Add ?demo to the URL to rehearse." },
@@ -31,6 +34,7 @@ const L = {
   barrier:   { ko: "기술 장벽", en: "The barrier" },
   oppStudy:  { ko: "정반대 유형", en: "Opposite type" },
   close:     { ko: "닫기 (Esc)", en: "Close (Esc)" },
+  papersH:   { ko: "읽어 볼 논문", en: "Papers to read" },
   clickHint: { ko: "칸을 누르면 크게 볼 수 있어요", en: "Click a cell to enlarge" },
 };
 const t = (o) => o[lang];
@@ -58,7 +62,7 @@ function render() {
   document.getElementById("heatTitle").textContent = view === "loop" ? t(L.loopTitle) : `${t(L.heat)} · ${t(L.clickHint)}`;
   document.getElementById("viewBtn").textContent = view === "loop" ? t(L.typesBtn) : t(L.loopBtn);
   document.getElementById("axisTitle").textContent = t(L.axis);
-  document.getElementById("pairsTitle").textContent = t(L.pairs);
+  document.getElementById("robotTitle").textContent = t(L.robot);
   document.getElementById("langBtn").textContent = lang === "ko" ? "EN" : "한국어";
   document.getElementById("tableBtn").textContent = showTable ? t(L.chart) : t(L.table);
   document.getElementById("adminBtn").textContent = lang === "ko" ? "관리자" : "Admin";
@@ -110,10 +114,7 @@ function render() {
     </div>`;
   }).join("");
 
-  document.getElementById("pairs").innerHTML = PAIR_LIST.map(([a, b]) => {
-    const m = Math.min(counts[a] || 0, counts[b] || 0);
-    return `<li class="${m ? "on" : ""}"><span class="p">${a} ⇄ ${b}</span><span class="c">${counts[a] || 0} · ${counts[b] || 0} → ${m}${lang === "ko" ? "쌍" : ""}</span></li>`;
-  }).join("");
+
 
   prev = { ...counts };
   if (openType) renderOverlay();
@@ -178,6 +179,7 @@ function renderOverlay() {
         <div><h3>${t(L.easy)}</h3><p>${d.easy[lang]}</p></div>
         <div><h3>${t(L.barrier)}</h3><p>${d.barrier[lang]}</p></div>
         ${f ? `<figure class="ovfig"><img src="${f.img}" alt="${k} Fig. 1"><figcaption>FIG. 1 · ${f.license}</figcaption></figure>` : ""}
+        <div><h3>${t(L.papersH)}</h3><ol class="ovpapers">${paperList(k)}</ol></div>
         <div><h3>${t(L.oppStudy)}: <span class="ovopp">${o}</span></h3><p>${TYPES[o].field[lang]}</p></div>
       </div>
     </div>
@@ -189,6 +191,17 @@ function renderOverlay() {
     if (ovType === k && el.isConnected) { ovCleanup = c; el.querySelector(".loading")?.remove(); } else c();
   }).catch((e) => console.warn("3D failed", e));
 }
+// two foundational + two recent papers, with links
+function paperList(k) {
+  const set = PAPERS[k];
+  if (!set) return "";
+  const esc = (x) => String(x ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const venue = (p) => (/\d{4}/.test(p.venue) ? p.venue : `${p.venue} ${p.year}`);
+  return [...set.foundational.slice(0, 2).map((p) => [p, "basic"]), ...set.recent.slice(0, 2).map((p) => [p, "new"])].map(([p, tag]) => `
+    <li><span class="tag ${tag}">${tag === "new" ? (lang === "ko" ? "최신" : "new") : (lang === "ko" ? "기초" : "basic")}</span><a href="${esc(p.arxiv)}" target="_blank" rel="noopener">${esc(p.title)}</a>
+      <span class="pm">${esc(p.authors)} · ${esc(venue(p))}${p.project ? ` · <a href="${esc(p.project)}" target="_blank" rel="noopener">project</a>` : ""}</span></li>`).join("");
+}
+
 function closeOverlay() {
   openType = null; ovType = null;
   ovCleanup?.(); ovCleanup = null;
@@ -203,8 +216,44 @@ document.getElementById("heat").addEventListener("click", (e) => openCell(e.targ
 document.getElementById("heat").addEventListener("keydown", (e) => { if (e.key === "Enter") openCell(e.target.closest(".cell")); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeOverlay(); });
 
+// ----- interactive robot: shows the latest joiner's field, otherwise cycles through types -----
+let lrCleanup = null, lrType = null, lrBusy = false, lrNext = null, lrTimer = null;
+async function showRobot(type, joined) {
+  if (lrBusy) { lrNext = [type, joined]; return; }
+  lrBusy = true;
+  try {
+    const el = document.getElementById("liveRobot");
+    const { mountRobot } = await import("./robot.js");
+    lrCleanup?.(); lrCleanup = null;
+    el.querySelectorAll("canvas, .robot-view, .rv-credit").forEach((n) => n.remove());
+    const d = TYPES[type];
+    lrCleanup = await mountRobot(el, d.body, d.motion);
+    el.querySelector(".loading")?.remove();
+    lrType = type;
+    document.getElementById("liveAct").innerHTML = `${joined ? t(L.justJoined) : t(L.showing)}: <b>${type}</b> · ${d.act[lang]}`;
+  } catch (e) { console.warn("3D failed", e); }
+  lrBusy = false;
+  if (lrNext) { const [ty, j] = lrNext; lrNext = null; showRobot(ty, j); }
+}
+const ALL_TYPES = Object.keys(TYPES);
+let cycleI = Math.floor(Math.random() * ALL_TYPES.length);
+function scheduleCycle() {
+  clearTimeout(lrTimer);
+  lrTimer = setTimeout(() => { cycleI = (cycleI + 1) % ALL_TYPES.length; showRobot(ALL_TYPES[cycleI], false); scheduleCycle(); }, 12000);
+}
+let prevCounts = null, lastSwitch = 0;
+function onCounts(counts) { // a type's count went up -> someone just joined as that type
+  if (prevCounts) {
+    const up = Object.keys(counts).find((k) => (counts[k] || 0) > (prevCounts[k] || 0));
+    if (up && performance.now() - lastSwitch > 6000) { lastSwitch = performance.now(); showRobot(up, true); scheduleCycle(); }
+  }
+  prevCounts = { ...counts };
+}
+
 drawQR();
 render();
+showRobot(ALL_TYPES[cycleI], false);
+scheduleCycle();
 
 if (demo) {
   const keys = Object.keys(TYPES);
@@ -215,7 +264,8 @@ if (demo) {
     counts[k] = (counts[k] || 0) + 1;
     last = { counts: { ...counts }, total: Object.values(counts).reduce((s, v) => s + v, 0) };
     render();
+    onCounts(last.counts);
   }, 900);
 } else {
-  subscribe((data) => { last = data; render(); });
+  subscribe((data) => { last = data; render(); onCounts(data.counts); });
 }
