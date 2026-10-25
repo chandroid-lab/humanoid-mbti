@@ -8,7 +8,7 @@
         "venue": "ICRA 2020",
         "arxiv": "https://arxiv.org/abs/1909.04947",
         "project": "https://github.com/loco-3d/crocoddyl",
-        "why_ko": "발이 땅에 닿는 순간까지 계산해 점프·공중제비 동작을 몇 밀리초 만에 짜 주는 오픈소스 도구예요.",
+        "why_ko": "발이 땅에 닿는 순간까지 계산해 점프·공중제비 동작을 몇 밀리초 만에 짜 주는 오픈소스 도구다.",
         "why_en": "Open-source solver that plans contact-rich motions like jumps and flips in milliseconds."
       },
       {
@@ -18,7 +18,7 @@
         "venue": "Annual Review of Control, Robotics, and Autonomous Systems 2021",
         "arxiv": "https://arxiv.org/abs/2010.01083",
         "project": null,
-        "why_ko": "‘무엇을 할지(작업)’와 ‘어떻게 움직일지(동작)’를 함께 계획하는 TAMP 분야의 대표 입문 리뷰예요.",
+        "why_ko": "‘무엇을 할지(작업)’와 ‘어떻게 움직일지(동작)’를 함께 계획하는 TAMP 분야의 대표 입문 리뷰다.",
         "why_en": "The go-to survey on jointly planning what to do and how to move."
       },
       {
@@ -28,7 +28,7 @@
         "venue": "IEEE T-RO 2024",
         "arxiv": "https://arxiv.org/abs/2211.11644",
         "project": null,
-        "why_ko": "미래를 미리 계산해 움직이는 MPC 같은 최적화 제어를 다리 로봇 관점에서 정리한 교과서 같은 논문이에요.",
+        "why_ko": "미래를 미리 계산해 움직이는 MPC 같은 최적화 제어를 다리 로봇 관점에서 정리한 교과서 같은 논문이다.",
         "why_en": "Textbook-style survey of MPC and trajectory optimization for legged and humanoid robots."
       }
     ],
@@ -40,7 +40,7 @@
         "venue": "ICRA 2026",
         "arxiv": "https://arxiv.org/abs/2503.04613",
         "project": "https://johnzhang3.github.io/mujoco_ilqr",
-        "why_ko": "시뮬레이터 MuJoCo로 온몸 동작을 실시간 예측·제어해 실제 휴머노이드와 사족 로봇에서 보여 줬어요.",
+        "why_ko": "시뮬레이터 MuJoCo로 온몸 동작을 실시간 예측·제어해 실제 휴머노이드와 사족 로봇에서 보여 줬다.",
         "why_en": "Simple real-time whole-body MPC with MuJoCo, demonstrated on real humanoid and quadruped hardware."
       },
       {
@@ -50,7 +50,7 @@
         "venue": "IEEE-RAS Humanoids 2025",
         "arxiv": "https://arxiv.org/abs/2509.04722",
         "project": null,
-        "why_ko": "발 디딜 곳을 정하는 상위 계획과 몸을 안정시키는 하위 MPC를 겹겹이 쌓아 실제 휴머노이드(G1)를 튼튼하게 걷게 했어요.",
+        "why_ko": "발 디딜 곳을 정하는 상위 계획과 몸을 안정시키는 하위 MPC를 겹겹이 쌓아 실제 휴머노이드(G1)를 튼튼하게 걷게 했다.",
         "why_en": "Layered MPC: a step planner atop a body-balancing controller keeps a real Unitree G1 walking robustly."
       },
       {
@@ -60,7 +60,7 @@
         "venue": "arXiv",
         "arxiv": "https://arxiv.org/abs/2508.14099",
         "project": null,
-        "why_ko": "‘손발이 어디에 닿을지’를 작업 단위로 탐색하고 온몸 궤적 최적화로 이어, 걷기와 물건 다루기를 한 번에 계획해요.",
+        "why_ko": "‘손발이 어디에 닿을지’를 작업 단위로 탐색하고 온몸 궤적 최적화로 이어, 걷기와 물건 다루기를 한 번에 계획한다.",
         "why_en": "Searches over contact changes and optimizes whole-body trajectories to plan long humanoid loco-manipulation."
       }
     ]
@@ -74,7 +74,7 @@
         "venue": "arXiv 2018 (NeurIPS 2018 version: Recurrent World Models Facilitate Policy Evolution)",
         "arxiv": "https://arxiv.org/abs/1803.10122",
         "project": "https://worldmodels.github.io/",
-        "why_ko": "AI가 머릿속에 세상을 흉내 내는 ‘꿈’ 모델을 만들고 그 안에서 연습한다는 아이디어를 대중화했어요.",
+        "why_ko": "AI가 머릿속에 세상을 흉내 내는 ‘꿈’ 모델을 만들고 그 안에서 연습한다는 아이디어를 대중화했다.",
         "why_en": "Popularized learning a model of the world and training the agent inside its dreams."
       },
       {
@@ -84,7 +84,7 @@
         "venue": "ECCV 2020",
         "arxiv": "https://arxiv.org/abs/2003.08934",
         "project": "https://www.matthewtancik.com/nerf",
-        "why_ko": "사진 몇 장으로 3D 공간을 신경망에 저장해 새로운 시점의 장면까지 그려 내는 기술의 시작이에요.",
+        "why_ko": "사진 몇 장으로 3D 공간을 신경망에 저장해 새로운 시점의 장면까지 그려 내는 기술의 시작이다.",
         "why_en": "Stores a 3D scene inside a neural network from photos; sparked neural 3D mapping."
       },
       {
@@ -94,7 +94,7 @@
         "venue": "ICRA 2024",
         "arxiv": "https://arxiv.org/abs/2309.16650",
         "project": "https://concept-graphs.github.io/",
-        "why_ko": "방 안의 물건과 그 관계를 그래프로 기억해, 말로 시킨 일을 로봇이 계획하게 해 줘요.",
+        "why_ko": "방 안의 물건과 그 관계를 그래프로 기억해, 말로 시킨 일을 로봇이 계획하게 해 준다.",
         "why_en": "Builds a language-queryable 3D map of objects and relations that robots use for planning."
       }
     ],
@@ -106,7 +106,7 @@
         "venue": "arXiv",
         "arxiv": "https://arxiv.org/abs/2506.09985",
         "project": "https://ai.meta.com/vjepa/",
-        "why_ko": "인터넷 영상으로 배운 세계 모델로 다음 장면을 예측하고, 처음 보는 환경에서 로봇 팔 동작을 계획해요.",
+        "why_ko": "인터넷 영상으로 배운 세계 모델로 다음 장면을 예측하고, 처음 보는 환경에서 로봇 팔 동작을 계획한다.",
         "why_en": "Video-pretrained world model that predicts outcomes and plans robot actions zero-shot."
       },
       {
@@ -116,7 +116,7 @@
         "venue": "CoRL 2025",
         "arxiv": "https://arxiv.org/abs/2505.12705",
         "project": "https://research.nvidia.com/labs/gear/dreamgen/",
-        "why_ko": "영상 생성 모델로 ‘가상 시연 영상’을 만들어 휴머노이드가 새 동작 20여 가지를 배우게 했어요.",
+        "why_ko": "영상 생성 모델로 ‘가상 시연 영상’을 만들어 휴머노이드가 새 동작 20여 가지를 배우게 했다.",
         "why_en": "Video world models generate synthetic demos, teaching a humanoid 20+ new behaviors."
       },
       {
@@ -126,7 +126,7 @@
         "venue": "arXiv",
         "arxiv": "https://arxiv.org/abs/2501.03575",
         "project": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict1/",
-        "why_ko": "로봇·자율주행용으로 누구나 고쳐 쓸 수 있게 공개한 대형 ‘세계 모델’ 플랫폼이에요.",
+        "why_ko": "로봇·자율주행용으로 누구나 고쳐 쓸 수 있게 공개한 대형 ‘세계 모델’ 플랫폼이다.",
         "why_en": "Open-weight world foundation models that developers fine-tune for robots and physical AI."
       }
     ]
@@ -140,7 +140,7 @@
         "venue": "ICRA 2024",
         "arxiv": "https://arxiv.org/abs/2309.09919",
         "project": null,
-        "why_ko": "말로 정한 안전 규칙을 논리식으로 바꿔, LLM 로봇의 위험한 행동을 미리 걸러내는 ‘안전 칩’이에요.",
+        "why_ko": "말로 정한 안전 규칙을 논리식으로 바꿔, LLM 로봇의 위험한 행동을 미리 걸러내는 ‘안전 칩’이다.",
         "why_en": "Turns natural-language safety rules into logic that blocks unsafe LLM robot actions."
       },
       {
@@ -150,7 +150,7 @@
         "venue": "ICRA 2024 Workshop (VLMNM)",
         "arxiv": "https://arxiv.org/abs/2401.12963",
         "project": "https://auto-rt.github.io/",
-        "why_ko": "여러 로봇을 LLM이 지휘할 때 ‘로봇 헌법(안전 규칙)’과 사람의 감독으로 위험한 일을 걸러낸 대표 사례예요.",
+        "why_ko": "여러 로봇을 LLM이 지휘할 때 ‘로봇 헌법(안전 규칙)’과 사람의 감독으로 위험한 일을 걸러낸 대표 사례다.",
         "why_en": "Fleet-scale LLM robot orchestration guarded by a written robot constitution and human supervision."
       },
       {
@@ -160,7 +160,7 @@
         "venue": "ICRA 2025",
         "arxiv": "https://arxiv.org/abs/2410.13691",
         "project": "https://robopair.org/",
-        "why_ko": "교묘한 말로 LLM 로봇이 위험한 행동을 하도록 속일 수 있음을 실제 로봇으로 처음 보여 줬어요.",
+        "why_ko": "교묘한 말로 LLM 로봇이 위험한 행동을 하도록 속일 수 있음을 실제 로봇으로 처음 보여 줬다.",
         "why_en": "First to show real LLM-controlled robots can be jailbroken into harmful physical actions."
       }
     ],
@@ -172,7 +172,7 @@
         "venue": "arXiv",
         "arxiv": "https://arxiv.org/abs/2503.08663",
         "project": "https://asimov-benchmark.github.io/",
-        "why_ko": "로봇이 지켜야 할 ‘헌법(행동 원칙)’을 자동으로 만들고, 상식적 안전 판단을 시험하는 ASIMOV 벤치마크예요.",
+        "why_ko": "로봇이 지켜야 할 ‘헌법(행동 원칙)’을 자동으로 만들고, 상식적 안전 판단을 시험하는 ASIMOV 벤치마크다.",
         "why_en": "Auto-generates robot constitutions and the ASIMOV benchmark for common-sense safety."
       },
       {
@@ -182,7 +182,7 @@
         "venue": "IEEE RA-L 2026",
         "arxiv": "https://arxiv.org/abs/2503.07885",
         "project": "https://robo-guard.github.io/",
-        "why_ko": "LLM이 짠 로봇 계획을 실행 전에 검사해, 해킹 공격에도 위험 행동을 크게 줄이는 안전장치예요.",
+        "why_ko": "LLM이 짠 로봇 계획을 실행 전에 검사해, 해킹 공격에도 위험 행동을 크게 줄이는 안전장치다.",
         "why_en": "RoboGuard checks LLM robot plans before execution, sharply cutting unsafe actions under jailbreaks."
       },
       {
@@ -192,7 +192,7 @@
         "venue": "NeurIPS 2025",
         "arxiv": "https://arxiv.org/abs/2503.03480",
         "project": "https://pku-safevla.github.io/",
-        "why_ko": "보고·듣고·움직이는 VLA 모델이 학습 단계부터 안전 제약을 지키도록 길들이는 방법이에요.",
+        "why_ko": "보고·듣고·움직이는 VLA 모델이 학습 단계부터 안전 제약을 지키도록 길들이는 방법이다.",
         "why_en": "Trains vision-language-action models with explicit safety constraints built into learning."
       }
     ]
@@ -206,7 +206,7 @@
         "venue": "CoRL 2022",
         "arxiv": "https://arxiv.org/abs/2203.12601",
         "project": "https://sites.google.com/view/robot-r3m",
-        "why_ko": "사람 1인칭 영상(Ego4D)으로 미리 배운 ‘보는 눈’을 로봇에 달아 적은 시연만으로 일을 배우게 했어요.",
+        "why_ko": "사람 1인칭 영상(Ego4D)으로 미리 배운 ‘보는 눈’을 로봇에 달아 적은 시연만으로 일을 배우게 했다.",
         "why_en": "Pretrains robot vision on human egocentric video so robots learn from few demos."
       },
       {
@@ -216,7 +216,7 @@
         "venue": "arXiv",
         "arxiv": "https://arxiv.org/abs/2203.06173",
         "project": "https://tetexiao.com/projects/mvp",
-        "why_ko": "영상 일부를 가리고 맞히는 방식으로 사람 영상에서 배운 시각 표현이 로봇 제어에 통한다는 걸 보였어요.",
+        "why_ko": "영상 일부를 가리고 맞히는 방식으로 사람 영상에서 배운 시각 표현이 로봇 제어에 통한다는 걸 보였다.",
         "why_en": "Showed masked-image pretraining on human videos gives strong visual features for robot control."
       },
       {
@@ -226,7 +226,7 @@
         "venue": "CVPR 2023",
         "arxiv": "https://arxiv.org/abs/2304.08488",
         "project": "https://robo-affordances.github.io/",
-        "why_ko": "사람 영상에서 ‘물건의 어디를 잡고 어느 쪽으로 움직이는지’를 배워 로봇에 옮겼어요.",
+        "why_ko": "사람 영상에서 ‘물건의 어디를 잡고 어느 쪽으로 움직이는지’를 배워 로봇에 옮겼다.",
         "why_en": "Learns where and how to interact with objects from human videos, then transfers to robots."
       }
     ],
@@ -238,7 +238,7 @@
         "venue": "CoRL 2025",
         "arxiv": "https://arxiv.org/abs/2503.13441",
         "project": "https://human-as-robot.github.io/",
-        "why_ko": "사람을 ‘또 다른 휴머노이드’로 보고, 사람 1인칭 시연 데이터로 휴머노이드 정책을 함께 학습해요.",
+        "why_ko": "사람을 ‘또 다른 휴머노이드’로 보고, 사람 1인칭 시연 데이터로 휴머노이드 정책을 함께 학습한다.",
         "why_en": "Treats humans as humanoids, co-training humanoid policies on egocentric human demonstrations."
       },
       {
@@ -248,7 +248,7 @@
         "venue": "arXiv",
         "arxiv": "https://arxiv.org/abs/2507.12440",
         "project": "https://rchalyang.github.io/EgoVLA/",
-        "why_ko": "사람 1인칭 영상으로 손·손목 동작을 배운 VLA를 휴머노이드 양손 조작으로 옮겨요.",
+        "why_ko": "사람 1인칭 영상으로 손·손목 동작을 배운 VLA를 휴머노이드 양손 조작으로 옮긴다.",
         "why_en": "Trains a VLA on egocentric human video, then retargets hand actions to a humanoid."
       },
       {
@@ -258,7 +258,7 @@
         "venue": "ICLR 2026",
         "arxiv": "https://arxiv.org/abs/2505.11709",
         "project": "https://github.com/apple/ml-egodex",
-        "why_ko": "Apple Vision Pro로 손가락 관절까지 기록한 829시간 분량의 사람 손 조작 1인칭 영상 데이터셋이에요.",
+        "why_ko": "Apple Vision Pro로 손가락 관절까지 기록한 829시간 분량의 사람 손 조작 1인칭 영상 데이터셋이다.",
         "why_en": "Large egocentric dataset of human dexterous manipulation with tracked 3D hand poses."
       }
     ]

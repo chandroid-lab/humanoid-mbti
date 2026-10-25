@@ -94,7 +94,7 @@ export async function drawCard(type, lang) {
   y += 76 + 50;
 
   // opposite block
-  header(ctx, P, y, IW, lang === "ko" ? "정반대를 공부하세요" : "STUDY YOUR OPPOSITE", `${type} ⇄ ${opp}`);
+  header(ctx, P, y, IW, lang === "ko" ? "정반대를 공부하자" : "STUDY YOUR OPPOSITE", `${type} ⇄ ${opp}`);
   const oTop = y + 64;
   y = oTop + 110;
   ctx.font = `600 96px ${M}`; ctx.fillStyle = C.goldB; ctx.fillText(opp, P + 30, y);
@@ -117,6 +117,6 @@ export async function drawCard(type, lang) {
   out.font = `500 24px ${M}`; out.fillStyle = C.faint;
   out.fillText(location.host + location.pathname.replace(/index\.html$/, ""), P, finalH - 100);
   out.font = `400 24px ${F}`;
-  out.fillText(lang === "ko" ? "MBTI는 재미로! 진짜 기준은 오래 몰입할 수 있는 문제예요." : "MBTI is just for fun. Follow the problems you love.", P, finalH - 60);
+  out.fillText(lang === "ko" ? "MBTI는 재미로! 진짜 기준은 오래 몰입할 수 있는 문제다." : "MBTI is just for fun. Follow the problems you love.", P, finalH - 60);
   return c;
 }

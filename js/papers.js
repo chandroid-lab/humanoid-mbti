@@ -9,7 +9,7 @@ export const PAPERS = {
     "venue": "CoRL 2021",
     "arxiv": "https://arxiv.org/abs/2109.11978",
     "project": "https://leggedrobotics.github.io/legged_gym/",
-    "why_ko": "GPU 하나로 로봇 수천 대를 동시에 시뮬레이션해 몇 분 만에 걷기를 배우게 했어요.",
+    "why_ko": "GPU 하나로 로봇 수천 대를 동시에 시뮬레이션해 몇 분 만에 걷기를 배우게 했다.",
     "why_en": "Showed that thousands of simulated robots on one GPU can learn walking in minutes."
    },
    {
@@ -19,7 +19,7 @@ export const PAPERS = {
     "venue": "Science Robotics 2022",
     "arxiv": "https://arxiv.org/abs/2201.08117",
     "project": "https://leggedrobotics.github.io/rl-perceptiveloco/",
-    "why_ko": "주변 지형 지도(눈)와 몸의 감각을 합쳐 야외 산길도 안정적으로 걷게 했어요.",
+    "why_ko": "주변 지형 지도(눈)와 몸의 감각을 합쳐 야외 산길도 안정적으로 걷게 했다.",
     "why_en": "Fused terrain perception with body sensing so a legged robot could hike real outdoor trails."
    },
    {
@@ -29,7 +29,7 @@ export const PAPERS = {
     "venue": "CoRL 2022",
     "arxiv": "https://arxiv.org/abs/2211.07638",
     "project": "https://vision-locomotion.github.io/",
-    "why_ko": "지도 없이 로봇 머리의 깊이 카메라 영상만 보고 계단과 틈을 건너게 했어요.",
+    "why_ko": "지도 없이 로봇 머리의 깊이 카메라 영상만 보고 계단과 틈을 건너게 했다.",
     "why_en": "Robot climbs stairs and crosses gaps using only its onboard depth camera, no map."
    }
   ],
@@ -41,7 +41,7 @@ export const PAPERS = {
     "venue": "RSS 2025",
     "arxiv": "https://arxiv.org/abs/2502.10363",
     "project": "https://why618188.github.io/beamdojo/",
-    "why_ko": "휴머노이드가 발 디딜 곳을 보고 골라 좁은 평균대와 징검다리 위를 걸어요.",
+    "why_ko": "휴머노이드가 발 디딜 곳을 보고 골라 좁은 평균대와 징검다리 위를 걷는다.",
     "why_en": "A humanoid perceives and picks safe footholds to walk across narrow beams and stepping stones."
    },
    {
@@ -51,7 +51,7 @@ export const PAPERS = {
     "venue": "CoRL 2026",
     "arxiv": "https://arxiv.org/abs/2601.07718",
     "project": "https://project-instinct.github.io/hiking-in-the-wild/",
-    "why_ko": "깊이 카메라만으로 휴머노이드가 험한 야외 지형을 빠르게 오르내려요.",
+    "why_ko": "깊이 카메라만으로 휴머노이드가 험한 야외 지형을 빠르게 오르내린다.",
     "why_en": "Depth-camera-based humanoid that traverses rough outdoor terrain at speed, with open-source code."
    },
    {
@@ -61,7 +61,7 @@ export const PAPERS = {
     "venue": "RSS 2025",
     "arxiv": "https://arxiv.org/abs/2502.08844",
     "project": "https://playground.mujoco.org/",
-    "why_ko": "시뮬레이션 학습부터 실제 로봇 적용까지 몇 분 만에 해볼 수 있는 공개 도구예요.",
+    "why_ko": "시뮬레이션 학습부터 실제 로봇 적용까지 몇 분 만에 해볼 수 있는 공개 도구다.",
     "why_en": "Open-source GPU framework that takes robot policies from simulation to real hardware quickly."
    }
   ]
@@ -75,7 +75,7 @@ export const PAPERS = {
     "venue": "RSS 2021",
     "arxiv": "https://arxiv.org/abs/2107.04034",
     "project": "https://ashish-kmr.github.io/rma-legged-robots/",
-    "why_ko": "로봇이 걸으면서 바닥 상태나 짐 무게 변화를 눈치채고 1초도 안 돼 적응해요.",
+    "why_ko": "로봇이 걸으면서 바닥 상태나 짐 무게 변화를 눈치채고 1초도 안 돼 적응한다.",
     "why_en": "Robot adapts within a fraction of a second to new terrain, payloads, and surprises while walking."
    },
    {
@@ -85,7 +85,7 @@ export const PAPERS = {
     "venue": "Science Robotics 2024",
     "arxiv": "https://arxiv.org/abs/2303.03381",
     "project": "https://learning-humanoid-locomotion.github.io/",
-    "why_ko": "강화학습(시행착오 학습)만으로 휴머노이드가 밀려도 넘어지지 않고 야외를 걸어요.",
+    "why_ko": "강화학습(시행착오 학습)만으로 휴머노이드가 밀려도 넘어지지 않고 야외를 걷는다.",
     "why_en": "A fully learned controller let a real humanoid walk outdoors and resist pushes."
    },
    {
@@ -95,7 +95,7 @@ export const PAPERS = {
     "venue": "CoRL 2023",
     "arxiv": "https://arxiv.org/abs/2309.05665",
     "project": "https://robot-parkour.github.io/",
-    "why_ko": "카메라를 보며 높은 곳 오르기, 틈 뛰어넘기 같은 파쿠르를 로봇이 해내요.",
+    "why_ko": "카메라를 보며 높은 곳 오르기, 틈 뛰어넘기 같은 파쿠르를 로봇이 해낸다.",
     "why_en": "Low-cost robots learned vision-based parkour: climbing, leaping gaps, and crawling under obstacles."
    }
   ],
@@ -107,7 +107,7 @@ export const PAPERS = {
     "venue": "RSS 2025",
     "arxiv": "https://arxiv.org/abs/2502.01143",
     "project": "https://agile.human2humanoid.com/",
-    "why_ko": "시뮬레이션과 현실의 물리 차이를 보정해 휴머노이드가 점프·킥 같은 민첩한 동작을 해요.",
+    "why_ko": "시뮬레이션과 현실의 물리 차이를 보정해 휴머노이드가 점프·킥 같은 민첩한 동작을 한다.",
     "why_en": "Corrects sim-vs-real physics mismatch so humanoids perform agile jumps and kicks."
    },
    {
@@ -117,7 +117,7 @@ export const PAPERS = {
     "venue": "CoRL 2025",
     "arxiv": "https://arxiv.org/abs/2502.00893",
     "project": "https://toddlerbot.github.io/",
-    "why_ko": "누구나 저렴하게 만들 수 있는 오픈소스 소형 휴머노이드예요.",
+    "why_ko": "누구나 저렴하게 만들 수 있는 오픈소스 소형 휴머노이드다.",
     "why_en": "Low-cost, open-source small humanoid that anyone can build for learning research."
    },
    {
@@ -127,7 +127,7 @@ export const PAPERS = {
     "venue": "RSS 2025",
     "arxiv": "https://arxiv.org/abs/2502.12152",
     "project": "https://humanoid-getup.github.io/",
-    "why_ko": "넘어진 휴머노이드가 어떤 자세·바닥에서도 스스로 일어나는 법을 배워요.",
+    "why_ko": "넘어진 휴머노이드가 어떤 자세·바닥에서도 스스로 일어나는 법을 배운다.",
     "why_en": "Teaches real humanoids to get up by themselves from any fallen pose or terrain."
    }
   ]
@@ -141,7 +141,7 @@ export const PAPERS = {
     "venue": "IEEE Transactions on Robotics 2023",
     "arxiv": "https://arxiv.org/abs/2301.04317",
     "project": "https://humanoid-teleoperation.github.io/",
-    "why_ko": "사람이 휴머노이드를 원격 조종하는 기술 전체를 한눈에 정리한 입문용 리뷰예요.",
+    "why_ko": "사람이 휴머노이드를 원격 조종하는 기술 전체를 한눈에 정리한 입문용 리뷰다.",
     "why_en": "A comprehensive beginner-friendly overview of how humans remotely control humanoid robots."
    },
    {
@@ -151,7 +151,7 @@ export const PAPERS = {
     "venue": "Science Robotics 2024",
     "arxiv": "https://arxiv.org/abs/2203.06972",
     "project": null,
-    "why_ko": "VR 헤드셋과 착용 장비로 멀리 있는 휴머노이드 몸에 들어간 듯 조종해요.",
+    "why_ko": "VR 헤드셋과 착용 장비로 멀리 있는 휴머노이드 몸에 들어간 듯 조종한다.",
     "why_en": "Operator 'becomes' a distant humanoid through VR headset, haptics, and body tracking."
    },
    {
@@ -161,7 +161,7 @@ export const PAPERS = {
     "venue": "CoRL 2024",
     "arxiv": "https://arxiv.org/abs/2407.01512",
     "project": "https://robot-tv.github.io/",
-    "why_ko": "내 머리를 돌리면 로봇 카메라도 따라 돌고, 입체 영상으로 로봇 눈을 그대로 봐요.",
+    "why_ko": "내 머리를 돌리면 로봇 카메라도 따라 돌고, 입체 영상으로 로봇 눈을 그대로 본다.",
     "why_en": "Head-tracked stereo cameras let operators see through the robot's eyes in VR."
    }
   ],
@@ -173,7 +173,7 @@ export const PAPERS = {
     "venue": "RSS 2025",
     "arxiv": "https://arxiv.org/abs/2505.03738",
     "project": "https://amo-humanoid.github.io/",
-    "why_ko": "VR 기기로 휴머노이드 상체·허리·다리까지 한꺼번에 자연스럽게 조종해요.",
+    "why_ko": "VR 기기로 휴머노이드 상체·허리·다리까지 한꺼번에 자연스럽게 조종한다.",
     "why_en": "VR teleoperation of a humanoid's whole body, including bending and reaching low or high."
    },
    {
@@ -183,7 +183,7 @@ export const PAPERS = {
     "venue": "arXiv 2025",
     "arxiv": "https://arxiv.org/abs/2506.08931",
     "project": "https://humanoid-clone.github.io/",
-    "why_ko": "MR 헤드셋으로 위치를 계속 보정해, 오래 걸으며 하는 작업도 원격으로 정확히 해요.",
+    "why_ko": "MR 헤드셋으로 위치를 계속 보정해, 오래 걸으며 하는 작업도 원격으로 정확히 한다.",
     "why_en": "Mixed-reality headset teleop with closed-loop correction keeps humanoids accurate over long tasks."
    },
    {
@@ -193,7 +193,7 @@ export const PAPERS = {
     "venue": "ICRA 2026",
     "arxiv": "https://arxiv.org/abs/2511.02832",
     "project": "https://yanjieze.com/projects/TWIST2/",
-    "why_ko": "VR 헤드셋과 고개 돌리는 로봇 목 카메라로, 비싼 모션캡처 없이 휴머노이드 온몸을 조종해요.",
+    "why_ko": "VR 헤드셋과 고개 돌리는 로봇 목 카메라로, 비싼 모션캡처 없이 휴머노이드 온몸을 조종한다.",
     "why_en": "Portable VR headset plus a head-turning robot neck camera enables mocap-free whole-body humanoid teleop."
    }
   ]
@@ -207,7 +207,7 @@ export const PAPERS = {
     "venue": "ACM TOG (SIGGRAPH 2018)",
     "arxiv": "https://arxiv.org/abs/1804.02717",
     "project": "https://xbpeng.github.io/projects/DeepMimic/index.html",
-    "why_ko": "물리 법칙을 따르는 캐릭터가 사람 동작 영상을 따라 하도록 가르친 원조 연구예요.",
+    "why_ko": "물리 법칙을 따르는 캐릭터가 사람 동작 영상을 따라 하도록 가르친 원조 연구다.",
     "why_en": "The classic method for physics-based characters to imitate human motion-capture clips."
    },
    {
@@ -217,7 +217,7 @@ export const PAPERS = {
     "venue": "IROS 2024",
     "arxiv": "https://arxiv.org/abs/2403.04436",
     "project": "https://human2humanoid.com/",
-    "why_ko": "일반 카메라로 찍은 사람 몸동작을 휴머노이드가 실시간으로 따라 해요.",
+    "why_ko": "일반 카메라로 찍은 사람 몸동작을 휴머노이드가 실시간으로 따라 한다.",
     "why_en": "A humanoid copies a person's whole-body motion in real time from a simple RGB camera."
    },
    {
@@ -227,7 +227,7 @@ export const PAPERS = {
     "venue": "RSS 2024",
     "arxiv": "https://arxiv.org/abs/2402.16796",
     "project": "https://expressive-humanoid.github.io/",
-    "why_ko": "사람 동작 데이터를 배워 휴머노이드가 춤추고 악수하는 표현력 있는 움직임을 해요.",
+    "why_ko": "사람 동작 데이터를 배워 휴머노이드가 춤추고 악수하는 표현력 있는 움직임을 한다.",
     "why_en": "Humanoid learns expressive upper-body motions like dancing and handshakes from human data."
    }
   ],
@@ -239,7 +239,7 @@ export const PAPERS = {
     "venue": "CoRL 2025",
     "arxiv": "https://arxiv.org/abs/2505.02833",
     "project": "https://yanjieze.com/projects/TWIST/",
-    "why_ko": "모션캡처로 사람의 온몸 움직임을 휴머노이드가 그대로 따라 하며 일해요.",
+    "why_ko": "모션캡처로 사람의 온몸 움직임을 휴머노이드가 그대로 따라 하며 일한다.",
     "why_en": "Motion-capture teleop lets a humanoid mirror a person's whole body for real tasks."
    },
    {
@@ -249,7 +249,7 @@ export const PAPERS = {
     "venue": "arXiv 2025",
     "arxiv": "https://arxiv.org/abs/2508.08241",
     "project": "https://beyondmimic.github.io/",
-    "why_ko": "사람의 역동적인 동작을 정교하게 따라 하고, 새 과제에도 응용하는 휴머노이드예요.",
+    "why_ko": "사람의 역동적인 동작을 정교하게 따라 하고, 새 과제에도 응용하는 휴머노이드다.",
     "why_en": "High-quality tracking of dynamic human motions, then reused flexibly for new tasks."
    },
    {
@@ -259,7 +259,7 @@ export const PAPERS = {
     "venue": "ICRA 2026",
     "arxiv": "https://arxiv.org/abs/2510.02252",
     "project": "https://jaraujo98.github.io/retargeting_matters/",
-    "why_ko": "사람과 다른 로봇 몸에 동작을 옮기는 '리타게팅'이 성능을 좌우함을 보였어요.",
+    "why_ko": "사람과 다른 로봇 몸에 동작을 옮기는 '리타게팅'이 성능을 좌우함을 보였다.",
     "why_en": "Shows that converting human motion to robot bodies (retargeting) strongly affects tracking quality."
    }
   ]
@@ -273,7 +273,7 @@ export const PAPERS = {
     "venue": "RSS 2023",
     "arxiv": "https://arxiv.org/abs/2212.06817",
     "project": "https://robotics-transformer1.github.io/",
-    "why_ko": "로봇 13만 번의 시연을 학습해 수백 가지 일을 해내는 '큰 로봇 모델'의 출발점이에요.",
+    "why_ko": "로봇 13만 번의 시연을 학습해 수백 가지 일을 해내는 '큰 로봇 모델'의 출발점이다.",
     "why_en": "Showed one Transformer trained on huge real-robot data can handle hundreds of tasks."
    },
    {
@@ -283,7 +283,7 @@ export const PAPERS = {
     "venue": "CoRL 2023",
     "arxiv": "https://arxiv.org/abs/2307.15818",
     "project": "https://robotics-transformer2.github.io/",
-    "why_ko": "인터넷 지식을 가진 AI가 로봇 동작까지 직접 출력하는 'VLA'라는 이름을 처음 붙인 논문이에요.",
+    "why_ko": "인터넷 지식을 가진 AI가 로봇 동작까지 직접 출력하는 'VLA'라는 이름을 처음 붙인 논문이다.",
     "why_en": "Coined 'VLA': a web-trained vision-language model that directly outputs robot actions."
    },
    {
@@ -293,7 +293,7 @@ export const PAPERS = {
     "venue": "CoRL 2024",
     "arxiv": "https://arxiv.org/abs/2406.09246",
     "project": "https://openvla.github.io/",
-    "why_ko": "누구나 내려받아 쓰고 고칠 수 있게 공개된 VLA 모델로, 연구의 문턱을 낮췄어요.",
+    "why_ko": "누구나 내려받아 쓰고 고칠 수 있게 공개된 VLA 모델로, 연구의 문턱을 낮췄다.",
     "why_en": "A fully open VLA anyone can download and fine-tune, lowering the barrier to entry."
    }
   ],
@@ -305,7 +305,7 @@ export const PAPERS = {
     "venue": "arXiv 2025",
     "arxiv": "https://arxiv.org/abs/2503.14734",
     "project": "https://developer.nvidia.com/isaac/gr00t",
-    "why_ko": "생각하는 '느린 뇌'와 움직이는 '빠른 뇌'를 합친, 휴머노이드용 공개 기반 모델이에요.",
+    "why_ko": "생각하는 '느린 뇌'와 움직이는 '빠른 뇌'를 합친, 휴머노이드용 공개 기반 모델이다.",
     "why_en": "Open humanoid foundation model pairing a slow 'thinking' system with a fast 'acting' system."
    },
    {
@@ -315,7 +315,7 @@ export const PAPERS = {
     "venue": "CoRL 2025",
     "arxiv": "https://arxiv.org/abs/2504.16054",
     "project": "https://www.pi.website/blog/pi05",
-    "why_ko": "처음 가 본 집에서도 부엌·침실 정리 같은 긴 집안일을 해낸 VLA예요.",
+    "why_ko": "처음 가 본 집에서도 부엌·침실 정리 같은 긴 집안일을 해낸 VLA다.",
     "why_en": "A VLA that cleans kitchens and bedrooms in homes it has never seen before."
    },
    {
@@ -325,7 +325,7 @@ export const PAPERS = {
     "venue": "arXiv 2025",
     "arxiv": "https://arxiv.org/abs/2503.20020",
     "project": "https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/",
-    "why_ko": "거대 AI 모델 Gemini를 로봇의 눈·두뇌·손으로 확장한 구글 딥마인드의 대표 시스템이에요.",
+    "why_ko": "거대 AI 모델 Gemini를 로봇의 눈·두뇌·손으로 확장한 구글 딥마인드의 대표 시스템이다.",
     "why_en": "Google DeepMind extends Gemini into a full robot brain for seeing, reasoning, and acting."
    }
   ]
@@ -339,7 +339,7 @@ export const PAPERS = {
     "venue": "ICRA 2023",
     "arxiv": "https://arxiv.org/abs/2209.07753",
     "project": "https://code-as-policies.github.io/",
-    "why_ko": "LLM이 로봇 제어 코드를 직접 짜서 실행하게 한, '코드가 곧 정책'이라는 아이디어의 시작이에요.",
+    "why_ko": "LLM이 로봇 제어 코드를 직접 짜서 실행하게 한, '코드가 곧 정책'이라는 아이디어의 시작이다.",
     "why_en": "Started the idea that an LLM can write the robot's control code itself."
    },
    {
@@ -349,7 +349,7 @@ export const PAPERS = {
     "venue": "ICRA 2023",
     "arxiv": "https://arxiv.org/abs/2209.11302",
     "project": "https://progprompt.github.io/",
-    "why_ko": "작업 계획을 파이썬 프로그램 형태로 쓰게 해서, 주변 상황을 확인하며 실행하도록 했어요.",
+    "why_ko": "작업 계획을 파이썬 프로그램 형태로 쓰게 해서, 주변 상황을 확인하며 실행하도록 했다.",
     "why_en": "Prompts LLMs to write task plans as Python programs that check the scene while running."
    },
    {
@@ -359,7 +359,7 @@ export const PAPERS = {
     "venue": "ICLR 2024",
     "arxiv": "https://arxiv.org/abs/2310.12931",
     "project": "https://eureka-research.github.io/",
-    "why_ko": "LLM이 '보상 코드(잘했다는 점수 규칙)'를 쓰고 학습 결과를 보며 고쳐, 사람보다 잘 설계했어요.",
+    "why_ko": "LLM이 '보상 코드(잘했다는 점수 규칙)'를 쓰고 학습 결과를 보며 고쳐, 사람보다 잘 설계했다.",
     "why_en": "LLM writes reward code, reads training results, and revises it—beating human-designed rewards."
    }
   ],
@@ -371,7 +371,7 @@ export const PAPERS = {
     "venue": "ICML 2026",
     "arxiv": "https://arxiv.org/abs/2603.22435",
     "project": "https://capgym.github.io/",
-    "why_ko": "코드를 쓰고, 실행 결과를 눈으로 비교하고, 다시 고치는 '코딩 에이전트' 로봇을 체계적으로 평가해요.",
+    "why_ko": "코드를 쓰고, 실행 결과를 눈으로 비교하고, 다시 고치는 '코딩 에이전트' 로봇을 체계적으로 평가한다.",
     "why_en": "Benchmarks robot coding agents that write code, watch results, and fix it over turns."
    },
    {
@@ -381,7 +381,7 @@ export const PAPERS = {
     "venue": "ICCV 2025 Workshop",
     "arxiv": "https://arxiv.org/abs/2508.02629",
     "project": null,
-    "why_ko": "코드를 실행하는 동안 VLM이 화면을 지켜보다가 실패 원인을 찾아 코드를 스스로 고쳐요.",
+    "why_ko": "코드를 실행하는 동안 VLM이 화면을 지켜보다가 실패 원인을 찾아 코드를 스스로 고친다.",
     "why_en": "A VLM watches code execution, explains failures, and the system repairs its own code."
    },
    {
@@ -391,7 +391,7 @@ export const PAPERS = {
     "venue": "RSS 2025",
     "arxiv": "https://arxiv.org/abs/2506.16652",
     "project": "https://robopil.github.io/code-diffuser/",
-    "why_ko": "애매한 지시를 VLM이 코드로 풀어 '어디를 볼지' 알려주고, 학습된 정책이 정교하게 움직여요.",
+    "why_ko": "애매한 지시를 VLM이 코드로 풀어 '어디를 볼지' 알려주고, 학습된 정책이 정교하게 움직인다.",
     "why_en": "VLM-written code resolves vague instructions into attention maps that guide a learned policy."
    }
   ]
@@ -405,7 +405,7 @@ export const PAPERS = {
     "venue": "CoRL 2022",
     "arxiv": "https://arxiv.org/abs/2204.01691",
     "project": "https://say-can.github.io/",
-    "why_ko": "LLM의 계획에 '로봇이 지금 실제로 할 수 있는 일인지'를 함께 따져 고르게 한 SayCan이에요.",
+    "why_ko": "LLM의 계획에 '로봇이 지금 실제로 할 수 있는 일인지'를 함께 따져 고르게 한 SayCan이다.",
     "why_en": "SayCan: LLM plans are filtered by what the robot can actually do right now."
    },
    {
@@ -415,7 +415,7 @@ export const PAPERS = {
     "venue": "CoRL 2022",
     "arxiv": "https://arxiv.org/abs/2207.05608",
     "project": "https://innermonologue.github.io/",
-    "why_ko": "성공 여부·장면 설명·사람 말을 피드백으로 받아 로봇이 혼잣말하듯 계획을 다시 세워요.",
+    "why_ko": "성공 여부·장면 설명·사람 말을 피드백으로 받아 로봇이 혼잣말하듯 계획을 다시 세운다.",
     "why_en": "Feeds success checks, scene descriptions, and human replies back so the LLM replans."
    },
    {
@@ -425,7 +425,7 @@ export const PAPERS = {
     "venue": "CoRL 2023",
     "arxiv": "https://arxiv.org/abs/2307.01928",
     "project": "https://robot-help.github.io/",
-    "why_ko": "확신이 없을 때 통계적으로 판단해 사람에게 '도와주세요'라고 묻는 로봇이에요.",
+    "why_ko": "확신이 없을 때 통계적으로 판단해 사람에게 '도와주세요'라고 묻는 로봇이다.",
     "why_en": "Robots measure their own uncertainty and ask humans for help when unsure."
    }
   ],
@@ -437,7 +437,7 @@ export const PAPERS = {
     "venue": "ICML 2025",
     "arxiv": "https://arxiv.org/abs/2502.19417",
     "project": "https://www.pi.website/research/hirobot",
-    "why_ko": "\"그건 빼 줘\" 같은 중간 끼어들기 말도 알아듣고, 상위 두뇌가 계획을 바로 고쳐요.",
+    "why_ko": "\"그건 빼 줘\" 같은 중간 끼어들기 말도 알아듣고, 상위 두뇌가 계획을 바로 고친다.",
     "why_en": "A high-level VLM listens to mid-task feedback and re-plans for a low-level VLA."
    },
    {
@@ -447,7 +447,7 @@ export const PAPERS = {
     "venue": "arXiv 2025",
     "arxiv": "https://arxiv.org/abs/2503.12533",
     "project": "https://beingbeyond.github.io/Being-0/",
-    "why_ko": "언어 계획 두뇌와 걷기·잡기 기술을 VLM이 이어 주어, 휴머노이드가 긴 일을 해내요.",
+    "why_ko": "언어 계획 두뇌와 걷기·잡기 기술을 VLM이 이어 주어, 휴머노이드가 긴 일을 해낸다.",
     "why_en": "A humanoid agent where a VLM connects an LLM planner to walking and grasping skills."
    },
    {
@@ -457,7 +457,7 @@ export const PAPERS = {
     "venue": "arXiv 2025",
     "arxiv": "https://arxiv.org/abs/2510.03342",
     "project": "https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/",
-    "why_ko": "계획 담당 모델이 도구(검색 등)를 쓰며 여러 단계를 짜고, 행동 모델은 움직이기 전에 먼저 생각해요.",
+    "why_ko": "계획 담당 모델이 도구(검색 등)를 쓰며 여러 단계를 짜고, 행동 모델은 움직이기 전에 먼저 생각한다.",
     "why_en": "A planner model orchestrates multi-step tasks with tools; the action model thinks before moving."
    }
   ]
@@ -471,7 +471,7 @@ export const PAPERS = {
     "venue": "ICCV 2023",
     "arxiv": "https://arxiv.org/abs/2303.08128",
     "project": "https://viper.cs.columbia.edu/",
-    "why_ko": "질문을 받으면 LLM이 이미지를 분석하는 파이썬 코드를 짜고 실행해서 답을 찾아요.",
+    "why_ko": "질문을 받으면 LLM이 이미지를 분석하는 파이썬 코드를 짜고 실행해서 답을 찾는다.",
     "why_en": "LLM answers visual questions by writing and running Python code over the image."
    },
    {
@@ -481,7 +481,7 @@ export const PAPERS = {
     "venue": "CVPR 2023",
     "arxiv": "https://arxiv.org/abs/2211.11559",
     "project": "https://github.com/allenai/visprog",
-    "why_ko": "추가 학습 없이, 여러 시각 도구를 조합하는 짧은 프로그램으로 그림 문제를 풀어요.",
+    "why_ko": "추가 학습 없이, 여러 시각 도구를 조합하는 짧은 프로그램으로 그림 문제를 푼다.",
     "why_en": "Solves visual tasks by composing vision tools into short programs, with no extra training."
    },
    {
@@ -491,7 +491,7 @@ export const PAPERS = {
     "venue": "CVPR 2024",
     "arxiv": "https://arxiv.org/abs/2312.14135",
     "project": "https://vstar-seal.github.io/",
-    "why_ko": "큰 사진 속 작은 물체를, 사람처럼 '어디쯤 있을까' 추측하며 찾아가 다시 보게 했어요.",
+    "why_ko": "큰 사진 속 작은 물체를, 사람처럼 '어디쯤 있을까' 추측하며 찾아가 다시 보게 했다.",
     "why_en": "Lets a multimodal LLM search a large image step by step to find small details."
    }
   ],
@@ -503,7 +503,7 @@ export const PAPERS = {
     "venue": "ICLR 2026",
     "arxiv": "https://arxiv.org/abs/2505.14362",
     "project": "https://github.com/Visual-Agent/DeepEyes",
-    "why_ko": "강화학습으로, 모델이 생각하다 스스로 이미지를 확대(zoom)해 다시 보는 습관을 익혀요.",
+    "why_ko": "강화학습으로, 모델이 생각하다 스스로 이미지를 확대(zoom)해 다시 보는 습관을 익힌다.",
     "why_en": "Reinforcement learning teaches a VLM to zoom in and re-look while it reasons."
    },
    {
@@ -513,7 +513,7 @@ export const PAPERS = {
     "venue": "ICLR 2026",
     "arxiv": "https://arxiv.org/abs/2508.11630",
     "project": "https://thyme-vl.github.io/",
-    "why_ko": "모델이 직접 코드를 써서 이미지를 자르고·돌리고·밝게 하며 계산까지 해요.",
+    "why_ko": "모델이 직접 코드를 써서 이미지를 자르고·돌리고·밝게 하며 계산까지 한다.",
     "why_en": "A VLM writes and runs code to crop, rotate, enhance images, and compute."
    },
    {
@@ -523,7 +523,7 @@ export const PAPERS = {
     "venue": "CoRL 2025",
     "arxiv": "https://arxiv.org/abs/2506.15666",
     "project": "https://vision-in-action.github.io/",
-    "why_ko": "목(neck)을 움직이는 로봇이 사람 시연에서 '어디를 볼지' 배워, 가려진 것도 찾아 봐요.",
+    "why_ko": "목(neck)을 움직이는 로봇이 사람 시연에서 '어디를 볼지' 배워, 가려진 것도 찾아 본다.",
     "why_en": "A robot with a movable neck learns from humans where to look during tasks."
    }
   ]
@@ -537,7 +537,7 @@ export const PAPERS = {
     "venue": "IEEE T-RO 2018",
     "arxiv": "https://arxiv.org/abs/1708.03852",
     "project": "https://github.com/HKUST-Aerial-Robotics/VINS-Mono",
-    "why_ko": "카메라 1대와 IMU(관성 센서)만으로 내 위치를 추정하는 표준 방법이에요.",
+    "why_ko": "카메라 1대와 IMU(관성 센서)만으로 내 위치를 추정하는 표준 방법이다.",
     "why_en": "The go-to open-source recipe for tracking a robot's motion using one camera plus an IMU."
    },
    {
@@ -547,7 +547,7 @@ export const PAPERS = {
     "venue": "IJRR 2020",
     "arxiv": "https://arxiv.org/abs/1904.09251",
     "project": "https://github.com/RossHartley/invariant-ekf",
-    "why_ko": "발이 땅에 닿는 정보와 IMU를 합쳐 두 발 로봇의 몸 상태를 안정적으로 추정해요.",
+    "why_ko": "발이 땅에 닿는 정보와 IMU를 합쳐 두 발 로봇의 몸 상태를 안정적으로 추정한다.",
     "why_en": "Fuses foot contacts with IMU data so walking robots know their own pose and speed reliably."
    },
    {
@@ -557,7 +557,7 @@ export const PAPERS = {
     "venue": "Science Robotics 2019",
     "arxiv": "https://arxiv.org/abs/1901.08652",
     "project": null,
-    "why_ko": "실제 모터의 특성을 신경망으로 흉내 내서, 시뮬레이션에서 배운 걸 현실에 옮겼어요.",
+    "why_ko": "실제 모터의 특성을 신경망으로 흉내 내서, 시뮬레이션에서 배운 걸 현실에 옮겼다.",
     "why_en": "Learned a neural model of real motors, letting simulation-trained skills work on a real robot."
    }
   ],
@@ -569,7 +569,7 @@ export const PAPERS = {
     "venue": "IROS 2025",
     "arxiv": "https://arxiv.org/abs/2503.04580",
     "project": "https://github.com/YibinWu/DogLegs",
-    "why_ko": "다리마다 IMU를 달아, 카메라 없이도 몸의 위치를 더 정확히 추정해요.",
+    "why_ko": "다리마다 IMU를 달아, 카메라 없이도 몸의 위치를 더 정확히 추정한다.",
     "why_en": "Adds IMUs on each leg so a robot tracks itself accurately even without cameras."
    },
    {
@@ -579,7 +579,7 @@ export const PAPERS = {
     "venue": "CoRL 2025",
     "arxiv": "https://arxiv.org/abs/2505.14266",
     "project": "https://lecar-lab.github.io/spi-active_/",
-    "why_ko": "로봇의 실제 물리값(무게, 모터 특성 등)을 똑똑하게 찾아 시뮬레이션과 현실의 차이를 줄여요.",
+    "why_ko": "로봇의 실제 물리값(무게, 모터 특성 등)을 똑똑하게 찾아 시뮬레이션과 현실의 차이를 줄인다.",
     "why_en": "Measures a robot's real physical parameters smartly, shrinking the gap between simulation and reality."
    },
    {
@@ -589,7 +589,7 @@ export const PAPERS = {
     "venue": "IEEE/ASME T-Mech (accepted, 2026)",
     "arxiv": "https://arxiv.org/abs/2608.05647",
     "project": "https://github.com/JixinGao/KILVO",
-    "why_ko": "휴머노이드의 관절·IMU·라이다·카메라를 모두 합쳐, 센서 하나가 고장 나도 버티는 위치 추정이에요.",
+    "why_ko": "휴머노이드의 관절·IMU·라이다·카메라를 모두 합쳐, 센서 하나가 고장 나도 버티는 위치 추정이다.",
     "why_en": "Combines a humanoid's joints, IMU, LiDAR and camera, staying robust when one sensor fails."
    }
   ]
@@ -603,7 +603,7 @@ export const PAPERS = {
     "venue": "arXiv",
     "arxiv": "https://arxiv.org/abs/1909.06586",
     "project": null,
-    "why_ko": "느린 계획(MPC)과 빠른 전신 제어를 층층이 나눠, 로봇이 빠르게 뛰게 만든 고전이에요.",
+    "why_ko": "느린 계획(MPC)과 빠른 전신 제어를 층층이 나눠, 로봇이 빠르게 뛰게 만든 고전이다.",
     "why_en": "Classic layered design: slow planning plus fast whole-body control lets the Mini Cheetah run dynamically."
    },
    {
@@ -613,7 +613,7 @@ export const PAPERS = {
     "venue": "Science Robotics 2020",
     "arxiv": "https://arxiv.org/abs/2010.11251",
     "project": null,
-    "why_ko": "시뮬레이션에서 학습한 신경망 제어기를 로봇에 올려, 험한 야외 지형을 걷게 했어요.",
+    "why_ko": "시뮬레이션에서 학습한 신경망 제어기를 로봇에 올려, 험한 야외 지형을 걷게 했다.",
     "why_en": "A simulation-trained neural controller running on-board carried a quadruped across rough real-world terrain."
    },
    {
@@ -623,7 +623,7 @@ export const PAPERS = {
     "venue": "RSS 2018",
     "arxiv": "https://arxiv.org/abs/1804.10332",
     "project": null,
-    "why_ko": "모터 특성과 통신 지연까지 시뮬레이션에 넣어, 학습한 걸음을 실제 로봇에서 그대로 쓰게 했어요.",
+    "why_ko": "모터 특성과 통신 지연까지 시뮬레이션에 넣어, 학습한 걸음을 실제 로봇에서 그대로 쓰게 했다.",
     "why_en": "Simulated motor behavior and control latency so learned gaits worked directly on a real robot."
    }
   ],
@@ -635,7 +635,7 @@ export const PAPERS = {
     "venue": "NeurIPS 2025",
     "arxiv": "https://arxiv.org/abs/2506.07339",
     "project": "https://www.pi.website/research/real_time_chunking",
-    "why_ko": "큰 AI 모델이 생각하는 동안에도 로봇이 멈추지 않고 부드럽게 움직이게 해줘요.",
+    "why_ko": "큰 AI 모델이 생각하는 동안에도 로봇이 멈추지 않고 부드럽게 움직이게 해준다.",
     "why_en": "Keeps a robot moving smoothly while a large, slow AI model is still computing its next actions."
    },
    {
@@ -645,7 +645,7 @@ export const PAPERS = {
     "venue": "arXiv",
     "arxiv": "https://arxiv.org/abs/2506.01844",
     "project": "https://huggingface.co/blog/smolvla",
-    "why_ko": "작고 가벼운 로봇 AI(VLA)로, 비싼 서버 없이 일반 장비에서도 돌아가요.",
+    "why_ko": "작고 가벼운 로봇 AI(VLA)로, 비싼 서버 없이 일반 장비에서도 돌아간다.",
     "why_en": "A small vision-language-action model that runs on modest hardware instead of costly servers."
    },
    {
@@ -655,7 +655,7 @@ export const PAPERS = {
     "venue": "CoRL 2026 (Spotlight)",
     "arxiv": "https://arxiv.org/abs/2607.12659",
     "project": "https://github.com/PKU-SEC-Lab/EagleVLA",
-    "why_ko": "큰 로봇 AI(VLA)를 로봇에 달린 작은 컴퓨터(Jetson)에서도 지연 없이 돌리는 방법이에요.",
+    "why_ko": "큰 로봇 AI(VLA)를 로봇에 달린 작은 컴퓨터(Jetson)에서도 지연 없이 돌리는 방법이다.",
     "why_en": "Runs large vision-language-action models on a robot's small onboard computer without laggy control."
    }
   ]
@@ -669,7 +669,7 @@ export const PAPERS = {
     "venue": "RSS 2023",
     "arxiv": "https://arxiv.org/abs/2304.13705",
     "project": "https://tonyzhaozh.github.io/aloha/",
-    "why_ko": "저렴한 원격조종 장비(ALOHA)로 시연 데이터를 모아 양팔 섬세 작업을 가르쳤어요.",
+    "why_ko": "저렴한 원격조종 장비(ALOHA)로 시연 데이터를 모아 양팔 섬세 작업을 가르쳤다.",
     "why_en": "ALOHA: a cheap teleoperation rig whose demonstrations taught robots delicate two-arm tasks."
    },
    {
@@ -679,7 +679,7 @@ export const PAPERS = {
     "venue": "ICRA 2024",
     "arxiv": "https://arxiv.org/abs/2310.08864",
     "project": "https://robotics-transformer-x.github.io",
-    "why_ko": "여러 연구실의 서로 다른 로봇 데이터를 한데 모은 대표적인 대규모 데이터셋이에요.",
+    "why_ko": "여러 연구실의 서로 다른 로봇 데이터를 한데 모은 대표적인 대규모 데이터셋이다.",
     "why_en": "Pooled data from many labs and robot types into one large shared training dataset."
    },
    {
@@ -689,7 +689,7 @@ export const PAPERS = {
     "venue": "CoRL 2021",
     "arxiv": "https://arxiv.org/abs/2108.03298",
     "project": "https://robomimic.github.io/",
-    "why_ko": "사람 시연 데이터의 품질과 양이 로봇 학습 결과를 어떻게 바꾸는지 꼼꼼히 비교했어요.",
+    "why_ko": "사람 시연 데이터의 품질과 양이 로봇 학습 결과를 어떻게 바꾸는지 꼼꼼히 비교했다.",
     "why_en": "Systematically showed how demonstration quality and quantity change what robots can learn."
    }
   ],
@@ -701,7 +701,7 @@ export const PAPERS = {
     "venue": "arXiv",
     "arxiv": "https://arxiv.org/abs/2503.06669",
     "project": "https://agibot-world.com/",
-    "why_ko": "100대의 로봇으로 100만 개 넘는 시연을 모은 초대형 실제 로봇 데이터셋이에요.",
+    "why_ko": "100대의 로봇으로 100만 개 넘는 시연을 모은 초대형 실제 로봇 데이터셋이다.",
     "why_en": "Over a million real-robot demonstrations collected with a fleet of about 100 robots."
    },
    {
@@ -711,7 +711,7 @@ export const PAPERS = {
     "venue": "RSS 2025",
     "arxiv": "https://arxiv.org/abs/2502.13013",
     "project": "https://homietele.github.io/",
-    "why_ko": "외골격 조종석으로 휴머노이드의 팔과 이동을 한 사람이 동시에 조종해 데이터를 모아요.",
+    "why_ko": "외골격 조종석으로 휴머노이드의 팔과 이동을 한 사람이 동시에 조종해 데이터를 모은다.",
     "why_en": "An exoskeleton cockpit lets one operator drive a humanoid's arms and walking to collect data."
    },
    {
@@ -721,7 +721,7 @@ export const PAPERS = {
     "venue": "CoRL 2025",
     "arxiv": "https://arxiv.org/abs/2506.19121",
     "project": "https://cupid-curation.github.io",
-    "why_ko": "어떤 시연 데이터가 로봇에 도움이 되고 해가 되는지 골라내는 데이터 정리법이에요.",
+    "why_ko": "어떤 시연 데이터가 로봇에 도움이 되고 해가 되는지 골라내는 데이터 정리법이다.",
     "why_en": "Identifies which demonstrations help or hurt a robot policy, so bad data can be removed."
    }
   ]
@@ -735,7 +735,7 @@ export const PAPERS = {
     "venue": "IJRR 2020",
     "arxiv": "https://arxiv.org/abs/1808.00177",
     "project": "https://openai.com/index/learning-dexterity/",
-    "why_ko": "시뮬레이션에서만 배운 로봇 손이 실제로 손안에서 큐브를 돌리는 데 성공했어요.",
+    "why_ko": "시뮬레이션에서만 배운 로봇 손이 실제로 손안에서 큐브를 돌리는 데 성공했다.",
     "why_en": "A robot hand trained only in simulation learned to rotate a cube in its real palm."
    },
    {
@@ -745,7 +745,7 @@ export const PAPERS = {
     "venue": "ICRA 2019",
     "arxiv": "https://arxiv.org/abs/1810.10191",
     "project": "https://sites.google.com/view/visionandtouch",
-    "why_ko": "눈(카메라)과 촉감(힘 센서)을 합쳐 쓰면 끼우기 같은 접촉 작업이 쉬워짐을 보였어요.",
+    "why_ko": "눈(카메라)과 촉감(힘 센서)을 합쳐 쓰면 끼우기 같은 접촉 작업이 쉬워짐을 보였다.",
     "why_en": "Showed that combining vision with touch and force makes contact-heavy tasks like peg insertion easier."
    },
    {
@@ -755,7 +755,7 @@ export const PAPERS = {
     "venue": "IEEE RA-L 2020",
     "arxiv": "https://arxiv.org/abs/2005.14679",
     "project": "https://digit.ml/",
-    "why_ko": "작은 카메라로 손끝 촉감을 고해상도로 읽는, 저렴한 공개 촉각 센서예요.",
+    "why_ko": "작은 카메라로 손끝 촉감을 고해상도로 읽는, 저렴한 공개 촉각 센서다.",
     "why_en": "A cheap, open fingertip sensor that uses a tiny camera to 'see' touch in high resolution."
    }
   ],
@@ -767,7 +767,7 @@ export const PAPERS = {
     "venue": "CoRL 2025",
     "arxiv": "https://arxiv.org/abs/2502.20396",
     "project": "https://toruowo.github.io/recipe/",
-    "why_ko": "시뮬레이션에서 배운 손 기술을 실제 휴머노이드 손으로 옮기는 실전 레시피예요.",
+    "why_ko": "시뮬레이션에서 배운 손 기술을 실제 휴머노이드 손으로 옮기는 실전 레시피다.",
     "why_en": "A practical recipe for moving camera-based hand skills from simulation to a real humanoid."
    },
    {
@@ -777,7 +777,7 @@ export const PAPERS = {
     "venue": "RSS 2025",
     "arxiv": "https://arxiv.org/abs/2503.02881",
     "project": "https://reactive-diffusion-policy.github.io",
-    "why_ko": "눈으로는 천천히 계획하고 촉감으로는 빠르게 반응하는 '느림-빠름' 정책이에요.",
+    "why_ko": "눈으로는 천천히 계획하고 촉감으로는 빠르게 반응하는 '느림-빠름' 정책이다.",
     "why_en": "Plans slowly with vision but reacts quickly with touch, like humans handling objects."
    },
    {
@@ -787,7 +787,7 @@ export const PAPERS = {
     "venue": "CoRL 2025",
     "arxiv": "https://arxiv.org/abs/2505.21864",
     "project": "https://dex-umi.github.io/",
-    "why_ko": "사람 손에 끼우는 외골격으로 시연을 모아 여러 로봇 손에 기술을 옮겨요.",
+    "why_ko": "사람 손에 끼우는 외골격으로 시연을 모아 여러 로봇 손에 기술을 옮긴다.",
     "why_en": "A wearable hand exoskeleton records human demos and transfers the skills to different robot hands."
    }
   ]
@@ -801,7 +801,7 @@ export const PAPERS = {
     "venue": "ICRA 2020",
     "arxiv": "https://arxiv.org/abs/1909.04947",
     "project": "https://github.com/loco-3d/crocoddyl",
-    "why_ko": "발이 땅에 닿는 순간까지 계산해 점프·공중제비 동작을 몇 밀리초 만에 짜 주는 오픈소스 도구예요.",
+    "why_ko": "발이 땅에 닿는 순간까지 계산해 점프·공중제비 동작을 몇 밀리초 만에 짜 주는 오픈소스 도구다.",
     "why_en": "Open-source solver that plans contact-rich motions like jumps and flips in milliseconds."
    },
    {
@@ -811,7 +811,7 @@ export const PAPERS = {
     "venue": "Annual Review of Control, Robotics, and Autonomous Systems 2021",
     "arxiv": "https://arxiv.org/abs/2010.01083",
     "project": null,
-    "why_ko": "‘무엇을 할지(작업)’와 ‘어떻게 움직일지(동작)’를 함께 계획하는 TAMP 분야의 대표 입문 리뷰예요.",
+    "why_ko": "‘무엇을 할지(작업)’와 ‘어떻게 움직일지(동작)’를 함께 계획하는 TAMP 분야의 대표 입문 리뷰다.",
     "why_en": "The go-to survey on jointly planning what to do and how to move."
    },
    {
@@ -821,7 +821,7 @@ export const PAPERS = {
     "venue": "IEEE T-RO 2024",
     "arxiv": "https://arxiv.org/abs/2211.11644",
     "project": null,
-    "why_ko": "미래를 미리 계산해 움직이는 MPC 같은 최적화 제어를 다리 로봇 관점에서 정리한 교과서 같은 논문이에요.",
+    "why_ko": "미래를 미리 계산해 움직이는 MPC 같은 최적화 제어를 다리 로봇 관점에서 정리한 교과서 같은 논문이다.",
     "why_en": "Textbook-style survey of MPC and trajectory optimization for legged and humanoid robots."
    }
   ],
@@ -833,7 +833,7 @@ export const PAPERS = {
     "venue": "ICRA 2026",
     "arxiv": "https://arxiv.org/abs/2503.04613",
     "project": "https://johnzhang3.github.io/mujoco_ilqr",
-    "why_ko": "시뮬레이터 MuJoCo로 온몸 동작을 실시간 예측·제어해 실제 휴머노이드와 사족 로봇에서 보여 줬어요.",
+    "why_ko": "시뮬레이터 MuJoCo로 온몸 동작을 실시간 예측·제어해 실제 휴머노이드와 사족 로봇에서 보여 줬다.",
     "why_en": "Simple real-time whole-body MPC with MuJoCo, demonstrated on real humanoid and quadruped hardware."
    },
    {
@@ -843,7 +843,7 @@ export const PAPERS = {
     "venue": "IEEE-RAS Humanoids 2025",
     "arxiv": "https://arxiv.org/abs/2509.04722",
     "project": null,
-    "why_ko": "발 디딜 곳을 정하는 상위 계획과 몸을 안정시키는 하위 MPC를 겹겹이 쌓아 실제 휴머노이드(G1)를 튼튼하게 걷게 했어요.",
+    "why_ko": "발 디딜 곳을 정하는 상위 계획과 몸을 안정시키는 하위 MPC를 겹겹이 쌓아 실제 휴머노이드(G1)를 튼튼하게 걷게 했다.",
     "why_en": "Layered MPC: a step planner atop a body-balancing controller keeps a real Unitree G1 walking robustly."
    },
    {
@@ -853,7 +853,7 @@ export const PAPERS = {
     "venue": "arXiv",
     "arxiv": "https://arxiv.org/abs/2508.14099",
     "project": null,
-    "why_ko": "‘손발이 어디에 닿을지’를 작업 단위로 탐색하고 온몸 궤적 최적화로 이어, 걷기와 물건 다루기를 한 번에 계획해요.",
+    "why_ko": "‘손발이 어디에 닿을지’를 작업 단위로 탐색하고 온몸 궤적 최적화로 이어, 걷기와 물건 다루기를 한 번에 계획한다.",
     "why_en": "Searches over contact changes and optimizes whole-body trajectories to plan long humanoid loco-manipulation."
    }
   ]
@@ -867,7 +867,7 @@ export const PAPERS = {
     "venue": "arXiv 2018 (NeurIPS 2018 version: Recurrent World Models Facilitate Policy Evolution)",
     "arxiv": "https://arxiv.org/abs/1803.10122",
     "project": "https://worldmodels.github.io/",
-    "why_ko": "AI가 머릿속에 세상을 흉내 내는 ‘꿈’ 모델을 만들고 그 안에서 연습한다는 아이디어를 대중화했어요.",
+    "why_ko": "AI가 머릿속에 세상을 흉내 내는 ‘꿈’ 모델을 만들고 그 안에서 연습한다는 아이디어를 대중화했다.",
     "why_en": "Popularized learning a model of the world and training the agent inside its dreams."
    },
    {
@@ -877,7 +877,7 @@ export const PAPERS = {
     "venue": "ECCV 2020",
     "arxiv": "https://arxiv.org/abs/2003.08934",
     "project": "https://www.matthewtancik.com/nerf",
-    "why_ko": "사진 몇 장으로 3D 공간을 신경망에 저장해 새로운 시점의 장면까지 그려 내는 기술의 시작이에요.",
+    "why_ko": "사진 몇 장으로 3D 공간을 신경망에 저장해 새로운 시점의 장면까지 그려 내는 기술의 시작이다.",
     "why_en": "Stores a 3D scene inside a neural network from photos; sparked neural 3D mapping."
    },
    {
@@ -887,7 +887,7 @@ export const PAPERS = {
     "venue": "ICRA 2024",
     "arxiv": "https://arxiv.org/abs/2309.16650",
     "project": "https://concept-graphs.github.io/",
-    "why_ko": "방 안의 물건과 그 관계를 그래프로 기억해, 말로 시킨 일을 로봇이 계획하게 해 줘요.",
+    "why_ko": "방 안의 물건과 그 관계를 그래프로 기억해, 말로 시킨 일을 로봇이 계획하게 해 준다.",
     "why_en": "Builds a language-queryable 3D map of objects and relations that robots use for planning."
    }
   ],
@@ -899,7 +899,7 @@ export const PAPERS = {
     "venue": "arXiv",
     "arxiv": "https://arxiv.org/abs/2506.09985",
     "project": "https://ai.meta.com/vjepa/",
-    "why_ko": "인터넷 영상으로 배운 세계 모델로 다음 장면을 예측하고, 처음 보는 환경에서 로봇 팔 동작을 계획해요.",
+    "why_ko": "인터넷 영상으로 배운 세계 모델로 다음 장면을 예측하고, 처음 보는 환경에서 로봇 팔 동작을 계획한다.",
     "why_en": "Video-pretrained world model that predicts outcomes and plans robot actions zero-shot."
    },
    {
@@ -909,7 +909,7 @@ export const PAPERS = {
     "venue": "CoRL 2025",
     "arxiv": "https://arxiv.org/abs/2505.12705",
     "project": "https://research.nvidia.com/labs/gear/dreamgen/",
-    "why_ko": "영상 생성 모델로 ‘가상 시연 영상’을 만들어 휴머노이드가 새 동작 20여 가지를 배우게 했어요.",
+    "why_ko": "영상 생성 모델로 ‘가상 시연 영상’을 만들어 휴머노이드가 새 동작 20여 가지를 배우게 했다.",
     "why_en": "Video world models generate synthetic demos, teaching a humanoid 20+ new behaviors."
    },
    {
@@ -919,7 +919,7 @@ export const PAPERS = {
     "venue": "arXiv",
     "arxiv": "https://arxiv.org/abs/2501.03575",
     "project": "https://research.nvidia.com/labs/cosmos-lab/cosmos-predict1/",
-    "why_ko": "로봇·자율주행용으로 누구나 고쳐 쓸 수 있게 공개한 대형 ‘세계 모델’ 플랫폼이에요.",
+    "why_ko": "로봇·자율주행용으로 누구나 고쳐 쓸 수 있게 공개한 대형 ‘세계 모델’ 플랫폼이다.",
     "why_en": "Open-weight world foundation models that developers fine-tune for robots and physical AI."
    }
   ]
@@ -933,7 +933,7 @@ export const PAPERS = {
     "venue": "ICRA 2024",
     "arxiv": "https://arxiv.org/abs/2309.09919",
     "project": null,
-    "why_ko": "말로 정한 안전 규칙을 논리식으로 바꿔, LLM 로봇의 위험한 행동을 미리 걸러내는 ‘안전 칩’이에요.",
+    "why_ko": "말로 정한 안전 규칙을 논리식으로 바꿔, LLM 로봇의 위험한 행동을 미리 걸러내는 ‘안전 칩’이다.",
     "why_en": "Turns natural-language safety rules into logic that blocks unsafe LLM robot actions."
    },
    {
@@ -943,7 +943,7 @@ export const PAPERS = {
     "venue": "ICRA 2024 Workshop (VLMNM)",
     "arxiv": "https://arxiv.org/abs/2401.12963",
     "project": "https://auto-rt.github.io/",
-    "why_ko": "여러 로봇을 LLM이 지휘할 때 ‘로봇 헌법(안전 규칙)’과 사람의 감독으로 위험한 일을 걸러낸 대표 사례예요.",
+    "why_ko": "여러 로봇을 LLM이 지휘할 때 ‘로봇 헌법(안전 규칙)’과 사람의 감독으로 위험한 일을 걸러낸 대표 사례다.",
     "why_en": "Fleet-scale LLM robot orchestration guarded by a written robot constitution and human supervision."
    },
    {
@@ -953,7 +953,7 @@ export const PAPERS = {
     "venue": "ICRA 2025",
     "arxiv": "https://arxiv.org/abs/2410.13691",
     "project": "https://robopair.org/",
-    "why_ko": "교묘한 말로 LLM 로봇이 위험한 행동을 하도록 속일 수 있음을 실제 로봇으로 처음 보여 줬어요.",
+    "why_ko": "교묘한 말로 LLM 로봇이 위험한 행동을 하도록 속일 수 있음을 실제 로봇으로 처음 보여 줬다.",
     "why_en": "First to show real LLM-controlled robots can be jailbroken into harmful physical actions."
    }
   ],
@@ -965,7 +965,7 @@ export const PAPERS = {
     "venue": "arXiv",
     "arxiv": "https://arxiv.org/abs/2503.08663",
     "project": "https://asimov-benchmark.github.io/",
-    "why_ko": "로봇이 지켜야 할 ‘헌법(행동 원칙)’을 자동으로 만들고, 상식적 안전 판단을 시험하는 ASIMOV 벤치마크예요.",
+    "why_ko": "로봇이 지켜야 할 ‘헌법(행동 원칙)’을 자동으로 만들고, 상식적 안전 판단을 시험하는 ASIMOV 벤치마크다.",
     "why_en": "Auto-generates robot constitutions and the ASIMOV benchmark for common-sense safety."
    },
    {
@@ -975,7 +975,7 @@ export const PAPERS = {
     "venue": "IEEE RA-L 2026",
     "arxiv": "https://arxiv.org/abs/2503.07885",
     "project": "https://robo-guard.github.io/",
-    "why_ko": "LLM이 짠 로봇 계획을 실행 전에 검사해, 해킹 공격에도 위험 행동을 크게 줄이는 안전장치예요.",
+    "why_ko": "LLM이 짠 로봇 계획을 실행 전에 검사해, 해킹 공격에도 위험 행동을 크게 줄이는 안전장치다.",
     "why_en": "RoboGuard checks LLM robot plans before execution, sharply cutting unsafe actions under jailbreaks."
    },
    {
@@ -985,7 +985,7 @@ export const PAPERS = {
     "venue": "NeurIPS 2025",
     "arxiv": "https://arxiv.org/abs/2503.03480",
     "project": "https://pku-safevla.github.io/",
-    "why_ko": "보고·듣고·움직이는 VLA 모델이 학습 단계부터 안전 제약을 지키도록 길들이는 방법이에요.",
+    "why_ko": "보고·듣고·움직이는 VLA 모델이 학습 단계부터 안전 제약을 지키도록 길들이는 방법이다.",
     "why_en": "Trains vision-language-action models with explicit safety constraints built into learning."
    }
   ]
@@ -999,7 +999,7 @@ export const PAPERS = {
     "venue": "CoRL 2022",
     "arxiv": "https://arxiv.org/abs/2203.12601",
     "project": "https://sites.google.com/view/robot-r3m",
-    "why_ko": "사람 1인칭 영상(Ego4D)으로 미리 배운 ‘보는 눈’을 로봇에 달아 적은 시연만으로 일을 배우게 했어요.",
+    "why_ko": "사람 1인칭 영상(Ego4D)으로 미리 배운 ‘보는 눈’을 로봇에 달아 적은 시연만으로 일을 배우게 했다.",
     "why_en": "Pretrains robot vision on human egocentric video so robots learn from few demos."
    },
    {
@@ -1009,7 +1009,7 @@ export const PAPERS = {
     "venue": "arXiv",
     "arxiv": "https://arxiv.org/abs/2203.06173",
     "project": "https://tetexiao.com/projects/mvp",
-    "why_ko": "영상 일부를 가리고 맞히는 방식으로 사람 영상에서 배운 시각 표현이 로봇 제어에 통한다는 걸 보였어요.",
+    "why_ko": "영상 일부를 가리고 맞히는 방식으로 사람 영상에서 배운 시각 표현이 로봇 제어에 통한다는 걸 보였다.",
     "why_en": "Showed masked-image pretraining on human videos gives strong visual features for robot control."
    },
    {
@@ -1019,7 +1019,7 @@ export const PAPERS = {
     "venue": "CVPR 2023",
     "arxiv": "https://arxiv.org/abs/2304.08488",
     "project": "https://robo-affordances.github.io/",
-    "why_ko": "사람 영상에서 ‘물건의 어디를 잡고 어느 쪽으로 움직이는지’를 배워 로봇에 옮겼어요.",
+    "why_ko": "사람 영상에서 ‘물건의 어디를 잡고 어느 쪽으로 움직이는지’를 배워 로봇에 옮겼다.",
     "why_en": "Learns where and how to interact with objects from human videos, then transfers to robots."
    }
   ],
@@ -1031,7 +1031,7 @@ export const PAPERS = {
     "venue": "CoRL 2025",
     "arxiv": "https://arxiv.org/abs/2503.13441",
     "project": "https://human-as-robot.github.io/",
-    "why_ko": "사람을 ‘또 다른 휴머노이드’로 보고, 사람 1인칭 시연 데이터로 휴머노이드 정책을 함께 학습해요.",
+    "why_ko": "사람을 ‘또 다른 휴머노이드’로 보고, 사람 1인칭 시연 데이터로 휴머노이드 정책을 함께 학습한다.",
     "why_en": "Treats humans as humanoids, co-training humanoid policies on egocentric human demonstrations."
    },
    {
@@ -1041,7 +1041,7 @@ export const PAPERS = {
     "venue": "arXiv",
     "arxiv": "https://arxiv.org/abs/2507.12440",
     "project": "https://rchalyang.github.io/EgoVLA/",
-    "why_ko": "사람 1인칭 영상으로 손·손목 동작을 배운 VLA를 휴머노이드 양손 조작으로 옮겨요.",
+    "why_ko": "사람 1인칭 영상으로 손·손목 동작을 배운 VLA를 휴머노이드 양손 조작으로 옮긴다.",
     "why_en": "Trains a VLA on egocentric human video, then retargets hand actions to a humanoid."
    },
    {
@@ -1051,7 +1051,7 @@ export const PAPERS = {
     "venue": "ICLR 2026",
     "arxiv": "https://arxiv.org/abs/2505.11709",
     "project": "https://github.com/apple/ml-egodex",
-    "why_ko": "Apple Vision Pro로 손가락 관절까지 기록한 829시간 분량의 사람 손 조작 1인칭 영상 데이터셋이에요.",
+    "why_ko": "Apple Vision Pro로 손가락 관절까지 기록한 829시간 분량의 사람 손 조작 1인칭 영상 데이터셋이다.",
     "why_en": "Large egocentric dataset of human dexterous manipulation with tracked 3D hand poses."
    }
   ]

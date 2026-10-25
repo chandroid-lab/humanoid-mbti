@@ -50,11 +50,11 @@ export const TYPES = {
     nick:  { ko: "로봇의 감각을 믿게 만드는 검증가", en: "The one who makes robot senses trustworthy" },
     strength: { ko: "측정값 하나도 그냥 넘기지 않아서, 남들이 놓친 센서 오차를 찾아낸다.", en: "Never lets a measurement slide, so you catch the sensor errors others miss." },
     easy:  {
-      ko: "로봇이 \"나는 지금 어디에, 어떤 자세로 있지?\"를 정확히 아는 게 모든 것의 시작이에요. 카메라와 관성 센서(IMU)를 서로 맞추고(캘리브레이션), 여러 센서를 합쳐 로봇의 위치와 자세를 추정해요.",
+      ko: "로봇이 \"나는 지금 어디에, 어떤 자세로 있지?\"를 정확히 아는 게 모든 것의 시작이다. 카메라와 관성 센서(IMU)를 서로 맞추고(캘리브레이션), 여러 센서를 합쳐 로봇의 위치와 자세를 추정한다.",
       en: "Everything starts with the robot knowing \"where am I, and how am I posed?\" You calibrate cameras and IMUs (motion sensors) and fuse them to estimate the robot's position and posture.",
     },
     barrier: {
-      ko: "걸을 때마다 몸이 흔들리고 발에 충격이 와서 센서 값이 쉽게 틀어져요. 감각이 틀리면 루프는 '보기'에서부터 무너져요.",
+      ko: "걸을 때마다 몸이 흔들리고 발에 충격이 와서 센서 값이 쉽게 틀어진다. 감각이 틀리면 루프는 '보기'에서부터 무너진다.",
       en: "Every step shakes the body and jolts the sensors. If the senses drift, the loop breaks right at \"See\".",
     },
     tools: ["Kalibr", "OpenVINS", "Pinocchio", "ROS 2"],
@@ -68,11 +68,11 @@ export const TYPES = {
     nick:  { ko: "1밀리초를 다루는 장인", en: "The craftsperson of milliseconds" },
     strength: { ko: "손으로 직접 만져 보며 문제의 원인을 누구보다 빨리 찾아낸다.", en: "Hands-on, you find the root cause faster than anyone." },
     easy:  {
-      ko: "로봇 관절은 1초에 수백~수천 번 명령을 받아요. 이 명령이 늦지 않게 도착하고, 신경망 정책이 로봇 안의 작은 컴퓨터(Jetson 등)에서 빠르게 돌도록 만드는 일이에요.",
+      ko: "로봇 관절은 1초에 수백~수천 번 명령을 받는다. 이 명령이 늦지 않게 도착하고, 신경망 정책이 로봇 안의 작은 컴퓨터(Jetson 등)에서 빠르게 돌도록 만드는 일이다.",
       en: "Robot joints get hundreds to thousands of commands per second. You make sure they arrive on time and that neural policies run fast on the small onboard computer (e.g., Jetson).",
     },
     barrier: {
-      ko: "큰 AI 모델은 느린데 몸은 기다려 주지 않아요. '생각'이 아무리 좋아도 '행동'이 늦으면 넘어져요.",
+      ko: "큰 AI 모델은 느린데 몸은 기다려 주지 않는다. '생각'이 아무리 좋아도 '행동'이 늦으면 넘어진다.",
       en: "Big AI models are slow, and the body won't wait. However good the \"Think\" is, a late \"Act\" means a fall.",
     },
     tools: ["ros2_control", "NVIDIA Jetson", "TensorRT", "ONNX Runtime"],
@@ -86,11 +86,11 @@ export const TYPES = {
     nick:  { ko: "로봇의 교과서를 만드는 사람", en: "The one who writes the robot's textbook" },
     strength: { ko: "꼼꼼하고 성실해서, 모두가 믿고 쓰는 깨끗한 데이터를 만든다.", en: "Careful and steady, you build clean data everyone can trust." },
     easy:  {
-      ko: "요즘 로봇은 사람이 보여 준 시범(시연)을 보고 배워요. 시연을 편하게 모으는 장비를 만들고, 좋은 데이터와 나쁜 데이터를 골라 정리하는 일이에요.",
+      ko: "요즘 로봇은 사람이 보여 준 시범(시연)을 보고 배운다. 시연을 편하게 모으는 장비를 만들고, 좋은 데이터와 나쁜 데이터를 골라 정리하는 일이다.",
       en: "Today's robots learn from human demonstrations. You build tools that make demos easy to collect, and you sort good data from bad.",
     },
     barrier: {
-      ko: "데이터가 지저분하면 로봇도 지저분하게 배워요. 양보다 질이 어렵고, 모으는 데 시간과 사람이 많이 들어요.",
+      ko: "데이터가 지저분하면 로봇도 지저분하게 배운다. 양보다 질이 어렵고, 모으는 데 시간과 사람이 많이 든다.",
       en: "Messy data makes a messy robot. Quality is harder than quantity, and collection costs lots of time and people.",
     },
     tools: ["LeRobot", "UMI gripper", "Project Aria", "Hugging Face Datasets"],
@@ -104,11 +104,11 @@ export const TYPES = {
     nick:  { ko: "손끝으로 세상을 느끼는 사람", en: "The one who feels the world through fingertips" },
     strength: { ko: "작은 차이를 알아채는 섬세한 감각으로 손끝 조작을 정교하게 다듬는다.", en: "A fine sense for small differences polishes fingertip manipulation." },
     easy:  {
-      ko: "사람 손처럼 손가락이 여러 개인 로봇 손으로 물건을 잡고, 돌리고, 끼우는 연구예요. 카메라로 보고 촉각 센서로 느껴서 미끄러짐까지 알아채요.",
+      ko: "사람 손처럼 손가락이 여러 개인 로봇 손으로 물건을 잡고, 돌리고, 끼우는 연구다. 카메라로 보고 촉각 센서로 느껴서 미끄러짐까지 알아챈다.",
       en: "Using multi-fingered robot hands to grasp, rotate, and insert objects—seeing with cameras and feeling with touch sensors to catch slips.",
     },
     barrier: {
-      ko: "물건을 잡는 순간 손이 물건을 가려서 카메라가 못 봐요. 그래서 '보는 것'과 '느끼는 것'을 합쳐야 해요.",
+      ko: "물건을 잡는 순간 손이 물건을 가려서 카메라가 못 본다. 그래서 '보는 것'과 '느끼는 것'을 합쳐야 한다.",
       en: "The moment the hand grasps, it blocks the camera's view. Seeing and feeling have to work together.",
     },
     tools: ["MuJoCo", "DIGIT / GelSight", "Allegro · Inspire hand", "Isaac Lab"],
@@ -122,11 +122,11 @@ export const TYPES = {
     nick:  { ko: "몇 수 앞을 계산하는 전략가", en: "The strategist who plans moves ahead" },
     strength: { ko: "큰 그림과 몇 수 앞을 함께 보며, 복잡한 문제를 구조로 풀어낸다.", en: "You see the big picture and moves ahead, turning complexity into structure." },
     easy:  {
-      ko: "로봇이 \"앞으로 1초 동안 어떻게 움직이는 게 가장 좋을까?\"를 계속 계산하게 만드는 일이에요(MPC). 큰 목표는 위층에서 계획하고, 관절 힘은 아래층에서 최적화하는 구조를 설계해요.",
+      ko: "로봇이 \"앞으로 1초 동안 어떻게 움직이는 게 가장 좋을까?\"를 계속 계산하게 만드는 일이다(MPC). 큰 목표는 위층에서 계획하고, 관절 힘은 아래층에서 최적화하는 구조를 설계한다.",
       en: "You make the robot keep asking \"what's the best way to move over the next second?\" (MPC)—big goals planned on top, joint forces optimized below.",
     },
     barrier: {
-      ko: "관절 수십 개짜리 몸 전체를 실시간으로 최적화하기엔 계산이 너무 무거워요. 정확함과 속도 사이의 줄다리기예요.",
+      ko: "관절 수십 개짜리 몸 전체를 실시간으로 최적화하기엔 계산이 너무 무겁다. 정확함과 속도 사이의 줄다리기다.",
       en: "Optimizing a body with dozens of joints in real time is computationally heavy—a constant tug-of-war between accuracy and speed.",
     },
     tools: ["Pinocchio", "Crocoddyl", "MuJoCo MPC", "CasADi"],
@@ -140,11 +140,11 @@ export const TYPES = {
     nick:  { ko: "머릿속에 세상을 짓는 이론가", en: "The theorist who builds the world in their head" },
     strength: { ko: "원리를 끝까지 파고들어, 아무도 생각 못 한 새로운 모델을 떠올린다.", en: "You dig to first principles and imagine models no one else thought of." },
     easy:  {
-      ko: "로봇이 본 것을 3D로 기억하고, \"이렇게 하면 다음엔 이렇게 되겠지\"를 머릿속에서 미리 상상하게 만드는 연구예요.",
+      ko: "로봇이 본 것을 3D로 기억하고, \"이렇게 하면 다음엔 이렇게 되겠지\"를 머릿속에서 미리 상상하게 만드는 연구다.",
       en: "Helping robots remember what they saw in 3D and imagine \"if I do this, that will happen next.\"",
     },
     barrier: {
-      ko: "세상은 계속 바뀌는데 기억은 금방 낡아요. 상상(예측)이 조금만 틀려도 계획 전체가 어긋나요.",
+      ko: "세상은 계속 바뀌는데 기억은 금방 낡는다. 상상(예측)이 조금만 틀려도 계획 전체가 어긋난다.",
       en: "The world keeps changing and memories go stale. A slightly wrong prediction can derail the whole plan.",
     },
     tools: ["gsplat", "Nerfstudio", "NVIDIA Cosmos", "PyTorch"],
@@ -158,11 +158,11 @@ export const TYPES = {
     nick:  { ko: "로봇의 브레이크를 설계하는 사람", en: "The one who designs the robot's brakes" },
     strength: { ko: "기술이 사람에게 미칠 영향을 먼저 내다보고, 위험을 미리 막는다.", en: "You foresee how technology affects people and stop risks early." },
     easy:  {
-      ko: "언어 모델이 로봇에게 계획이나 코드를 만들어 줄 때, 위험하지 않은지 실행 전에 걸러 내는 장치를 만드는 연구예요. 사람이 언제 끼어들지도 설계해요.",
+      ko: "언어 모델이 로봇에게 계획이나 코드를 만들어 줄 때, 위험하지 않은지 실행 전에 걸러 내는 장치를 만드는 연구다. 사람이 언제 끼어들지도 설계한다.",
       en: "When language models write plans or code for robots, you build checks that catch dangerous actions before they run—and decide when humans should step in.",
     },
     barrier: {
-      ko: "언어 모델은 그럴듯하지만 틀린 답을 자신 있게 내놓아요. 몸이 있는 로봇에서는 그 실수가 실제 사고가 돼요.",
+      ko: "언어 모델은 그럴듯하지만 틀린 답을 자신 있게 내놓는다. 몸이 있는 로봇에서는 그 실수가 실제 사고가 된다.",
       en: "Language models confidently give plausible but wrong answers. On a robot with a body, that mistake becomes a real accident.",
     },
     tools: ["MuJoCo · Isaac Sim sandbox", "LTL / formal checks", "LLM API", "ROS 2"],
@@ -176,11 +176,11 @@ export const TYPES = {
     nick:  { ko: "사람의 눈으로 배우는 관찰자", en: "The observer who learns through human eyes" },
     strength: { ko: "사람의 행동에 깊이 공감해서, 사람다운 움직임의 본질을 잡아낸다.", en: "Deep empathy for people lets you capture what makes motion feel human." },
     easy:  {
-      ko: "사람이 머리에 카메라를 달고 찍은 1인칭 영상이 엄청나게 많아요. 이 영상으로 로봇이 세상을 보는 법과 손을 쓰는 법을 미리 배우게 하는 연구예요.",
+      ko: "사람이 머리에 카메라를 달고 찍은 1인칭 영상이 엄청나게 많다. 이 영상으로 로봇이 세상을 보는 법과 손을 쓰는 법을 미리 배우게 하는 연구다.",
       en: "There's a huge amount of first-person video of people doing things. You use it to teach robots how to see and how to use their hands.",
     },
     barrier: {
-      ko: "사람 몸과 로봇 몸은 달라요. 영상 속 사람 행동을 로봇 행동으로 옮기는 '번역'이 어려워요.",
+      ko: "사람 몸과 로봇 몸은 다르다. 영상 속 사람 행동을 로봇 행동으로 옮기는 '번역'이 어렵다.",
       en: "Human and robot bodies differ. \"Translating\" what people do on video into robot actions is hard.",
     },
     tools: ["Ego4D", "R3M · VC-1", "PyTorch", "Hugging Face"],
@@ -194,11 +194,11 @@ export const TYPES = {
     nick:  { ko: "수천 대를 동시에 훈련시키는 감독", en: "The coach who trains thousands at once" },
     strength: { ko: "체계와 기준을 세워서, 실험을 반복 가능하고 믿을 수 있게 만든다.", en: "You set up systems and standards that make experiments repeatable." },
     easy:  {
-      ko: "시뮬레이션 안에서 로봇 수천 대를 동시에 걷게 하며 계단과 경사를 배우게 하고, 그 실력이 진짜 로봇에서도 통하는지 체계적으로 평가하는 일이에요.",
+      ko: "시뮬레이션 안에서 로봇 수천 대를 동시에 걷게 하며 계단과 경사를 배우게 하고, 그 실력이 진짜 로봇에서도 통하는지 체계적으로 평가하는 일이다.",
       en: "Training thousands of simulated robots in parallel to handle stairs and slopes, then systematically testing whether those skills work on the real robot.",
     },
     barrier: {
-      ko: "시뮬레이션과 현실은 미묘하게 달라요(sim-to-real 간극). 시뮬레이션에서 100점이 현실에서는 0점일 수도 있어요.",
+      ko: "시뮬레이션과 현실은 미묘하게 다르다(sim-to-real 간극). 시뮬레이션에서 100점이 현실에서는 0점일 수도 있다.",
       en: "Simulation and reality differ in subtle ways (the sim-to-real gap). 100 points in sim can be 0 in the real world.",
     },
     tools: ["Isaac Lab", "legged_gym", "MuJoCo Playground", "elevation_mapping"],
@@ -212,11 +212,11 @@ export const TYPES = {
     nick:  { ko: "일단 밖에 나가 보는 실험가", en: "The experimenter who just takes it outside" },
     strength: { ko: "실패를 두려워하지 않고 바로 실험해서, 누구보다 빨리 배운다.", en: "Unafraid of failure, you test right away and learn fastest." },
     easy:  {
-      ko: "자갈길, 잔디, 옆에서 밀기 같은 험한 상황에 로봇을 직접 데리고 나가 시험하고, 부서지면 고쳐서 다시 해 보는 연구예요. 파쿠르 같은 날렵한 동작도 여기 속해요.",
+      ko: "자갈길, 잔디, 옆에서 밀기 같은 험한 상황에 로봇을 직접 데리고 나가 시험하고, 부서지면 고쳐서 다시 해 보는 연구다. 파쿠르 같은 날렵한 동작도 여기 속한다.",
       en: "Taking robots onto gravel, grass, and shoves—testing, breaking, fixing, retrying. Agile skills like parkour live here too.",
     },
     barrier: {
-      ko: "현실은 시뮬레이션에 없던 일투성이예요. 넘어졌을 때 원인을 빨리 찾아 고치는 능력이 핵심이에요.",
+      ko: "현실은 시뮬레이션에 없던 일투성이다. 넘어졌을 때 원인을 빨리 찾아 고치는 능력이 핵심이다.",
       en: "Reality is full of things simulation never showed you. Finding why it fell—and fixing it fast—is the core skill.",
     },
     tools: ["Unitree SDK", "MuJoCo", "3D printer", "Motion capture"],
@@ -230,11 +230,11 @@ export const TYPES = {
     nick:  { ko: "사람과 로봇을 잇는 연결자", en: "The connector between human and robot" },
     strength: { ko: "쓰는 사람의 불편을 먼저 챙겨서, 누구나 편한 시스템을 만든다.", en: "You put users first and build systems anyone can use." },
     easy:  {
-      ko: "사람이 VR 헤드셋을 쓰고 고개를 돌리면 로봇 머리의 카메라도 같이 돌아가요. 사람이 로봇의 눈으로 보며 조종하고, 그 기록이 로봇의 학습 데이터가 돼요.",
+      ko: "사람이 VR 헤드셋을 쓰고 고개를 돌리면 로봇 머리의 카메라도 같이 돌아간다. 사람이 로봇의 눈으로 보며 조종하고, 그 기록이 로봇의 학습 데이터가 된다.",
       en: "Turn your head in a VR headset and the robot's head camera turns too. You operate the robot through its eyes, and those sessions become its training data.",
     },
     barrier: {
-      ko: "화면이 조금만 늦어도 멀미가 나고 조종이 어긋나요. 지연, 시야, 편한 조작감을 함께 맞춰야 해요.",
+      ko: "화면이 조금만 늦어도 멀미가 나고 조종이 어긋난다. 지연, 시야, 편한 조작감을 함께 맞춰야 한다.",
       en: "A little video lag causes motion sickness and clumsy control. Latency, field of view, and comfort all have to line up.",
     },
     tools: ["Apple Vision Pro · Meta Quest", "Open-TeleVision", "WebRTC", "ROS 2"],
@@ -248,11 +248,11 @@ export const TYPES = {
     nick:  { ko: "사람의 움직임을 로봇에 옮기는 퍼포머", en: "The performer who makes robots move like people" },
     strength: { ko: "현장의 에너지를 살려서, 사람들이 로봇의 움직임을 즐기게 만든다.", en: "Your live energy makes people enjoy watching robots move." },
     easy:  {
-      ko: "사람의 춤이나 동작을 찍어서 로봇이 그대로 따라 하게 만드는 연구예요. 사람 몸과 로봇 몸의 차이를 맞추는 '리타겟팅'이 핵심이에요.",
+      ko: "사람의 춤이나 동작을 찍어서 로봇이 그대로 따라 하게 만드는 연구다. 사람 몸과 로봇 몸의 차이를 맞추는 '리타겟팅'이 핵심이다.",
       en: "Capturing human dance and motion and having the robot follow it. The key is \"retargeting\"—bridging the gap between human and robot bodies.",
     },
     barrier: {
-      ko: "사람에게 쉬운 동작이 로봇에게는 균형을 잃는 동작일 수 있어요. 따라 하면서도 넘어지지 않아야 해요.",
+      ko: "사람에게 쉬운 동작이 로봇에게는 균형을 잃는 동작일 수 있다. 따라 하면서도 넘어지지 않아야 한다.",
       en: "A move that's easy for a person can knock a robot off balance. It has to imitate without falling.",
     },
     tools: ["SMPL-X", "PHC", "Isaac Lab", "Motion capture"],
@@ -266,11 +266,11 @@ export const TYPES = {
     nick:  { ko: "로봇의 두뇌를 조립하는 총괄", en: "The architect who assembles the robot brain" },
     strength: { ko: "여러 팀과 기술을 한 방향으로 묶어, 아이디어를 실제 시스템으로 완성한다.", en: "You align teams and tech to turn ideas into working systems." },
     easy:  {
-      ko: "보고(Vision), 말을 이해하고(Language), 움직이는(Action) 걸 하나의 큰 모델로 묶은 게 VLA예요. 이 모델을 실제 휴머노이드의 몸, 센서, 제어기와 연결해 하나의 시스템으로 만드는 일이에요.",
+      ko: "보고(Vision), 말을 이해하고(Language), 움직이는(Action) 걸 하나의 큰 모델로 묶은 게 VLA다. 이 모델을 실제 휴머노이드의 몸, 센서, 제어기와 연결해 하나의 시스템으로 만드는 일이다.",
       en: "A VLA model bundles seeing (Vision), understanding words (Language), and moving (Action). You wire it into a real humanoid's body, sensors, and controllers as one system.",
     },
     barrier: {
-      ko: "큰 모델은 느리고 몸은 빨라야 해요. 느린 두뇌와 빠른 몸에게 일을 어떻게 나눠 맡길지가 핵심 장벽이에요.",
+      ko: "큰 모델은 느리고 몸은 빨라야 한다. 느린 두뇌와 빠른 몸에게 일을 어떻게 나눠 맡길지가 핵심 장벽이다.",
       en: "Big models are slow; bodies must be fast. Splitting work between a slow brain and a fast body is the core barrier.",
     },
     tools: ["NVIDIA GR00T", "openpi (π0)", "LeRobot", "ROS 2"],
@@ -284,11 +284,11 @@ export const TYPES = {
     nick:  { ko: "로봇에게 코드로 말을 거는 해커", en: "The hacker who talks to robots in code" },
     strength: { ko: "새로운 조합을 겁 없이 시도해서, 막힌 문제의 우회로를 찾아낸다.", en: "You fearlessly try new combinations and find a way around blockers." },
     easy:  {
-      ko: "\"컵을 왼쪽으로 옮겨 줘\"라고 하면 언어 모델이 로봇 동작 코드를 직접 써요. 실행해 보고 실패하면 에러를 읽고 코드를 스스로 고쳐요. 학습용 보상 함수 코드를 쓰게 하기도 해요.",
+      ko: "\"컵을 왼쪽으로 옮겨 줘\"라고 하면 언어 모델이 로봇 동작 코드를 직접 쓴다. 실행해 보고 실패하면 에러를 읽고 코드를 스스로 고친다. 학습용 보상 함수 코드를 쓰게 하기도 한다.",
       en: "Say \"move the cup left\" and a language model writes the robot's code. It runs it, reads the error when it fails, and fixes the code itself. It can even write reward functions for training.",
     },
     barrier: {
-      ko: "코드가 문법적으로 맞아도 현실에서는 틀릴 수 있어요. 결과를 '보고' 무엇이 잘못됐는지 알아채야 '고칠' 수 있어요.",
+      ko: "코드가 문법적으로 맞아도 현실에서는 틀릴 수 있다. 결과를 '보고' 무엇이 잘못됐는지 알아채야 '고칠' 수 있다.",
       en: "Code can be syntactically right and physically wrong. It has to \"See\" what went wrong before it can \"Fix\" it.",
     },
     tools: ["Claude · GPT API", "MuJoCo", "Isaac Lab", "Python"],
@@ -302,11 +302,11 @@ export const TYPES = {
     nick:  { ko: "큰 일을 작은 단계로 나누는 리더", en: "The leader who breaks big tasks into steps" },
     strength: { ko: "사람들의 의도를 잘 읽고 이끌어서, 복잡한 일을 함께 해내게 한다.", en: "You read intentions and lead people through complex work together." },
     easy:  {
-      ko: "\"부엌 좀 치워 줘\" 같은 큰 지시를 로봇이 할 수 있는 작은 단계로 나눠요. 하다가 상황이 바뀌거나 사람이 말을 걸면 계획을 다시 짜요.",
+      ko: "\"부엌 좀 치워 줘\" 같은 큰 지시를 로봇이 할 수 있는 작은 단계로 나눈다. 하다가 상황이 바뀌거나 사람이 말을 걸면 계획을 다시 짠다.",
       en: "Breaking a big request like \"tidy the kitchen\" into small steps the robot can actually do—and replanning when things change or someone chimes in.",
     },
     barrier: {
-      ko: "언어 모델은 로봇이 실제로 할 수 있는지 모르는 채로 계획을 세우기도 해요. 계획을 몸의 능력과 연결(grounding)해야 해요.",
+      ko: "언어 모델은 로봇이 실제로 할 수 있는지 모르는 채로 계획을 세우기도 한다. 계획을 몸의 능력과 연결(grounding)해야 한다.",
       en: "Language models can plan without knowing what the robot can actually do. Plans must be grounded in the body's abilities.",
     },
     tools: ["LLM API", "ROS 2", "BEHAVIOR · Habitat", "PDDL planners"],
@@ -320,11 +320,11 @@ export const TYPES = {
     nick:  { ko: "궁금하면 다시 들여다보는 탐험가", en: "The explorer who looks again when curious" },
     strength: { ko: "끝없는 호기심으로 '한 번 더 보기'를 즐기며, 새로운 가능성을 발견한다.", en: "Endless curiosity loves a second look and spots new possibilities." },
     easy:  {
-      ko: "한 번 보고 끝내지 않아요. 잘 안 보이면 확대하고, 잘라 보고, 코드를 돌려 세어 보고, 고개를 돌려 다시 봐요. 이렇게 '어떻게 볼지'를 스스로 고르는 비전 에이전트를 연구해요.",
+      ko: "한 번 보고 끝내지 않는다. 잘 안 보이면 확대하고, 잘라 보고, 코드를 돌려 세어 보고, 고개를 돌려 다시 본다. 이렇게 '어떻게 볼지'를 스스로 고르는 비전 에이전트를 연구한다.",
       en: "It doesn't stop at one glance. If unclear, it zooms, crops, runs code to count, or turns its head to look again—vision agents that choose how to look.",
     },
     barrier: {
-      ko: "언제, 어디를, 어떻게 다시 볼지 정하기가 어려워요. 너무 많이 보면 느리고, 너무 적게 보면 틀려요.",
+      ko: "언제, 어디를, 어떻게 다시 볼지 정하기가 어렵다. 너무 많이 보면 느리고, 너무 적게 보면 틀린다.",
       en: "Deciding when, where, and how to look again is hard. Look too much and it's slow; too little and it's wrong.",
     },
     tools: ["VLM API (Claude · Gemini · GPT)", "SAM 2", "Grounding DINO", "Python"],
@@ -334,35 +334,35 @@ export const TYPES = {
 // Why the opposite pair works. Key = the two types sorted alphabetically, joined by "-".
 export const PAIRS = {
   "ESFP-INTJ": {
-    ko: "계산으로 만든 최적 동작은 딱딱해지기 쉽고, 사람 모션은 자연스럽지만 불안정해요. 둘을 합치면 '자연스러우면서도 넘어지지 않는' 동작이 나와요.",
+    ko: "계산으로 만든 최적 동작은 딱딱해지기 쉽고, 사람 모션은 자연스럽지만 불안정하다. 둘을 합치면 '자연스러우면서도 넘어지지 않는' 동작이 나온다.",
     en: "Optimized motion tends to look stiff; human motion looks natural but can be unstable. Together: motion that's natural and stays upright.",
   },
   "ESFJ-INTP": {
-    ko: "월드 모델은 좋은 데이터를 먹고 자라고, 원격조종은 그 데이터를 만드는 공장이에요. 상상하는 두뇌와 실제 경험이 만나는 조합이에요.",
+    ko: "월드 모델은 좋은 데이터를 먹고 자라고, 원격조종은 그 데이터를 만드는 공장이다. 상상하는 두뇌와 실제 경험이 만나는 조합이다.",
     en: "World models grow on good data, and teleoperation is the factory that makes it. Imagination meets real experience.",
   },
   "ENTJ-ISFP": {
-    ko: "VLA는 큰 그림을 보지만 손끝 접촉에는 약해요. 촉각을 아는 사람이 있어야 '잡은 것 같다'가 진짜 '잡았다'가 돼요.",
+    ko: "VLA는 큰 그림을 보지만 손끝 접촉에는 약하다. 촉각을 아는 사람이 있어야 '잡은 것 같다'가 진짜 '잡았다'가 된다.",
     en: "VLAs see the big picture but are weak at fingertip contact. Touch expertise turns \"I think I grasped it\" into a real grasp.",
   },
   "ENTP-ISFJ": {
-    ko: "로봇 행동을 얻는 두 갈래 길이에요. 코드는 빠르고 설명하기 쉽지만 현실 감각이 부족하고, 시연 데이터는 현실적이지만 모으기 비싸요. 둘 다 알면 언제 무엇을 쓸지 고를 수 있어요.",
+    ko: "로봇 행동을 얻는 두 갈래 길이다. 코드는 빠르고 설명하기 쉽지만 현실 감각이 부족하고, 시연 데이터는 현실적이지만 모으기 비싸다. 둘 다 알면 언제 무엇을 쓸지 고를 수 있다.",
     en: "Two roads to robot behavior. Code is fast and explainable but lacks real-world feel; demos are realistic but costly. Knowing both lets you pick the right one.",
   },
   "ESTP-INFJ": {
-    ko: "안전 규칙은 현장의 실패를 먹고 정확해지고, 현장 실험은 안전 규칙이 있어야 과감해질 수 있어요.",
+    ko: "안전 규칙은 현장의 실패를 먹고 정확해지고, 현장 실험은 안전 규칙이 있어야 과감해질 수 있다.",
     en: "Safety rules get sharper from field failures, and field experiments can be bolder once safety rules exist.",
   },
   "ESTJ-INFP": {
-    ko: "사람 영상에서 배운 '보는 눈'과 수천 번 검증된 '걷는 몸'이 만나면, 보면서 걷는 휴머노이드가 돼요.",
+    ko: "사람 영상에서 배운 '보는 눈'과 수천 번 검증된 '걷는 몸'이 만나면, 보면서 걷는 휴머노이드가 된다.",
     en: "Eyes learned from human video plus a body validated thousands of times: a humanoid that walks while it sees.",
   },
   "ENFJ-ISTP": {
-    ko: "언어 계획은 초 단위, 관절 제어는 밀리초 단위로 움직여요. 두 시간 단위를 모두 아는 사람이 계획을 모터까지 내려보낼 수 있어요.",
+    ko: "언어 계획은 초 단위, 관절 제어는 밀리초 단위로 움직인다. 두 시간 단위를 모두 아는 사람이 계획을 모터까지 내려보낼 수 있다.",
     en: "Language plans live in seconds; joint control in milliseconds. Someone who knows both can carry a plan all the way down to the motors.",
   },
   "ENFP-ISTJ": {
-    ko: "'다시 보기'는 센서를 믿을 수 있을 때만 의미가 있어요. 능동적으로 보는 에이전트와 믿을 수 있는 감각이 만나야 루프가 닫혀요.",
+    ko: "'다시 보기'는 센서를 믿을 수 있을 때만 의미가 있다. 능동적으로 보는 에이전트와 믿을 수 있는 감각이 만나야 루프가 닫힌다.",
     en: "Looking again only helps if you can trust your sensors. An agent that looks actively plus senses you can trust closes the loop.",
   },
 };
@@ -370,14 +370,14 @@ export const PAIRS = {
 // Mini quiz: each option adds one vote to each listed letter. Every axis gets exactly 3 votes, so there are no ties.
 export const QUIZ = [
   {
-    q: { ko: "새 휴머노이드가 연구실에 도착했어요. 제일 먼저 하고 싶은 건?", en: "A new humanoid just arrived at the lab. What do you do first?" },
+    q: { ko: "새 휴머노이드가 연구실에 도착했다. 제일 먼저 하고 싶은 건?", en: "A new humanoid just arrived at the lab. What do you do first?" },
     options: [
       { text: { ko: "일단 전원 켜고 걸려 본다", en: "Power it on and make it walk" }, votes: ["E", "S"] },
       { text: { ko: "구조도와 논문부터 읽으며 원리를 파악한다", en: "Read the specs and papers to understand how it works" }, votes: ["I", "N"] },
     ],
   },
   {
-    q: { ko: "로봇이 컵을 자꾸 떨어뜨려요. 어떻게 고칠까요?", en: "The robot keeps dropping the cup. How do you fix it?" },
+    q: { ko: "로봇이 컵을 자꾸 떨어뜨린다. 어떻게 고칠까?", en: "The robot keeps dropping the cup. How do you fix it?" },
     options: [
       { text: { ko: "그립 힘과 마찰을 재서 제어 값을 조정한다", en: "Measure grip force and friction, then tune the controller" }, votes: ["S", "T"] },
       { text: { ko: "사람이 컵 잡는 영상으로 로봇이 배우게 할 방법을 찾는다", en: "Find a way for it to learn from videos of people holding cups" }, votes: ["N", "F"] },
@@ -391,7 +391,7 @@ export const QUIZ = [
     ],
   },
   {
-    q: { ko: "코드가 처음으로 실제 로봇에서 돌아갔어요! 다음은?", en: "Your code just worked on the real robot for the first time! Next?" },
+    q: { ko: "코드가 처음으로 실제 로봇에서 돌아갔다! 다음은?", en: "Your code just worked on the real robot for the first time! Next?" },
     options: [
       { text: { ko: "같은 조건으로 10번 반복해서 재현되는지 확인한다", en: "Repeat it 10 times under the same conditions to confirm" }, votes: ["S", "J"] },
       { text: { ko: "다른 작업에도 통할지 새 아이디어를 붙여 본다", en: "Try new ideas to see if it works on other tasks" }, votes: ["N", "P"] },
@@ -409,10 +409,10 @@ export const QUIZ = [
 export const UI = {
   eyebrow:      { ko: "Why humanoids need agentic vision", en: "Why humanoids need agentic vision" },
   title:        { ko: "내 MBTI에 맞는\n휴머노이드 연구는?", en: "Which humanoid research\nfits your MBTI?" },
-  loopIntro:    { ko: "Agentic vision은 한 번 보고 끝내지 않아요. 보고, 생각하고, 행동하고, 결과를 보고 스스로 고쳐요. 이 루프 곳곳에 기술 장벽이 있어요.", en: "Agentic vision doesn't stop at one glance. It sees, thinks, acts, then checks the result and fixes itself. Every step of this loop has its own barrier." },
-  pickTitle:    { ko: "MBTI를 골라 주세요", en: "Pick your MBTI" },
+  loopIntro:    { ko: "Agentic vision은 한 번 보고 끝내지 않는다. 보고, 생각하고, 행동하고, 결과를 보고 스스로 고친다. 이 루프 곳곳에 기술 장벽이 있다.", en: "Agentic vision doesn't stop at one glance. It sees, thinks, acts, then checks the result and fixes itself. Every step of this loop has its own barrier." },
+  pickTitle:    { ko: "MBTI 고르기", en: "Pick your MBTI" },
   seeResult:    { ko: "결과 보기", en: "See my result" },
-  dontKnow:     { ko: "MBTI를 모르겠어요 → 5문항 퀴즈", en: "Don't know your MBTI? → 5-question quiz" },
+  dontKnow:     { ko: "MBTI를 모른다면 → 5문항 퀴즈", en: "Don't know your MBTI? → 5-question quiz" },
   quizOf:       { ko: "질문", en: "Question" },
   back:         { ko: "← 처음으로", en: "← Start over" },
   myField:      { ko: "나에게 맞는 분야", en: "Your field" },
@@ -424,20 +424,20 @@ export const UI = {
   foundational: { ko: "기초", en: "Foundational" },
   recent:       { ko: "최신 (2025–26)", en: "Recent (2025–26)" },
   project:      { ko: "프로젝트", en: "Project" },
-  oppTitle:     { ko: "정반대 유형을 공부하세요", en: "Study your opposite" },
-  oppClaim:     { ko: "나와 안 맞는 쪽이 내 연구의 빈칸을 채워요. 네 글자가 모두 반대인 유형의 분야는 같은 문제의 반대편을 다뤄요.", en: "The side that doesn't suit you fills the gaps in your research. Your fully opposite type works on the other side of the same problem." },
+  oppTitle:     { ko: "정반대 유형을 공부하자", en: "Study your opposite" },
+  oppClaim:     { ko: "나와 안 맞는 쪽이 내 연구의 빈칸을 채운다. 네 글자가 모두 반대인 유형의 분야는 같은 문제의 반대편을 다룬다.", en: "The side that doesn't suit you fills the gaps in your research. Your fully opposite type works on the other side of the same problem." },
   synergyTitle: { ko: "왜 시너지가 날까?", en: "Why the synergy?" },
   oppPapers:    { ko: "입문용으로 먼저 읽을 2편", en: "Two papers to start with" },
   evidenceTitle:{ ko: "근거 한 줄", en: "One piece of evidence" },
   save:         { ko: "결과 이미지 저장", en: "Save result image" },
   allTypes:     { ko: "다른 유형도 구경하기", en: "Browse other types" },
-  disclaimer:   { ko: "MBTI는 과학적으로 검증된 도구가 아니에요. 흥미로 봐 주세요. 진짜 기준은 내가 오래 몰입할 수 있는 문제예요.", en: "MBTI isn't a scientifically validated tool—please treat this as just for fun. The real guide is which problems you can stay absorbed in." },
-  papersLoading:{ ko: "논문 목록 준비 중이에요.", en: "Paper list coming soon." },
+  disclaimer:   { ko: "MBTI는 과학적으로 검증된 도구가 아니다. 재미로만 보자. 진짜 기준은 내가 오래 몰입할 수 있는 문제다.", en: "MBTI isn't a scientifically validated tool—please treat this as just for fun. The real guide is which problems you can stay absorbed in." },
+  papersLoading:{ ko: "논문 목록 준비 중이다.", en: "Paper list coming soon." },
 };
 
 // Verified via Crossref: Science 342(6157):468–472, doi:10.1126/science.1240474
 export const EVIDENCE = {
-  ko: "논문 약 1,790만 편을 분석했더니, 영향력이 가장 큰 연구는 익숙한 지식 조합을 바탕에 두고 아주 낯선 조합을 조금 섞은 연구였어요. 이런 조합은 혼자보다 팀이 더 잘 만들었어요.",
+  ko: "논문 약 1,790만 편을 분석했더니, 영향력이 가장 큰 연구는 익숙한 지식 조합을 바탕에 두고 아주 낯선 조합을 조금 섞은 연구였다. 이런 조합은 혼자보다 팀이 더 잘 만들었다.",
   en: "Across ~17.9 million papers, the highest-impact work was grounded in conventional combinations of prior knowledge with a small dose of highly unusual ones—and teams produced this mix more often than solo authors.",
   cite: "Uzzi et al., \"Atypical Combinations and Scientific Impact,\" Science (2013)",
   url: "https://doi.org/10.1126/science.1240474",

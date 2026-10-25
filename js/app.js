@@ -105,7 +105,7 @@ function slipChartHTML() {
       <text x="${x(1.2) + 4}" y="${T + 10}" class="ann">${ko ? "미끄러짐 감지" : "slip detected"}</text>
       <text x="${x(2.0)}" y="${y(3.0) - 6}" class="lbl2">${ko ? "잡는 힘 (N)" : "grip force (N)"}</text>
     </svg>
-    <figcaption><span class="mono">VIZ</span> ${ko ? "촉각 센서가 미끄러짐을 느끼면 손이 바로 더 꽉 쥐어요 (예시 데이터)" : "When the tactile sensor feels a slip, the hand squeezes harder (illustrative data)"}</figcaption>
+    <figcaption><span class="mono">VIZ</span> ${ko ? "촉각 센서가 미끄러짐을 느끼면 손이 바로 더 꽉 쥔다 (예시 데이터)" : "When the tactile sensor feels a slip, the hand squeezes harder (illustrative data)"}</figcaption>
   </figure>`;
 }
 
@@ -225,7 +225,7 @@ function resultHTML(type) {
 function roomText(opp) {
   if (!roomCounts) return "";
   const n = roomCounts[opp] || 0;
-  if (lang === "ko") return n ? `지금 이 방에 <b>${opp}</b>가 <b>${n}명</b> 있어요. 발표 끝나고 찾아가 보세요!` : `아직 이 방에 ${opp}는 없어요. 곧 들어올지도 몰라요.`;
+  if (lang === "ko") return n ? `지금 이 방에 <b>${opp}</b>가 <b>${n}명</b> 있다. 발표 끝나고 찾아가 보자!` : `아직 이 방에 ${opp}는 없다. 곧 들어올지도 모른다.`;
   return n ? `<b>${n}</b> ${opp}${n > 1 ? "s are" : " is"} in this room right now. Go find them after the talk!` : `No ${opp} in the room yet. One may join soon.`;
 }
 function updateRoom() {
@@ -254,7 +254,7 @@ async function mountRobotFor(type) {
     } catch (e) {
       console.warn("3D model failed", e);
       const l = el.querySelector(".loading");
-      if (l) l.textContent = lang === "ko" ? "3D 모델을 불러오지 못했어요" : "Could not load the 3D model";
+      if (l) l.textContent = lang === "ko" ? "3D 모델을 불러오지 못했다" : "Could not load the 3D model";
     }
   }
 }
@@ -262,8 +262,8 @@ async function mountRobotFor(type) {
 /* ---------- vote state ---------- */
 let voteState = null; // "counted" | "already" | "off" | null (browsing via links)
 function voteNoteText() {
-  if (voteState === "counted") return lang === "ko" ? "✓ 이 결과가 현장 집계에 반영됐어요" : "✓ This result was added to the live stats";
-  if (voteState === "already") return lang === "ko" ? "이미 참여했어요 · 이 결과는 둘러보기라 집계되지 않아요" : "You already took part · this one is just browsing";
+  if (voteState === "counted") return lang === "ko" ? "✓ 이 결과가 현장 집계에 반영됐다" : "✓ This result was added to the live stats";
+  if (voteState === "already") return lang === "ko" ? "이미 참여했다 · 이 결과는 둘러보기라 집계되지 않는다" : "You already took part · this one is just browsing";
   return "";
 }
 
@@ -355,7 +355,7 @@ function showImageModal(url, type) {
   const m = document.createElement("div");
   m.className = "modal";
   m.innerHTML = `<img src="${url}" alt="${type} result card">
-    <p>${lang === "ko" ? "이미지를 길게 눌러 저장하세요" : "Long-press the image to save it"}</p>
+    <p>${lang === "ko" ? "이미지를 길게 눌러 저장" : "Long-press the image to save it"}</p>
     <a class="btn btn-primary" style="max-width:320px" href="${url}" download="humanoid-${type}.png">${lang === "ko" ? "다운로드" : "Download"}</a>
     <button class="btn btn-ghost" style="max-width:320px">${lang === "ko" ? "닫기" : "Close"}</button>`;
   m.querySelector("button").onclick = () => { m.remove(); URL.revokeObjectURL(url); };
